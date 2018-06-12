@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const expect = require('chai').expect
-const tymly = require('tymly')
+const tymly = require('@wmfs/tymly')
 const path = require('path')
 const process = require('process')
 const sqlScriptRunner = require('./fixtures/sql-script-runner.js')
@@ -38,7 +38,7 @@ for (const test of reindexTests) {
         {
           pluginPaths: [
             path.resolve(__dirname, './../lib'),
-            require.resolve('tymly-pg-plugin')
+            require.resolve('@wmfs/tymly-pg-plugin')
           ],
           blueprintPaths: [
             path.resolve(__dirname, './fixtures/school-blueprint')

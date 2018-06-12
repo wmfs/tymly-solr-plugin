@@ -3,7 +3,7 @@
 'use strict'
 
 const expect = require('chai').expect
-const tymly = require('tymly')
+const tymly = require('@wmfs/tymly')
 const path = require('path')
 const process = require('process')
 
@@ -36,7 +36,7 @@ describe('tymly-solr-plugin tests', function () {
       {
         pluginPaths: [
           path.resolve(__dirname, './../lib'),
-          require.resolve('tymly-pg-plugin')
+          require.resolve('@wmfs/tymly-pg-plugin')
         ],
         blueprintPaths: [
           path.resolve(__dirname, './fixtures/school-blueprint')
