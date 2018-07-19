@@ -38,7 +38,7 @@
     "semantic-release": "15.8.1",
     "standard": "11.0.1",
     "@semantic-release/changelog": "3.0.0",
-    "@semantic-release/git": "7.0.0",
+    "@semantic-release/git": "7.0.1",
     "@wmfs/tymly": "1.10.0",
     "@wmfs/tymly-pg-plugin": "1.12.0"
   },
