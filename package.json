@@ -26,7 +26,8 @@
     "lodash": "4.17.10",
     "process": "0.11.10",
     "request": "2.87.0",
-    "solr-client": "0.7.0"
+    "solr-client": "0.7.0",
+    "snyk": "^1.90.0"
   },
   "devDependencies": {
     "chai": "4.1.2",
@@ -46,7 +47,9 @@
     "lint": "standard",
     "test": "nyc mocha && standard",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "config": {
     "commitizen": {
@@ -55,5 +58,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "snyk": true
 }
