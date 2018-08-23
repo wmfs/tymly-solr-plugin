@@ -31,7 +31,8 @@ describe('tymly-solr-plugin search state resource tests', function () {
       {
         pluginPaths: [
           path.resolve(__dirname, './../lib'),
-          require.resolve('@wmfs/tymly-pg-plugin')
+          require.resolve('@wmfs/tymly-pg-plugin'),
+          require.resolve('@wmfs/tymly-rbac-plugin')
         ],
         blueprintPaths: [
           path.resolve(__dirname, './fixtures/school-blueprint')
