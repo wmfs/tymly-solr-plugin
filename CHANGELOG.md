@@ -1,3 +1,25 @@
+## [1.1.1](https://github.com/wmfs/tymly-solr-plugin/compare/v1.1.0...v1.1.1) (2018-08-23)
+
+
+### 🐛 Bug Fixes
+
+* Updated for new tymly-rbac-plugin ([7ebaf74](https://github.com/wmfs/tymly-solr-plugin/commit/7ebaf74))
+
+
+### 🛠 Builds
+
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.15.2 to 1.16.0 ([9f4ebd1](https://github.com/wmfs/tymly-solr-plugin/commit/9f4ebd1))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.16.0 to 1.16.1 ([178d031](https://github.com/wmfs/tymly-solr-plugin/commit/178d031))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.16.1 to 1.16.2 ([664ca0b](https://github.com/wmfs/tymly-solr-plugin/commit/664ca0b))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement from 1.24.0 to 1.24.1 ([7698ce7](https://github.com/wmfs/tymly-solr-plugin/commit/7698ce7))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement from 1.24.1 to 1.25.0 ([8981ba5](https://github.com/wmfs/tymly-solr-plugin/commit/8981ba5))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement from 1.25.0 to 1.26.0 ([68e3e14](https://github.com/wmfs/tymly-solr-plugin/commit/68e3e14))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement from 1.26.0 to 1.28.0 ([d4bafdc](https://github.com/wmfs/tymly-solr-plugin/commit/d4bafdc))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement from 1.28.0 to 1.30.0 ([9b67670](https://github.com/wmfs/tymly-solr-plugin/commit/9b67670))
+* **deps-dev:** update semantic-release requirement from 15.9.6 to 15.9.7 ([68321d0](https://github.com/wmfs/tymly-solr-plugin/commit/68321d0))
+* **deps-dev:** update semantic-release requirement from 15.9.7 to 15.9.8 ([9298cd5](https://github.com/wmfs/tymly-solr-plugin/commit/9298cd5))
+* **deps-dev:** update semantic-release requirement from 15.9.8 to 15.9.9 ([2c0c41c](https://github.com/wmfs/tymly-solr-plugin/commit/2c0c41c))
+
 # [1.1.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.0.13...v1.1.0) (2018-08-10)
 
 
