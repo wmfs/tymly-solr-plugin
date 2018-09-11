@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.2.0...v1.3.0) (2018-09-11)
+
+
+### 🛠 Builds
+
+* **deps:** update debug requirement from 3.2.1 to 4.0.0 ([c7597aa](https://github.com/wmfs/tymly-solr-plugin/commit/c7597aa))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([130212f](https://github.com/wmfs/tymly-solr-plugin/commit/130212f))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([2f44d08](https://github.com/wmfs/tymly-solr-plugin/commit/2f44d08))
+
 # [1.2.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.1.1...v1.2.0) (2018-09-11)
 
 
