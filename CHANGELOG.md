@@ -1,3 +1,42 @@
+# [1.2.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.1.1...v1.2.0) (2018-09-11)
+
+
+### 🛠 Builds
+
+* **deps:** update debug requirement from 3.1.0 to 3.2.1 ([6dfd254](https://github.com/wmfs/tymly-solr-plugin/commit/6dfd254))
+* **deps-dev:** update [@semantic-release](https://github.com/semantic-release)/git requirement from 7.0.1 to 7.0.2 ([6c9a415](https://github.com/wmfs/tymly-solr-plugin/commit/6c9a415))
+* **deps-dev:** update [@semantic-release](https://github.com/semantic-release)/git requirement from 7.0.2 to 7.0.3 ([5f6dae3](https://github.com/wmfs/tymly-solr-plugin/commit/5f6dae3))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.16.2 to 1.17.0 ([5f695c4](https://github.com/wmfs/tymly-solr-plugin/commit/5f695c4))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.17.0 to 1.19.0 ([6175edc](https://github.com/wmfs/tymly-solr-plugin/commit/6175edc))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.19.0 to 1.20.0 ([cebd550](https://github.com/wmfs/tymly-solr-plugin/commit/cebd550))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.20.0 to 1.21.0 ([459d6aa](https://github.com/wmfs/tymly-solr-plugin/commit/459d6aa))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.21.0 to 1.22.0 ([f7d8e95](https://github.com/wmfs/tymly-solr-plugin/commit/f7d8e95))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.22.0 to 1.23.0 ([9db9678](https://github.com/wmfs/tymly-solr-plugin/commit/9db9678))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.23.0 to 1.24.0 ([5b9b3e9](https://github.com/wmfs/tymly-solr-plugin/commit/5b9b3e9))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.24.0 to 1.26.0 ([d1e6cb4](https://github.com/wmfs/tymly-solr-plugin/commit/d1e6cb4))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.26.0 to 1.26.1 ([2c991e1](https://github.com/wmfs/tymly-solr-plugin/commit/2c991e1))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([df8f0bc](https://github.com/wmfs/tymly-solr-plugin/commit/df8f0bc))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([7a118c1](https://github.com/wmfs/tymly-solr-plugin/commit/7a118c1))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([910db1d](https://github.com/wmfs/tymly-solr-plugin/commit/910db1d))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([3289c16](https://github.com/wmfs/tymly-solr-plugin/commit/3289c16))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([c8079f3](https://github.com/wmfs/tymly-solr-plugin/commit/c8079f3))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([0653472](https://github.com/wmfs/tymly-solr-plugin/commit/0653472))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement from 1.30.0 to 1.31.0 ([fa40a0d](https://github.com/wmfs/tymly-solr-plugin/commit/fa40a0d))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement from 1.31.0 to 1.32.0 ([7dcc497](https://github.com/wmfs/tymly-solr-plugin/commit/7dcc497))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement from 1.32.0 to 1.33.0 ([c2b1c3c](https://github.com/wmfs/tymly-solr-plugin/commit/c2b1c3c))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement from 1.33.0 to 1.34.0 ([84f81bb](https://github.com/wmfs/tymly-solr-plugin/commit/84f81bb))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement from 1.34.0 to 1.35.0 ([f2dd405](https://github.com/wmfs/tymly-solr-plugin/commit/f2dd405))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement from 1.35.0 to 1.36.0 ([9500cf4](https://github.com/wmfs/tymly-solr-plugin/commit/9500cf4))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement from 1.36.0 to 1.37.0 ([46baec4](https://github.com/wmfs/tymly-solr-plugin/commit/46baec4))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement from 1.37.0 to 1.38.0 ([8242f00](https://github.com/wmfs/tymly-solr-plugin/commit/8242f00))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement from 1.38.0 to 1.39.0 ([7a15145](https://github.com/wmfs/tymly-solr-plugin/commit/7a15145))
+* **deps-dev:** update codecov requirement from 3.0.4 to 3.1.0 ([bb51d59](https://github.com/wmfs/tymly-solr-plugin/commit/bb51d59))
+* **deps-dev:** update nyc requirement from 12.0.2 to 13.0.1 ([1a1e528](https://github.com/wmfs/tymly-solr-plugin/commit/1a1e528))
+* **deps-dev:** update semantic-release requirement ([4b4a940](https://github.com/wmfs/tymly-solr-plugin/commit/4b4a940))
+* **deps-dev:** update semantic-release requirement from 15.9.11 to 15.9.12 ([d1ae0ce](https://github.com/wmfs/tymly-solr-plugin/commit/d1ae0ce))
+* **deps-dev:** update semantic-release requirement from 15.9.9 to 15.9.11 ([9b1f89a](https://github.com/wmfs/tymly-solr-plugin/commit/9b1f89a))
+* **dev-deps:** move to standard 12.0.1 ([f72a2aa](https://github.com/wmfs/tymly-solr-plugin/commit/f72a2aa))
+
 ## [1.1.1](https://github.com/wmfs/tymly-solr-plugin/compare/v1.1.0...v1.1.1) (2018-08-23)
 
 
