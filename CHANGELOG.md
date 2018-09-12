@@ -1,3 +1,21 @@
+# [1.4.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.3.0...v1.4.0) (2018-09-12)
+
+
+### 🛠 Builds
+
+* **deps:** update lodash requirement from 4.17.10 to 4.17.11 ([322d284](https://github.com/wmfs/tymly-solr-plugin/commit/322d284))
+* **deps-dev:** update [@semantic-release](https://github.com/semantic-release)/git requirement ([fb068cf](https://github.com/wmfs/tymly-solr-plugin/commit/fb068cf))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.26.1 to 1.27.0 ([99152e5](https://github.com/wmfs/tymly-solr-plugin/commit/99152e5))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.27.0 to 1.28.0 ([f874a26](https://github.com/wmfs/tymly-solr-plugin/commit/f874a26))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.28.0 to 1.29.0 ([53ade4d](https://github.com/wmfs/tymly-solr-plugin/commit/53ade4d))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([607a734](https://github.com/wmfs/tymly-solr-plugin/commit/607a734))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([46716b6](https://github.com/wmfs/tymly-solr-plugin/commit/46716b6))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([d240bb8](https://github.com/wmfs/tymly-solr-plugin/commit/d240bb8))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([b171ab4](https://github.com/wmfs/tymly-solr-plugin/commit/b171ab4))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([960df57](https://github.com/wmfs/tymly-solr-plugin/commit/960df57))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([2172627](https://github.com/wmfs/tymly-solr-plugin/commit/2172627))
+* **deps-dev:** update semantic-release requirement ([37eeab9](https://github.com/wmfs/tymly-solr-plugin/commit/37eeab9))
+
 # [1.3.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.2.0...v1.3.0) (2018-09-11)
 
 
