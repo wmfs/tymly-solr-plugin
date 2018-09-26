@@ -34,7 +34,7 @@
     "@wmfs/tymly": "1.35.0",
     "@wmfs/tymly-pg-plugin": "1.67.0",
     "@wmfs/tymly-rbac-plugin": "1.0.0",
-    "chai": "4.1.2",
+    "chai": "4.2.0",
     "codecov": "3.1.0",
     "conventional-changelog-metahub": "2.0.2",
     "cz-conventional-changelog": "2.1.0",
