@@ -1,3 +1,38 @@
+# [1.6.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.5.0...v1.6.0) (2018-10-08)
+
+
+### 🛠 Builds
+
+* **deps:** update debug requirement from 4.0.1 to 4.1.0 ([60b762e](https://github.com/wmfs/tymly-solr-plugin/commit/60b762e))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.29.0 to 1.31.0 ([2128ca4](https://github.com/wmfs/tymly-solr-plugin/commit/2128ca4))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.31.0 to 1.32.0 ([7e39fa3](https://github.com/wmfs/tymly-solr-plugin/commit/7e39fa3))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.32.0 to 1.33.0 ([aafdf42](https://github.com/wmfs/tymly-solr-plugin/commit/aafdf42))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.33.0 to 1.34.0 ([3567ab7](https://github.com/wmfs/tymly-solr-plugin/commit/3567ab7))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.34.0 to 1.35.0 ([a45209f](https://github.com/wmfs/tymly-solr-plugin/commit/a45209f))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.35.0 to 1.36.0 ([416a871](https://github.com/wmfs/tymly-solr-plugin/commit/416a871))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.36.0 to 1.37.0 ([a4f98c0](https://github.com/wmfs/tymly-solr-plugin/commit/a4f98c0))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.37.0 to 1.39.0 ([7828dc7](https://github.com/wmfs/tymly-solr-plugin/commit/7828dc7))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.39.0 to 1.40.0 ([482c7b2](https://github.com/wmfs/tymly-solr-plugin/commit/482c7b2))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.40.0 to 1.41.0 ([3f27a51](https://github.com/wmfs/tymly-solr-plugin/commit/3f27a51))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.41.0 to 1.42.0 ([f157dfd](https://github.com/wmfs/tymly-solr-plugin/commit/f157dfd))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([3e65678](https://github.com/wmfs/tymly-solr-plugin/commit/3e65678))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([d7a1e93](https://github.com/wmfs/tymly-solr-plugin/commit/d7a1e93))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([cee2c2f](https://github.com/wmfs/tymly-solr-plugin/commit/cee2c2f))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([9401f73](https://github.com/wmfs/tymly-solr-plugin/commit/9401f73))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([ef3cefa](https://github.com/wmfs/tymly-solr-plugin/commit/ef3cefa))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([0d5f089](https://github.com/wmfs/tymly-solr-plugin/commit/0d5f089))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([b5a3360](https://github.com/wmfs/tymly-solr-plugin/commit/b5a3360))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([82ba33c](https://github.com/wmfs/tymly-solr-plugin/commit/82ba33c))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-rbac-plugin requirement ([8fda9cd](https://github.com/wmfs/tymly-solr-plugin/commit/8fda9cd))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-rbac-plugin requirement ([b822b62](https://github.com/wmfs/tymly-solr-plugin/commit/b822b62))
+* **deps-dev:** update chai requirement from 4.1.2 to 4.2.0 ([047c6d9](https://github.com/wmfs/tymly-solr-plugin/commit/047c6d9))
+* **deps-dev:** update semantic-release requirement ([be27c73](https://github.com/wmfs/tymly-solr-plugin/commit/be27c73))
+
+
+### ♻️ Chores
+
+* **dev-deps:** tymly-rbac-plugin 1.2.0 -> 1.3.0 ([071fd73](https://github.com/wmfs/tymly-solr-plugin/commit/071fd73))
+
 # [1.5.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.4.0...v1.5.0) (2018-09-12)
 
 
