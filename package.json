@@ -29,7 +29,7 @@
     "solr-client": "0.7.0"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "3.0.0",
+    "@semantic-release/changelog": "3.0.1",
     "@semantic-release/git": "7.0.5",
     "@wmfs/tymly": "1.50.0",
     "@wmfs/tymly-pg-plugin": "1.79.0",
