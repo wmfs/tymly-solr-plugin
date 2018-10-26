@@ -32,7 +32,7 @@
     "@semantic-release/changelog": "3.0.1",
     "@semantic-release/git": "7.0.5",
     "@wmfs/tymly": "1.56.0",
-    "@wmfs/tymly-pg-plugin": "1.85.0",
+    "@wmfs/tymly-pg-plugin": "1.86.0",
     "@wmfs/tymly-rbac-plugin": "1.5.0",
     "chai": "4.2.0",
     "codecov": "3.1.0",
