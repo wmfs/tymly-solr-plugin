@@ -1,3 +1,17 @@
+# [1.8.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.7.0...v1.8.0) (2018-11-03)
+
+
+### 🛠 Builds
+
+* **deps:** update boom requirement from 7.2.1 to 7.2.2 ([843bb4e](https://github.com/wmfs/tymly-solr-plugin/commit/843bb4e))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([fd874dc](https://github.com/wmfs/tymly-solr-plugin/commit/fd874dc))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([419dc0d](https://github.com/wmfs/tymly-solr-plugin/commit/419dc0d))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([2d7c75f](https://github.com/wmfs/tymly-solr-plugin/commit/2d7c75f))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([9df8c26](https://github.com/wmfs/tymly-solr-plugin/commit/9df8c26))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-rbac-plugin requirement ([8a44471](https://github.com/wmfs/tymly-solr-plugin/commit/8a44471))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-rbac-plugin requirement ([139520e](https://github.com/wmfs/tymly-solr-plugin/commit/139520e))
+* **deps-dev:** update semantic-release requirement ([6280327](https://github.com/wmfs/tymly-solr-plugin/commit/6280327))
+
 # [1.7.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.6.0...v1.7.0) (2018-11-01)
 
 
