@@ -1,3 +1,10 @@
+## [1.8.2](https://github.com/wmfs/tymly-solr-plugin/compare/v1.8.1...v1.8.2) (2018-12-12)
+
+
+### 🐛 Bug Fixes
+
+* [#695](https://github.com/wmfs/tymly-solr-plugin/issues/695) Improve search ([286d5a5](https://github.com/wmfs/tymly-solr-plugin/commit/286d5a5))
+
 ## [1.8.1](https://github.com/wmfs/tymly-solr-plugin/compare/v1.8.0...v1.8.1) (2018-12-11)
 
 
