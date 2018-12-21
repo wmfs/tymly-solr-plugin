@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.8.2...v1.9.0) (2018-12-21)
+
+
+### 🛠 Builds
+
+* **deps:** update boom requirement from 7.2.2 to 7.3.0 ([140027b](https://github.com/wmfs/tymly-solr-plugin/commit/140027b))
+
 ## [1.8.2](https://github.com/wmfs/tymly-solr-plugin/compare/v1.8.1...v1.8.2) (2018-12-12)
 
 
