@@ -1,1 +1,8 @@
-{}
+{
+  "Type": "Task",
+  "Resource": "module:fullReindex",
+  "ResourceConfig": {
+    "core": "tymly"
+  },
+  "End": true
+}
