@@ -1,12 +1,14 @@
 {
-  "Type": "Task",
-  "Resource": "module:removeDocs",
-  "InputPath": "$",
-  "ResourceConfig": {
-    "query": {
-      "category": "iip",
-      "activeEvent": true
+  "RemoveDocs": {
+    "Type": "Task",
+    "Resource": "module:removeDocs",
+    "InputPath": "$",
+    "ResourceConfig": {
+      "query": {
+        "category": "iip",
+        "activeEvent": true
+      }
+    },
+    "Next": "GetIncidentsInProgress"
     }
-  },
-  "Next": "GetIncidentsInProgress"
 }

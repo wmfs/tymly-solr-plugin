@@ -1,8 +1,10 @@
 {
-  "Type": "Task",
-  "Resource": "module:deltaReindex",
-  "ResourceConfig": {
-    "core": "tymly"
-  },
-  "End": true
+  "DeltaReindex": {
+    "Type": "Task",
+    "Resource": "module:deltaReindex",
+    "ResourceConfig": {
+      "core": "tymly"
+    },
+    "End": true
+  }
 }
