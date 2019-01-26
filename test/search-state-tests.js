@@ -128,14 +128,14 @@ describe('tymly-solr-plugin search state resource tests', function () {
     expect(executionDescription.ctx.searchResults.results[0].character_name).to.eql('HERMIONE GRANGER')
   })
 
-  it('should search with a query input as a user without any roles', async () =>  {
+  it('should search with a query input as a user without any roles', async () => {
     const executionDescription = await statebox.startExecution(
       {}, // input
       STATE_MACHINE_NAME, // state machine name
       {
         sendResponse: 'COMPLETE',
         userId: 'jim.smith'
-    })
+      })
     expect(executionDescription.ctx.searchResults.totalHits).to.eql(0)
     expect(executionDescription.ctx.searchResults.results.length).to.eql(0)
   })
