@@ -89,6 +89,7 @@ describe('tymly-solr-plugin search state resource tests', function () {
   it('should search with no input (everything) as a user with the highest roles', async () => {
     const executionDescription = await statebox.startExecution(
       {
+        limit: 100
       }, // input
       STATE_MACHINE_NAME, // state machine name
       {
