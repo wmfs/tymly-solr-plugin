@@ -98,7 +98,6 @@ describe('tymly-solr-plugin search state resource tests', function () {
       } // options
     )
 
-    console.log(JSON.stringify(executionDescription, null, 2))
     expect(executionDescription.currentStateName).to.eql('Search')
     expect(executionDescription.currentResource).to.eql('module:search')
     expect(executionDescription.stateMachineName).to.eql(STATE_MACHINE_NAME)
@@ -121,7 +120,6 @@ describe('tymly-solr-plugin search state resource tests', function () {
       } // options
     )
 
-    console.log(JSON.stringify(executionDescription, null, 2))
     expect(executionDescription.currentStateName).to.eql('Search')
     expect(executionDescription.currentResource).to.eql('module:search')
     expect(executionDescription.stateMachineName).to.eql(STATE_MACHINE_NAME)
