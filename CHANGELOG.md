@@ -1,3 +1,50 @@
+## [1.9.1](https://github.com/wmfs/tymly-solr-plugin/compare/v1.9.0...v1.9.1) (2019-01-26)
+
+
+### 🐛 Bug Fixes
+
+* Build a storage service search query that makes some kind of sense. ([a8716ff](https://github.com/wmfs/tymly-solr-plugin/commit/a8716ff))
+* Drop solr view before recreating it ([09fd130](https://github.com/wmfs/tymly-solr-plugin/commit/09fd130))
+* Exclude some fields from storage search query ([4d66a54](https://github.com/wmfs/tymly-solr-plugin/commit/4d66a54))
+* Prevent local searches (ie not using solr) from trying to load the entire search table ([03ba1e5](https://github.com/wmfs/tymly-solr-plugin/commit/03ba1e5))
+
+
+### 🛠 Builds
+
+* **deps-dev:** update [@semantic-release](https://github.com/semantic-release)/git requirement ([d9fab0c](https://github.com/wmfs/tymly-solr-plugin/commit/d9fab0c))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly-pg-plugin requirement ([d8222be](https://github.com/wmfs/tymly-solr-plugin/commit/d8222be))
+* **deps-dev:** update semantic-release requirement ([5609746](https://github.com/wmfs/tymly-solr-plugin/commit/5609746))
+
+
+### 📦 Code Refactoring
+
+* Change example format ([4edef8f](https://github.com/wmfs/tymly-solr-plugin/commit/4edef8f))
+* Factor out listUserRoles method ([3b833f9](https://github.com/wmfs/tymly-solr-plugin/commit/3b833f9))
+* Rework storage search so all filters are applied in the SQL rather than post-hoc. ([cc3b04c](https://github.com/wmfs/tymly-solr-plugin/commit/cc3b04c))
+
+
+### 🚨 Tests
+
+* Remove console.log output ([59ba05b](https://github.com/wmfs/tymly-solr-plugin/commit/59ba05b))
+* Storage service search now respects default limit, so pass in higher limit to get all results ([eed1ad5](https://github.com/wmfs/tymly-solr-plugin/commit/eed1ad5))
+* Switch tests to use await ([7d45b37](https://github.com/wmfs/tymly-solr-plugin/commit/7d45b37))
+
+
+### ⚙️ Continuous Integrations
+
+* **circle:** add circle ci config ([ee75064](https://github.com/wmfs/tymly-solr-plugin/commit/ee75064))
+* **travis:** update travis config ([9c4a1b4](https://github.com/wmfs/tymly-solr-plugin/commit/9c4a1b4))
+
+
+### ♻️ Chores
+
+* Add example files ([3a297f5](https://github.com/wmfs/tymly-solr-plugin/commit/3a297f5))
+
+
+### 💎 Styles
+
+* Lint fixes ([ffed1c4](https://github.com/wmfs/tymly-solr-plugin/commit/ffed1c4))
+
 # [1.9.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.8.2...v1.9.0) (2018-12-21)
 
 
