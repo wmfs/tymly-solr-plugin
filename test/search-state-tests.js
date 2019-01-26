@@ -88,7 +88,8 @@ describe('tymly-solr-plugin search state resource tests', function () {
 
   it('should search with no input (everything) as a user with the highest roles', async () => {
     const executionDescription = await statebox.startExecution(
-      {}, // input
+      {
+      }, // input
       STATE_MACHINE_NAME, // state machine name
       {
         sendResponse: 'COMPLETE',
@@ -128,38 +129,30 @@ describe('tymly-solr-plugin search state resource tests', function () {
     expect(executionDescription.ctx.searchResults.results[0].character_name).to.eql('HERMIONE GRANGER')
   })
 
-  it('should search with a query input as a user without any roles', function (done) {
-    statebox.startExecution(
+  it('should search with a query input as a user without any roles', async () =>  {
+    const executionDescription = await statebox.startExecution(
       {}, // input
       STATE_MACHINE_NAME, // state machine name
       {
         sendResponse: 'COMPLETE',
         userId: 'jim.smith'
-      }, // options
-      function (err, executionDescription) {
-        expect(err).to.eql(null)
-        expect(executionDescription.ctx.searchResults.totalHits).to.eql(0)
-        expect(executionDescription.ctx.searchResults.results.length).to.eql(0)
-        done()
-      }
-    )
+    })
+    expect(executionDescription.ctx.searchResults.totalHits).to.eql(0)
+    expect(executionDescription.ctx.searchResults.results.length).to.eql(0)
   })
 
-  it('should fail to search when user role is a minor', function (done) {
-    statebox.startExecution(
+  it('should fail to search when user role is a minor', async () => {
+    const executionDescription = await statebox.startExecution(
       {}, // input
       STATE_MACHINE_NAME, // state machine name
       {
         sendResponse: 'COMPLETE',
         userId: 'jane.smith'
-      }, // options
-      function (err, executionDescription) {
-        expect(err).to.eql(null)
-        expect(executionDescription.ctx.searchResults.totalHits).to.eql(0)
-        expect(executionDescription.ctx.searchResults.results.length).to.eql(0)
-        done()
       }
     )
+
+    expect(executionDescription.ctx.searchResults.totalHits).to.eql(0)
+    expect(executionDescription.ctx.searchResults.results.length).to.eql(0)
   })
 
   it('should fail to search with no user id', function (done) {
