@@ -1,3 +1,11 @@
+## [1.9.2](https://github.com/wmfs/tymly-solr-plugin/compare/v1.9.1...v1.9.2) (2019-02-07)
+
+
+### 🐛 Bug Fixes
+
+* Aha - use model.id when creating the SELECT statement ([aec68ee](https://github.com/wmfs/tymly-solr-plugin/commit/aec68ee))
+* Use model.name not model.title when constructing select statement ([020961b](https://github.com/wmfs/tymly-solr-plugin/commit/020961b))
+
 ## [1.9.1](https://github.com/wmfs/tymly-solr-plugin/compare/v1.9.0...v1.9.1) (2019-01-26)
 
 
