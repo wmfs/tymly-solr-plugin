@@ -4,6 +4,7 @@
     "id": "'student#' || student_no",
     "actorName": "upper(first_name || ' ' || last_name)",
     "characterName": "upper(character_name)",
-    "roles": "'{\"tymlyTest_boss\"}'::text[]"
+    "roles": "'{\"tymlyTest_boss\"}'::text[]",
+    "launches": "'{\"launches\":[{\"input\":{\"id\":\"'||id||'\"},\"stateMachineName\":\"tymlyTest_everybody_1_0\",\"title\":\"View\"},{\"input\":{\"id\":\"'||id||'\"},\"stateMachineName\":\"tymlyTest_boss_1_0\",\"title\":\"Update\"}]}'::text"
   }
 }
