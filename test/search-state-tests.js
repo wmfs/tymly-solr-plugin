@@ -19,14 +19,13 @@ describe('tymly-solr-plugin search state resource tests', function () {
 
   let tymlyService, statebox, client, rbacAdmin
 
-  before(function () {
+  before((done) => {
     if (process.env.PG_CONNECTION_STRING && !/^postgres:\/\/[^:]+:[^@]+@(?:localhost|127\.0\.0\.1).*$/.test(process.env.PG_CONNECTION_STRING)) {
       console.log(`Skipping tests due to unsafe PG_CONNECTION_STRING value (${process.env.PG_CONNECTION_STRING})`)
       this.skip()
+      done()
     }
-  })
 
-  it('should run the tymly services', function (done) {
     tymly.boot(
       {
         pluginPaths: [
@@ -57,136 +56,148 @@ describe('tymly-solr-plugin search state resource tests', function () {
     )
   })
 
-  it('should create test resources', function (done) {
-    sqlScriptRunner(
-      './db-scripts/setup.sql',
-      client,
-      function (err) {
-        expect(err).to.equal(null)
-        if (err) {
-          done(err)
-        } else {
-          done()
+  describe('setup', () => {
+    it('create test resources', function (done) {
+      sqlScriptRunner(
+        './db-scripts/setup.sql',
+        client,
+        function (err) {
+          expect(err).to.equal(null)
+          if (err) {
+            done(err)
+          } else {
+            done()
+          }
         }
-      }
-    )
-  })
+      )
+    })
 
-  it('ensure John Smith is the boss and a minor', () => {
-    return rbacAdmin.ensureUserRoles(
-      'john.smith',
-      ['tymlyTest_boss', 'tymlyTest_minor']
-    )
-  })
+    it('John Smith is the boss and a minor', () => {
+      return rbacAdmin.ensureUserRoles(
+        'john.smith',
+        ['tymlyTest_boss', 'tymlyTest_minor']
+      )
+    })
 
-  it('should ensure Jane Smith is a minor', () => {
-    return rbacAdmin.ensureUserRoles(
-      'jane.smith',
-      ['tymlyTest_minor']
-    )
-  })
+    it('ensure Jane Smith is a minor', () => {
+      return rbacAdmin.ensureUserRoles(
+        'jane.smith',
+        ['tymlyTest_minor']
+      )
+    })
+  }) // setup
 
-  it('should search with no input (everything) as a user with the highest roles', async () => {
-    const executionDescription = await statebox.startExecution(
-      {
-        limit: 100
-      }, // input
-      STATE_MACHINE_NAME, // state machine name
-      {
-        sendResponse: 'COMPLETE',
-        userId: 'john.smith'
-      } // options
-    )
+  describe('search', () => {
+    describe('user with boss and minor role', () => {
+      it('no input returns everything', async () => {
+        const executionDescription = await statebox.startExecution(
+          {
+            limit: 100
+          }, // input
+          STATE_MACHINE_NAME, // state machine name
+          {
+            sendResponse: 'COMPLETE',
+            userId: 'john.smith'
+          } // options
+        )
 
-    expect(executionDescription.currentStateName).to.eql('Search')
-    expect(executionDescription.currentResource).to.eql('module:search')
-    expect(executionDescription.stateMachineName).to.eql(STATE_MACHINE_NAME)
-    expect(executionDescription.status).to.eql('SUCCEEDED')
-    expect(executionDescription.ctx.searchResults.totalHits).to.eql(19)
-    expect(executionDescription.ctx.searchResults.results[0].character_name).to.eql('RUBEUS HAGRID')
-    expect(executionDescription.ctx.searchResults.results[1].character_name).to.eql('SEVERUS SNAPE')
-    expect(executionDescription.ctx.searchResults.results[2].character_name).to.eql('GEORGE WEASLEY')
-  })
-
-  it('should search with a query input as a user with the highest roles', async () => {
-    const executionDescription = await statebox.startExecution(
-      {
-        query: 'Hermione'
-      }, // input
-      STATE_MACHINE_NAME, // state machine name
-      {
-        sendResponse: 'COMPLETE',
-        userId: 'john.smith'
-      } // options
-    )
-
-    expect(executionDescription.currentStateName).to.eql('Search')
-    expect(executionDescription.currentResource).to.eql('module:search')
-    expect(executionDescription.stateMachineName).to.eql(STATE_MACHINE_NAME)
-    expect(executionDescription.status).to.eql('SUCCEEDED')
-    expect(executionDescription.ctx.searchResults.totalHits).to.eql(1)
-    expect(executionDescription.ctx.searchResults.results[0].character_name).to.eql('HERMIONE GRANGER')
-  })
-
-  it('should search with a query input as a user without any roles', async () => {
-    const executionDescription = await statebox.startExecution(
-      {}, // input
-      STATE_MACHINE_NAME, // state machine name
-      {
-        sendResponse: 'COMPLETE',
-        userId: 'jim.smith'
+        expect(executionDescription.currentStateName).to.eql('Search')
+        expect(executionDescription.currentResource).to.eql('module:search')
+        expect(executionDescription.stateMachineName).to.eql(STATE_MACHINE_NAME)
+        expect(executionDescription.status).to.eql('SUCCEEDED')
+        expect(executionDescription.ctx.searchResults.totalHits).to.eql(19)
+        expect(executionDescription.ctx.searchResults.results[0].character_name).to.eql('RUBEUS HAGRID')
+        expect(executionDescription.ctx.searchResults.results[1].character_name).to.eql('SEVERUS SNAPE')
+        expect(executionDescription.ctx.searchResults.results[2].character_name).to.eql('GEORGE WEASLEY')
       })
-    expect(executionDescription.ctx.searchResults.totalHits).to.eql(0)
-    expect(executionDescription.ctx.searchResults.results.length).to.eql(0)
-  })
+      it('search for data with boss role', async () => {
+        const executionDescription = await statebox.startExecution(
+          {
+            query: 'Hagrid'
+          }, // input
+          STATE_MACHINE_NAME, // state machine name
+          {
+            sendResponse: 'COMPLETE',
+            userId: 'john.smith'
+          } // options
+        )
 
-  it('should fail to search when user role is a minor', async () => {
-    const executionDescription = await statebox.startExecution(
-      {}, // input
-      STATE_MACHINE_NAME, // state machine name
-      {
-        sendResponse: 'COMPLETE',
-        userId: 'jane.smith'
-      }
-    )
+        expect(executionDescription.currentStateName).to.eql('Search')
+        expect(executionDescription.currentResource).to.eql('module:search')
+        expect(executionDescription.stateMachineName).to.eql(STATE_MACHINE_NAME)
+        expect(executionDescription.status).to.eql('SUCCEEDED')
+        expect(executionDescription.ctx.searchResults.totalHits).to.eql(1)
+        expect(executionDescription.ctx.searchResults.results[0].character_name).to.eql('RUBEUS HAGRID')
+      })
+    })
 
-    expect(executionDescription.ctx.searchResults.totalHits).to.eql(0)
-    expect(executionDescription.ctx.searchResults.results.length).to.eql(0)
-  })
-
-  it('should fail to search with no user id', function (done) {
-    statebox.startExecution(
-      {}, // input
-      STATE_MACHINE_NAME, // state machine name
-      {
-        sendResponse: 'COMPLETE'
-      }, // options
-      function (err, executionDescription) {
-        expect(err).to.eql(null)
-        expect(executionDescription.status).to.eql('FAILED')
-        expect(executionDescription.errorCode).to.eql('noUserIdSearchFail')
-        expect(executionDescription.errorMessage).to.eql('No user ID found when trying to search.')
-        done()
-      }
-    )
-  })
-
-  it('should cleanup test resources', function (done) {
-    sqlScriptRunner(
-      './db-scripts/cleanup.sql',
-      client,
-      function (err) {
-        expect(err).to.equal(null)
-        if (err) {
-          done(err)
-        } else {
-          done()
+    describe('user with minor role', () => {
+      it('should fail to search when user role is a minor', async () => {
+      const executionDescription = await statebox.startExecution(
+        {}, // input
+        STATE_MACHINE_NAME, // state machine name
+        {
+          sendResponse: 'COMPLETE',
+          userId: 'jane.smith'
         }
-      }
-    )
+      )
+
+      expect(executionDescription.ctx.searchResults.totalHits).to.eql(0)
+      expect(executionDescription.ctx.searchResults.results.length).to.eql(0)
+    })
+    })
+
+    describe('user with no role', () => {
+      it('should search with a query input as a user without any roles', async () => {
+      const executionDescription = await statebox.startExecution(
+        {}, // input
+        STATE_MACHINE_NAME, // state machine name
+        {
+          sendResponse: 'COMPLETE',
+          userId: 'jim.smith'
+        })
+      expect(executionDescription.ctx.searchResults.totalHits).to.eql(0)
+      expect(executionDescription.ctx.searchResults.results.length).to.eql(0)
+    })
+    })
+    describe('no user id', () => {
+      it('should fail to search with no user id', function (done) {
+        statebox.startExecution(
+          {}, // input
+          STATE_MACHINE_NAME, // state machine name
+          {
+            sendResponse: 'COMPLETE'
+          }, // options
+          function (err, executionDescription) {
+            expect(err).to.eql(null)
+            expect(executionDescription.status).to.eql('FAILED')
+            expect(executionDescription.errorCode).to.eql('noUserIdSearchFail')
+            expect(executionDescription.errorMessage).to.eql('No user ID found when trying to search.')
+            done()
+          }
+        )
+      })
+    })
   })
 
-  it('should shutdown Tymly', async () => {
+  describe('teardown', () => {
+    it('cleanup test resources', function (done) {
+      sqlScriptRunner(
+        './db-scripts/cleanup.sql',
+        client,
+        function (err) {
+          expect(err).to.equal(null)
+          if (err) {
+            done(err)
+          } else {
+            done()
+          }
+        }
+      )
+    })
+  })
+
+  after(async () => {
     await tymlyService.shutdown()
   })
 })
