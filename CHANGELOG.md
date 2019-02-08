@@ -1,3 +1,44 @@
+# [1.10.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.9.2...v1.10.0) (2019-02-08)
+
+
+### ✨ Features
+
+* Apply RBAC to search result launches ([369f3fd](https://github.com/wmfs/tymly-solr-plugin/commit/369f3fd))
+
+
+### 🐛 Bug Fixes
+
+* searchFields shouldn't be a member variable ([fc2567b](https://github.com/wmfs/tymly-solr-plugin/commit/fc2567b))
+
+
+### 🛠 Builds
+
+* bump debug to 4.1.1. ([f0a890a](https://github.com/wmfs/tymly-solr-plugin/commit/f0a890a))
+* **dev-deps:** Bump [@wmfs](https://github.com/wmfs)/tymly, [@wmfs](https://github.com/wmfs)/tymly-pg-plugin, nyc, semantic-release et al ([33fa547](https://github.com/wmfs/tymly-solr-plugin/commit/33fa547))
+* **dev-deps:** Bump tymly to 1.82.0 ([308e883](https://github.com/wmfs/tymly-solr-plugin/commit/308e883))
+
+
+### 📦 Code Refactoring
+
+* Rework processResults so it returns the munged results. ([1183053](https://github.com/wmfs/tymly-solr-plugin/commit/1183053))
+* Rework solrSearch and storageSearch so they return the search results, rather than both pa ([9b74011](https://github.com/wmfs/tymly-solr-plugin/commit/9b74011))
+* Simplify things a bit. We can use Object.entries instead of loops in loops. ([69d9323](https://github.com/wmfs/tymly-solr-plugin/commit/69d9323))
+
+
+### 🚨 Tests
+
+* Add launches to text fixture searchDocs ([f0e4b35](https://github.com/wmfs/tymly-solr-plugin/commit/f0e4b35))
+* Add some muggles, with search role $everybody ([ebd5441](https://github.com/wmfs/tymly-solr-plugin/commit/ebd5441))
+* Check launches come through and are parsed out ([62d263e](https://github.com/wmfs/tymly-solr-plugin/commit/62d263e))
+* Give students a different role to staff, so we can check RBAC on search results is applied. ([789edff](https://github.com/wmfs/tymly-solr-plugin/commit/789edff))
+* Groups tests ([c434823](https://github.com/wmfs/tymly-solr-plugin/commit/c434823))
+* pulled out search function ([8093689](https://github.com/wmfs/tymly-solr-plugin/commit/8093689))
+
+
+### 💎 Styles
+
+* Lint fix ([4debdc3](https://github.com/wmfs/tymly-solr-plugin/commit/4debdc3))
+
 ## [1.9.2](https://github.com/wmfs/tymly-solr-plugin/compare/v1.9.1...v1.9.2) (2019-02-07)
 
 
