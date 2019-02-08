@@ -92,9 +92,9 @@ describe('tymly-solr-plugin search state resource tests', function () {
       it('no input returns everything', async () => {
         const searchResults = await search(null, 'john.smith')
         expect(searchResults.totalHits).to.eql(19)
-        expect(searchResults.results[0].character_name).to.eql('RUBEUS HAGRID')
-        expect(searchResults.results[1].character_name).to.eql('SEVERUS SNAPE')
-        expect(searchResults.results[2].character_name).to.eql('GEORGE WEASLEY')
+        expect(searchResults.results[0].character_name).to.eql('PANSY PARKINSON')
+        expect(searchResults.results[1].character_name).to.eql('RUBEUS HAGRID')
+        expect(searchResults.results[2].character_name).to.eql('SEVERUS SNAPE')
       })
       it('search for data with boss role', async () => {
         const searchResults = await search('Hagrid', 'john.smith')
@@ -110,20 +110,39 @@ describe('tymly-solr-plugin search state resource tests', function () {
     })
 
     describe('user with minor role', () => {
-      it('no results when user role is a minor', async () => {
+      it('no input returns all but staff', async () => {
         const searchResults = await search(null, 'jane.smith')
 
+        expect(searchResults.totalHits).to.eql(10)
+        expect(searchResults.results.length).to.eql(10)
+      })
+      it('search for data with boss role returns nothing', async () => {
+        const searchResults = await search('Hagrid', 'jane.smith')
         expect(searchResults.totalHits).to.eql(0)
-        expect(searchResults.results.length).to.eql(0)
+      })
+      it('search for data with minor role', async () => {
+        const searchResults = await search('Hermione', 'jane.smith')
+
+        expect(searchResults.totalHits).to.eql(1)
+        expect(searchResults.results[0].character_name).to.eql('HERMIONE GRANGER')
       })
     })
 
     describe('user with no role', () => {
-      it('no results when user without any roles', async () => {
+      it('no input returns nothing', async () => {
         const searchResults = await search(null, 'jim.smith')
 
         expect(searchResults.totalHits).to.eql(0)
         expect(searchResults.results.length).to.eql(0)
+      })
+      it('search for data with boss role returns nothing', async () => {
+        const searchResults = await search('Hagrid', 'jim.smith')
+        expect(searchResults.totalHits).to.eql(0)
+      })
+      it('search for data with minor role returns nothing', async () => {
+        const searchResults = await search('Hermione', 'jim.smith')
+
+        expect(searchResults.totalHits).to.eql(0)
       })
     })
     describe('no user id', () => {
