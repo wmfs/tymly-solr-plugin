@@ -125,7 +125,7 @@ describe('tymly-solr-plugin search state resource tests', function () {
 
         expect(searchResults.totalHits).to.eql(1)
         expect(searchResults.results[0].character_name).to.eql('HERMIONE GRANGER')
-        expect(searchResults.results[0].launches.length).to.equal(2)
+        expect(searchResults.results[0].launches.length).to.equal(1)
       })
     })
 
