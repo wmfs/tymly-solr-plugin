@@ -17,7 +17,7 @@ process.on('unhandledRejection', (reason, p) => {
 describe('tymly-solr-plugin search state resource tests', function () {
   this.timeout(process.env.TIMEOUT || 5000)
 
-  let tymlyService, statebox = null, client, rbacAdmin
+  let tymlyService; let statebox = null; let client; let rbacAdmin
 
   before((done) => {
     if (process.env.PG_CONNECTION_STRING && !/^postgres:\/\/[^:]+:[^@]+@(?:localhost|127\.0\.0\.1).*$/.test(process.env.PG_CONNECTION_STRING)) {
