@@ -1,0 +1,10 @@
+{
+  "modelId": "muggles",
+  "attributeMapping": {
+    "id": "'muggle#' || muggle_no",
+    "actorName": "upper(first_name || ' ' || last_name)",
+    "characterName": "'Themself'",
+    "roles": "'{\"$everyone\"}'::text[]",
+    "launches": "'{\"launches\":[{\"input\":{\"id\":\"'||muggle_no||'\"},\"stateMachineName\":\"tymlyTest_everybody_1_0\",\"title\":\"View\"},{\"input\":{\"id\":\"'||muggle_no||'\"},\"stateMachineName\":\"tymlyTest_boss_1_0\",\"title\":\"Update\"}]}'::text"
+  }
+}

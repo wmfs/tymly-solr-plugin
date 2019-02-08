@@ -92,19 +92,26 @@ describe('tymly-solr-plugin search state resource tests', function () {
     describe('user with boss and minor role', () => {
       it('no input returns everything', async () => {
         const searchResults = await search(null, 'john.smith')
-        expect(searchResults.totalHits).to.eql(19)
+        expect(searchResults.totalHits).to.eql(24)
       })
-      it('search for data with boss role', async () => {
+      it('search for staff', async () => {
         const searchResults = await search('Hagrid', 'john.smith')
         expect(searchResults.totalHits).to.eql(1)
         expect(searchResults.results[0].character_name).to.eql('RUBEUS HAGRID')
         expect(searchResults.results[0].launches.length).to.equal(1)
       })
-      it('search for data with minor role', async () => {
+      it('search for student', async () => {
         const searchResults = await search('Hermione', 'john.smith')
 
         expect(searchResults.totalHits).to.eql(1)
         expect(searchResults.results[0].character_name).to.eql('HERMIONE GRANGER')
+        expect(searchResults.results[0].launches.length).to.equal(2)
+      })
+      it('search for muggle', async () => {
+        const searchResults = await search('William', 'john.smith')
+
+        expect(searchResults.totalHits).to.eql(1)
+        expect(searchResults.results[0].character_name).to.eql('Themself')
         expect(searchResults.results[0].launches.length).to.equal(2)
       })
     })
@@ -113,37 +120,51 @@ describe('tymly-solr-plugin search state resource tests', function () {
       it('no input returns all but staff', async () => {
         const searchResults = await search(null, 'jane.smith')
 
-        expect(searchResults.totalHits).to.eql(10)
-        expect(searchResults.results.length).to.eql(10)
+        expect(searchResults.totalHits).to.eql(15)
+        expect(searchResults.results.length).to.eql(15)
       })
-      it('search for data with boss role returns nothing', async () => {
+      it('search for staff', async () => {
         const searchResults = await search('Hagrid', 'jane.smith')
         expect(searchResults.totalHits).to.eql(0)
       })
-      it('search for data with minor role', async () => {
+      it('search for student', async () => {
         const searchResults = await search('Hermione', 'jane.smith')
 
         expect(searchResults.totalHits).to.eql(1)
         expect(searchResults.results[0].character_name).to.eql('HERMIONE GRANGER')
         expect(searchResults.results[0].launches.length).to.equal(1)
       })
+      it('search for muggle', async () => {
+        const searchResults = await search('William', 'jane.smith')
+
+        expect(searchResults.totalHits).to.eql(1)
+        expect(searchResults.results[0].character_name).to.eql('Themself')
+        expect(searchResults.results[0].launches.length).to.equal(1)
+      })
     })
 
     describe('user with no role', () => {
-      it('no input returns nothing', async () => {
+      it('no input returns only muggles', async () => {
         const searchResults = await search(null, 'jim.smith')
 
-        expect(searchResults.totalHits).to.eql(0)
-        expect(searchResults.results.length).to.eql(0)
+        expect(searchResults.totalHits).to.eql(5)
+        expect(searchResults.results.length).to.eql(5)
       })
-      it('search for data with boss role returns nothing', async () => {
+      it('search for staff', async () => {
         const searchResults = await search('Hagrid', 'jim.smith')
         expect(searchResults.totalHits).to.eql(0)
       })
-      it('search for data with minor role returns nothing', async () => {
+      it('search for student', async () => {
         const searchResults = await search('Hermione', 'jim.smith')
 
         expect(searchResults.totalHits).to.eql(0)
+      })
+      it('search for muggle', async () => {
+        const searchResults = await search('William', 'jim.smith')
+
+        expect(searchResults.totalHits).to.eql(1)
+        expect(searchResults.results[0].character_name).to.eql('Themself')
+        expect(searchResults.results[0].launches.length).to.equal(1)
       })
     })
     describe('no user id', () => {

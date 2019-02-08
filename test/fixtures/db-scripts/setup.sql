@@ -1,5 +1,20 @@
 CREATE SCHEMA IF NOT EXISTS tymly_test;
 
+CREATE TABLE IF NOT EXISTS tymly_test.muggles (
+  muggle_no integer NOT NULL,
+  first_name text NOT NULL,
+  last_name text NOT NULL,
+  _created timestamp with time zone NOT NULL DEFAULT now(),
+  _modified timestamp with time zone NOT NULL DEFAULT now(),
+  CONSTRAINT muggle_pkey PRIMARY KEY (muggle_no)
+);
+
+INSERT INTO tymly_test.muggles (muggle_no, first_name, last_name) VALUES (1, 'Billy ', 'Unexceptional');
+INSERT INTO tymly_test.muggles (muggle_no, first_name, last_name) VALUES (2, 'John', 'Plain');
+INSERT INTO tymly_test.muggles (muggle_no, first_name, last_name) VALUES (3, 'William', 'Ordinary');
+INSERT INTO tymly_test.muggles (muggle_no, first_name, last_name) VALUES (4, 'James', 'Normal');
+INSERT INTO tymly_test.muggles (muggle_no, first_name, last_name) VALUES (5, 'Trevor', 'Dull');
+
 CREATE TABLE IF NOT EXISTS tymly_test.students (
   student_no integer NOT NULL,
   first_name text NOT NULL,
