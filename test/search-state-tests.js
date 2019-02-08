@@ -41,7 +41,8 @@ describe('tymly-solr-plugin search state resource tests', function () {
             'id',
             'actorName',
             'characterName',
-            'roles'
+            'roles',
+            'launches'
           ]
         }
       },
@@ -92,20 +93,19 @@ describe('tymly-solr-plugin search state resource tests', function () {
       it('no input returns everything', async () => {
         const searchResults = await search(null, 'john.smith')
         expect(searchResults.totalHits).to.eql(19)
-        expect(searchResults.results[0].character_name).to.eql('PANSY PARKINSON')
-        expect(searchResults.results[1].character_name).to.eql('RUBEUS HAGRID')
-        expect(searchResults.results[2].character_name).to.eql('SEVERUS SNAPE')
       })
       it('search for data with boss role', async () => {
         const searchResults = await search('Hagrid', 'john.smith')
         expect(searchResults.totalHits).to.eql(1)
         expect(searchResults.results[0].character_name).to.eql('RUBEUS HAGRID')
+        expect(searchResults.results[0].launches.length).to.equal(1)
       })
       it('search for data with minor role', async () => {
         const searchResults = await search('Hermione', 'john.smith')
 
         expect(searchResults.totalHits).to.eql(1)
         expect(searchResults.results[0].character_name).to.eql('HERMIONE GRANGER')
+        expect(searchResults.results[0].launches.length).to.equal(2)
       })
     })
 
@@ -125,6 +125,7 @@ describe('tymly-solr-plugin search state resource tests', function () {
 
         expect(searchResults.totalHits).to.eql(1)
         expect(searchResults.results[0].character_name).to.eql('HERMIONE GRANGER')
+        expect(searchResults.results[0].launches.length).to.equal(2)
       })
     })
 

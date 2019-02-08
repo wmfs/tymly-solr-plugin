@@ -5,6 +5,6 @@
     "actorName": "upper(first_name || ' ' || last_name)",
     "characterName": "upper(character_first_name || ' ' || character_last_name)",
     "roles": "'{\"tymlyTest_boss\"}'::text[]",
-    "launches": "'{\"launches\":[{\"input\":{\"id\":\"'||id||'\"},\"stateMachineName\":\"tymlyTest_everybody_1_0\",\"title\":\"View\"}]}'::text"
+    "launches": "'{\"launches\":[{\"input\":{\"id\":\"'||staff_no||'\"},\"stateMachineName\":\"tymlyTest_everybody_1_0\",\"title\":\"View\"}]}'::text"
   }
 }
