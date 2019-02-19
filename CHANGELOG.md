@@ -1,3 +1,17 @@
+## [1.10.2](https://github.com/wmfs/tymly-solr-plugin/compare/v1.10.1...v1.10.2) (2019-02-15)
+
+
+### 🐛 Bug Fixes
+
+* **storage-search:** Remove console output ([477ddca](https://github.com/wmfs/tymly-solr-plugin/commit/477ddca))
+
+## [1.10.1](https://github.com/wmfs/tymly-solr-plugin/compare/v1.10.0...v1.10.1) (2019-02-15)
+
+
+### 🐛 Bug Fixes
+
+* **storage-search:** Correct domain clause ([6bb6ecd](https://github.com/wmfs/tymly-solr-plugin/commit/6bb6ecd))
+
 # [1.10.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.9.2...v1.10.0) (2019-02-08)
 
 
