@@ -40,3 +40,5 @@ $ npm test
 ## <a name="license"></a>License
 
 [MIT](https://github.com/wmfs/tymly/blob/master/LICENSE)
+
+
