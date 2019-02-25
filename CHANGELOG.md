@@ -1,3 +1,16 @@
+# [1.11.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.10.2...v1.11.0) (2019-02-25)
+
+
+### ✨ Features
+
+* release ([f90fa06](https://github.com/wmfs/tymly-solr-plugin/commit/f90fa06))
+* update tests ([dbfdd2b](https://github.com/wmfs/tymly-solr-plugin/commit/dbfdd2b))
+
+
+### 📦 Code Refactoring
+
+* add rating to solr schema fields ([1f13851](https://github.com/wmfs/tymly-solr-plugin/commit/1f13851))
+
 ## [1.10.2](https://github.com/wmfs/tymly-solr-plugin/compare/v1.10.1...v1.10.2) (2019-02-15)
 
 
