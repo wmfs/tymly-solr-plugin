@@ -14,6 +14,7 @@
     "activeEvent": "true::boolean",
     "author": "'incident'::text",
     "rating": "NULL::text",
+    "data": "NULL::text",
     "teams": "NULL::text[]",
     "roles": "NULL::text[]",
     "tags": "NULL::text[]",
