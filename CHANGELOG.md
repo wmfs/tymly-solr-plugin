@@ -1,3 +1,15 @@
+# [1.12.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.11.0...v1.12.0) (2019-02-27)
+
+
+### ✨ Features
+
+* use domain in search query ([6e58b04](https://github.com/wmfs/tymly-solr-plugin/commit/6e58b04))
+
+
+### 📦 Code Refactoring
+
+* add data as a new solr schema field ([7fe0c54](https://github.com/wmfs/tymly-solr-plugin/commit/7fe0c54))
+
 # [1.11.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.10.2...v1.11.0) (2019-02-25)
 
 
