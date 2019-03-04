@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/wmfs/tymly-solr-plugin/compare/v1.12.0...v1.12.1) (2019-03-04)
+
+
+### 🐛 Bug Fixes
+
+* **storage-search:** Do second query to get true number of search results. ([2bbd4ed](https://github.com/wmfs/tymly-solr-plugin/commit/2bbd4ed))
+
 # [1.12.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.11.0...v1.12.0) (2019-02-27)
 
 
