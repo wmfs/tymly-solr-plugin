@@ -1,6 +1,6 @@
 [
   {
-    "namespace": "tymly_test",
+    "namespace": "tymlyTest",
     "id": "students",
     "title": "Students",
     "description": "List of Students",
@@ -30,7 +30,7 @@
     "required": ["student_no", "first_name", "last_name"]
   },
   {
-    "namespace": "tymly_test",
+    "namespace": "tymlyTest",
     "id": "staff",
     "title": "Staff",
     "description": "List of Staff",

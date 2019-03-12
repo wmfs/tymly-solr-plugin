@@ -1,6 +1,6 @@
 [
   {
-    "modelId": "students",
+    "modelId": "tymlyTest_students",
     "attributeMapping": {
       "id": "'student#' || student_no",
       "actorName": "first_name || ' ' || last_name",
@@ -12,7 +12,7 @@
     "name": "students"
   },
   {
-    "modelId": "staff",
+    "modelId": "tymlyTest_staff",
     "attributeMapping": {
       "id": "'staff#' || staff_no",
       "actorName": "first_name || ' ' || last_name",
