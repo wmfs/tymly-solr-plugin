@@ -1,3 +1,28 @@
+# [1.14.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.13.0...v1.14.0) (2019-03-12)
+
+
+### ✨ Features
+
+* **results:** Add categoryLabel to search results. ([1a66407](https://github.com/wmfs/tymly-solr-plugin/commit/1a66407))
+* **results:** If RBAC restrictions leave a search result without launches, suppress that result. ([f58cdb8](https://github.com/wmfs/tymly-solr-plugin/commit/f58cdb8))
+* **search-docs:** Search-docs are paired with models using the search-doc's modelId. ([c0dba39](https://github.com/wmfs/tymly-solr-plugin/commit/c0dba39))
+
+
+### 🐛 Bug Fixes
+
+* **results:** Don't try to look up a category if you haven't got one ([bbc37dd](https://github.com/wmfs/tymly-solr-plugin/commit/bbc37dd))
+
+
+### 🚨 Tests
+
+* Correct models' namespace ([284d961](https://github.com/wmfs/tymly-solr-plugin/commit/284d961))
+* Properly namespace qualify test data ([ca3af67](https://github.com/wmfs/tymly-solr-plugin/commit/ca3af67))
+
+
+### 💎 Styles
+
+* **biscuits:** Lint corrections ([3d46ffe](https://github.com/wmfs/tymly-solr-plugin/commit/3d46ffe))
+
 # [1.13.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.12.1...v1.13.0) (2019-03-12)
 
 
