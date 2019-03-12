@@ -1,3 +1,15 @@
+# [1.13.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.12.1...v1.13.0) (2019-03-12)
+
+
+### ✨ Features
+
+* search doc rating is numeric now ([ffc6f45](https://github.com/wmfs/tymly-solr-plugin/commit/ffc6f45))
+
+
+### 📦 Code Refactoring
+
+* beginning to support order by for searching ([f66c136](https://github.com/wmfs/tymly-solr-plugin/commit/f66c136))
+
 ## [1.12.1](https://github.com/wmfs/tymly-solr-plugin/compare/v1.12.0...v1.12.1) (2019-03-04)
 
 
