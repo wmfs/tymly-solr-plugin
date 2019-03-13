@@ -1,3 +1,10 @@
+## [1.14.1](https://github.com/wmfs/tymly-solr-plugin/compare/v1.14.0...v1.14.1) (2019-03-13)
+
+
+### 🐛 Bug Fixes
+
+* **results:** Change of mind - don't filter results which have no launches ([749c3c6](https://github.com/wmfs/tymly-solr-plugin/commit/749c3c6))
+
 # [1.14.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.13.0...v1.14.0) (2019-03-12)
 
 
