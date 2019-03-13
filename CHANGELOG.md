@@ -1,3 +1,10 @@
+## [1.14.2](https://github.com/wmfs/tymly-solr-plugin/compare/v1.14.1...v1.14.2) (2019-03-13)
+
+
+### 🐛 Bug Fixes
+
+* use category if no label lookup ([13349e8](https://github.com/wmfs/tymly-solr-plugin/commit/13349e8))
+
 ## [1.14.1](https://github.com/wmfs/tymly-solr-plugin/compare/v1.14.0...v1.14.1) (2019-03-13)
 
 
