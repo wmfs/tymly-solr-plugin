@@ -1,3 +1,10 @@
+## [1.14.3](https://github.com/wmfs/tymly-solr-plugin/compare/v1.14.2...v1.14.3) (2019-03-18)
+
+
+### 🐛 Bug Fixes
+
+* **storage:** Corrected category filter in storage search. ([55bfa0b](https://github.com/wmfs/tymly-solr-plugin/commit/55bfa0b))
+
 ## [1.14.2](https://github.com/wmfs/tymly-solr-plugin/compare/v1.14.1...v1.14.2) (2019-03-13)
 
 
