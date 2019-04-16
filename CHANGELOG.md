@@ -1,3 +1,10 @@
+# [1.16.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.15.0...v1.16.0) (2019-04-16)
+
+
+### ✨ Features
+
+* eventimestamp input ([17fadd8](https://github.com/wmfs/tymly-solr-plugin/commit/17fadd8))
+
 # [1.15.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.14.3...v1.15.0) (2019-04-16)
 
 
