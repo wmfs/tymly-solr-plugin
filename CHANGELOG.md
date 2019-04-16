@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.14.3...v1.15.0) (2019-04-16)
+
+
+### ✨ Features
+
+* query tags ([7474bb8](https://github.com/wmfs/tymly-solr-plugin/commit/7474bb8))
+
 ## [1.14.3](https://github.com/wmfs/tymly-solr-plugin/compare/v1.14.2...v1.14.3) (2019-03-18)
 
 
