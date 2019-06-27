@@ -1,3 +1,10 @@
+# [1.17.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.16.0...v1.17.0) (2019-06-27)
+
+
+### 🛠 Builds
+
+* **deps:** update emoji-regex requirement from 7.0.3 to 8.0.0 ([bff6459](https://github.com/wmfs/tymly-solr-plugin/commit/bff6459))
+
 # [1.16.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.15.0...v1.16.0) (2019-04-16)
 
 
