@@ -1,7 +1,7 @@
 # tymly-solr-plugin
 [![Tymly Package](https://img.shields.io/badge/tymly-package-blue.svg)](https://tymly.io/)
 [![npm (scoped)](https://img.shields.io/npm/v/@wmfs/tymly-solr-plugin.svg)](https://www.npmjs.com/package/@wmfs/tymly-solr-plugin)
-[![Build Status](https://travis-ci.org/wmfs/tymly-solr-plugin.svg?branch=master)](https://travis-ci.org/wmfs/tymly-solr-plugin)
+[![CircleCI](https://circleci.com/gh/wmfs/tymly-solr-plugin.svg?style=svg)](https://circleci.com/gh/wmfs/tymly-solr-plugin)
 [![codecov](https://codecov.io/gh/wmfs/tymly-solr-plugin/branch/master/graph/badge.svg)](https://codecov.io/gh/wmfs/tymly-solr-plugin)
 [![CodeFactor](https://www.codefactor.io/repository/github/wmfs/tymly-solr-plugin/badge)](https://www.codefactor.io/repository/github/wmfs/tymly-solr-plugin)
 [![Dependabot badge](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)](https://dependabot.com/)
