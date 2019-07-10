@@ -1,3 +1,34 @@
+# [1.18.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.17.0...v1.18.0) (2019-07-10)
+
+
+### ✨ Features
+
+* filter search by only active events ([e286abf](https://github.com/wmfs/tymly-solr-plugin/commit/e286abf))
+
+
+### 🛠 Builds
+
+* **deps-dev:** update [@semantic-release](https://github.com/semantic-release)/git requirement ([61dc36b](https://github.com/wmfs/tymly-solr-plugin/commit/61dc36b))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs)/tymly requirement from 1.82.0 to 1.94.1 ([31901f9](https://github.com/wmfs/tymly-solr-plugin/commit/31901f9))
+* **deps-dev:** update codecov requirement from 3.1.0 to 3.5.0 ([e26d003](https://github.com/wmfs/tymly-solr-plugin/commit/e26d003))
+* **deps-dev:** update nyc requirement from 13.2.0 to 14.1.1 ([2eb42b0](https://github.com/wmfs/tymly-solr-plugin/commit/2eb42b0))
+
+
+### 📚 Documentation
+
+* add circleci status [skip ci] ([d5d214b](https://github.com/wmfs/tymly-solr-plugin/commit/d5d214b))
+
+
+### ⚙️ Continuous Integrations
+
+* **circle:** Update CircleCI config - Travis migration ([c01843f](https://github.com/wmfs/tymly-solr-plugin/commit/c01843f))
+* **travis:** remove Travis config ([06caa4b](https://github.com/wmfs/tymly-solr-plugin/commit/06caa4b))
+
+
+### ♻️ Chores
+
+* **deps-dev:** update mocha requirement from 5.2.0 to 6.1.4 ([d35f67f](https://github.com/wmfs/tymly-solr-plugin/commit/d35f67f))
+
 # [1.17.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.16.0...v1.17.0) (2019-06-27)
 
 
