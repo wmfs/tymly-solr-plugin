@@ -1,3 +1,10 @@
+# [1.19.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.18.0...v1.19.0) (2019-07-11)
+
+
+### 🛠 Builds
+
+* **deps:** update lodash requirement from 4.17.11 to 4.17.14 ([378854e](https://github.com/wmfs/tymly-solr-plugin/commit/378854e))
+
 # [1.18.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.17.0...v1.18.0) (2019-07-10)
 
 
