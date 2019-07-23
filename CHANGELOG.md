@@ -1,3 +1,10 @@
+# [1.20.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.19.0...v1.20.0) (2019-07-23)
+
+
+### ✨ Features
+
+* search on docType filter ([f13e140](https://github.com/wmfs/tymly-solr-plugin/commit/f13e140))
+
 # [1.19.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.18.0...v1.19.0) (2019-07-11)
 
 
