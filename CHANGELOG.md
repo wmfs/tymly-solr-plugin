@@ -1,3 +1,10 @@
+## [1.20.1](https://github.com/wmfs/tymly-solr-plugin/compare/v1.20.0...v1.20.1) (2019-09-04)
+
+
+### 🐛 Bug Fixes
+
+* added 5 new schema fields ([e68eed8](https://github.com/wmfs/tymly-solr-plugin/commit/e68eed8))
+
 # [1.20.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.19.0...v1.20.0) (2019-07-23)
 
 
