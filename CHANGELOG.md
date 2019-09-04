@@ -1,3 +1,10 @@
+## [1.20.2](https://github.com/wmfs/tymly-solr-plugin/compare/v1.20.1...v1.20.2) (2019-09-04)
+
+
+### 🐛 Bug Fixes
+
+* don't search on synopsis ([6a677aa](https://github.com/wmfs/tymly-solr-plugin/commit/6a677aa))
+
 ## [1.20.1](https://github.com/wmfs/tymly-solr-plugin/compare/v1.20.0...v1.20.1) (2019-09-04)
 
 
