@@ -1,3 +1,15 @@
+# [1.21.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.20.2...v1.21.0) (2019-09-09)
+
+
+### ✨ Features
+
+* allow viewId for search docs ([7ea6331](https://github.com/wmfs/tymly-solr-plugin/commit/7ea6331))
+
+
+### 💎 Styles
+
+* remove console.log ([85cfa5f](https://github.com/wmfs/tymly-solr-plugin/commit/85cfa5f))
+
 ## [1.20.2](https://github.com/wmfs/tymly-solr-plugin/compare/v1.20.1...v1.20.2) (2019-09-04)
 
 
