@@ -1,3 +1,10 @@
+# [1.22.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.21.0...v1.22.0) (2019-09-11)
+
+
+### 🛠 Builds
+
+* **deps:** update solr-client version ([494467a](https://github.com/wmfs/tymly-solr-plugin/commit/494467a))
+
 # [1.21.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.20.2...v1.21.0) (2019-09-09)
 
 
