@@ -7,7 +7,6 @@ const tymly = require('@wmfs/tymly')
 const path = require('path')
 const process = require('process')
 const sqlScriptRunner = require('./fixtures/sql-script-runner.js')
-const STATE_MACHINE_NAME = 'tymlyTest_removeDocs_1_0'
 
 describe('tymly-solr-plugin remove docs resource tests', function () {
   this.timeout(process.env.TIMEOUT || 6000)
@@ -26,7 +25,8 @@ describe('tymly-solr-plugin remove docs resource tests', function () {
       {
         pluginPaths: [
           path.resolve(__dirname, './../lib'),
-          require.resolve('@wmfs/tymly-pg-plugin')
+          require.resolve('@wmfs/tymly-pg-plugin'),
+          require.resolve('@wmfs/tymly-rbac-plugin')
         ],
         blueprintPaths: [
           path.resolve(__dirname, './fixtures/incident-blueprint')
@@ -42,10 +42,7 @@ describe('tymly-solr-plugin remove docs resource tests', function () {
     )
   })
 
-  if (process.env.SOLR_URL &&
-    process.env.SOLR_PATH &&
-    process.env.SOLR_PORT &&
-    process.env.SOLR_HOST) {
+  if (process.env.SOLR_URL && process.env.SOLR_PATH && process.env.SOLR_PORT && process.env.SOLR_HOST) {
     it('should create test resources', (done) => {
       sqlScriptRunner(
         './db-scripts/incident-setup.sql',
@@ -73,18 +70,24 @@ describe('tymly-solr-plugin remove docs resource tests', function () {
     })
 
     it('should wait a while', (done) => {
-      setTimeout(done, 4900)
+      setTimeout(done, 5900)
     })
 
     it('should search to check data is there', (done) => {
       statebox.startExecution(
-        {},
-        'tymly_search_1_0',
         {
-          sendResponse: 'COMPLETE'
+          query: 'bad incident',
+          offset: 0,
+          limit: 10
+        },
+        'tymlyTest_search_1_0',
+        {
+          sendResponse: 'COMPLETE',
+          userId: 'test-user-1'
         },
         (err, executionDescription) => {
           expect(err).to.eql(null)
+          console.log(JSON.stringify(executionDescription, null, 2))
           expect(executionDescription.ctx.searchResults.results.length).to.eql(3)
           done(err)
         }
@@ -94,16 +97,17 @@ describe('tymly-solr-plugin remove docs resource tests', function () {
     it('should execution remove docs state machine', (done) => {
       statebox.startExecution(
         {},
-        STATE_MACHINE_NAME,
+        'tymlyTest_removeDocs_1_0',
         {
-          sendResponse: 'COMPLETE'
+          sendResponse: 'COMPLETE',
+          userId: 'test-user-1'
         },
         (err, executionDescription) => {
           expect(err).to.eql(null)
           console.log(JSON.stringify(executionDescription, null, 2))
           expect(executionDescription.currentStateName).to.eql('RemoveDocs')
           expect(executionDescription.currentResource).to.eql('module:removeDocs')
-          expect(executionDescription.stateMachineName).to.eql(STATE_MACHINE_NAME)
+          expect(executionDescription.stateMachineName).to.eql('tymlyTest_removeDocs_1_0')
           expect(executionDescription.status).to.eql('SUCCEEDED')
           done(err)
         }
@@ -112,13 +116,19 @@ describe('tymly-solr-plugin remove docs resource tests', function () {
 
     it('should search to check data is removed', (done) => {
       statebox.startExecution(
-        {},
-        'tymly_search_1_0',
         {
-          sendResponse: 'COMPLETE'
+          query: 'bad incident',
+          offset: 0,
+          limit: 10
+        },
+        'tymlyTest_search_1_0',
+        {
+          sendResponse: 'COMPLETE',
+          userId: 'test-user-1'
         },
         (err, executionDescription) => {
           expect(err).to.eql(null)
+          console.log(JSON.stringify(executionDescription, null, 2))
           expect(executionDescription.ctx.searchResults.results.length).to.eql(0)
           done(err)
         }
