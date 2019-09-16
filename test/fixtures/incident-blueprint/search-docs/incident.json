@@ -16,7 +16,7 @@
     "rating": "NULL::numeric",
     "data": "NULL::text",
     "teams": "NULL::text[]",
-    "roles": "NULL::text[]",
+    "roles": "'{\"$everyone\"}'::text[]",
     "tags": "NULL::text[]",
     "language": "'ENG'::text",
     "rootAncestorId": "NULL::text",
