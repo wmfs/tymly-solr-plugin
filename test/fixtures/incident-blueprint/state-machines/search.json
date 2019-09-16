@@ -6,7 +6,7 @@
     "Search": {
       "Type": "Task",
       "Resource": "module:search",
-      "ResourceConfig": {},
+      "InputPath": "$",
       "End": true
     }
   },

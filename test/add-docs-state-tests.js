@@ -7,7 +7,6 @@ const tymly = require('@wmfs/tymly')
 const path = require('path')
 const process = require('process')
 const sqlScriptRunner = require('./fixtures/sql-script-runner.js')
-const STATE_MACHINE_NAME = 'tymlyTest_addDocs_1_0'
 
 describe('tymly-solr-plugin add docs resource tests', function () {
   this.timeout(process.env.TIMEOUT || 5000)
@@ -26,7 +25,8 @@ describe('tymly-solr-plugin add docs resource tests', function () {
       {
         pluginPaths: [
           path.resolve(__dirname, './../lib'),
-          require.resolve('@wmfs/tymly-pg-plugin')
+          require.resolve('@wmfs/tymly-pg-plugin'),
+          require.resolve('@wmfs/tymly-rbac-plugin')
         ],
         blueprintPaths: [
           path.resolve(__dirname, './fixtures/incident-blueprint')
@@ -42,10 +42,7 @@ describe('tymly-solr-plugin add docs resource tests', function () {
     )
   })
 
-  if (process.env.SOLR_URL &&
-    process.env.SOLR_PATH &&
-    process.env.SOLR_PORT &&
-    process.env.SOLR_HOST) {
+  if (process.env.SOLR_URL && process.env.SOLR_PATH && process.env.SOLR_PORT && process.env.SOLR_HOST) {
     it('should create test resources', function (done) {
       client.query(`INSERT INTO tymly_test.incident (inc_no, description) VALUES (1, 'A bad incident');`, (err) => {
         done(err)
@@ -55,15 +52,18 @@ describe('tymly-solr-plugin add docs resource tests', function () {
     it('should ensure the record to be inserted isn\'t already there', done => {
       statebox.startExecution(
         {
+          query: 'A bad incident',
           offset: 0,
           limit: 10
         },
         'tymlyTest_search_1_0',
         {
-          sendResponse: 'COMPLETE'
+          sendResponse: 'COMPLETE',
+          userId: 'test-user-1'
         },
         function (err, executionDescription) {
           expect(err).to.eql(null)
+          console.log(JSON.stringify(executionDescription, null, 2))
           expect(executionDescription.ctx.searchResults.totalHits).to.eql(0)
           done(err)
         }
@@ -75,16 +75,17 @@ describe('tymly-solr-plugin add docs resource tests', function () {
         {
           id: 1
         }, // input
-        STATE_MACHINE_NAME, // state machine name
+        'tymlyTest_addDocs_1_0', // state machine name
         {
-          sendResponse: 'COMPLETE'
+          sendResponse: 'COMPLETE',
+          userId: 'test-user-1'
         }, // options
         function (err, executionDescription) {
           expect(err).to.eql(null)
           expect(executionDescription.currentStateName).to.eql('AddDocs')
           expect(executionDescription.currentResource).to.eql('module:addDocs')
           expect(executionDescription.status).to.eql('SUCCEEDED')
-          done()
+          done(err)
         }
       )
     })
@@ -92,15 +93,18 @@ describe('tymly-solr-plugin add docs resource tests', function () {
     it('should ensure the record was added', done => {
       statebox.startExecution(
         {
+          query: 'A bad incident',
           offset: 0,
           limit: 10
         },
         'tymlyTest_search_1_0',
         {
-          sendResponse: 'COMPLETE'
+          sendResponse: 'COMPLETE',
+          userId: 'test-user-1'
         },
         function (err, executionDescription) {
           expect(err).to.eql(null)
+          console.log(JSON.stringify(executionDescription, null, 2))
           expect(executionDescription.ctx.searchResults.totalHits).to.eql(1)
           done(err)
         }
@@ -112,7 +116,8 @@ describe('tymly-solr-plugin add docs resource tests', function () {
         {},
         'tymlyTest_removeDocs_1_0',
         {
-          sendResponse: 'COMPLETE'
+          sendResponse: 'COMPLETE',
+          userId: 'test-user-1'
         },
         function (err, executionDescription) {
           expect(err).to.eql(null)
@@ -129,7 +134,8 @@ describe('tymly-solr-plugin add docs resource tests', function () {
         },
         'tymlyTest_search_1_0',
         {
-          sendResponse: 'COMPLETE'
+          sendResponse: 'COMPLETE',
+          userId: 'test-user-1'
         },
         function (err, executionDescription) {
           expect(err).to.eql(null)
