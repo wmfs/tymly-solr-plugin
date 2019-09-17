@@ -1,3 +1,10 @@
+## [1.22.2](https://github.com/wmfs/tymly-solr-plugin/compare/v1.22.1...v1.22.2) (2019-09-17)
+
+
+### 🐛 Bug Fixes
+
+* default to doc_id in case of storage search otherwise use docId for solr search ([1c08f13](https://github.com/wmfs/tymly-solr-plugin/commit/1c08f13))
+
 ## [1.22.1](https://github.com/wmfs/tymly-solr-plugin/compare/v1.22.0...v1.22.1) (2019-09-17)
 
 
