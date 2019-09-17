@@ -1,3 +1,26 @@
+## [1.22.1](https://github.com/wmfs/tymly-solr-plugin/compare/v1.22.0...v1.22.1) (2019-09-17)
+
+
+### 🐛 Bug Fixes
+
+* **search-history:** population of search_history.doc_id column ([2551559](https://github.com/wmfs/tymly-solr-plugin/commit/2551559)), closes [#379](https://github.com/wmfs/tymly-solr-plugin/issues/379)
+
+
+### 🛠 Builds
+
+* **deps-dev:** update dev dependancies ([5777d80](https://github.com/wmfs/tymly-solr-plugin/commit/5777d80))
+
+
+### 🚨 Tests
+
+* Fixed broken tests ([929387d](https://github.com/wmfs/tymly-solr-plugin/commit/929387d))
+* Fixed broken tests ([299c01e](https://github.com/wmfs/tymly-solr-plugin/commit/299c01e))
+
+
+### 🗑 Reverts
+
+* **package.json:** removed tymly-express-plugin dev dep ([38a54d7](https://github.com/wmfs/tymly-solr-plugin/commit/38a54d7))
+
 # [1.22.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.21.0...v1.22.0) (2019-09-11)
 
 
