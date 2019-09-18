@@ -26,6 +26,7 @@ describe('tymly-solr-plugin add docs resource tests', function () {
         pluginPaths: [
           path.resolve(__dirname, './../lib'),
           require.resolve('@wmfs/tymly-pg-plugin'),
+          require.resolve('@wmfs/tymly-users-plugin'),
           require.resolve('@wmfs/tymly-rbac-plugin')
         ],
         blueprintPaths: [
