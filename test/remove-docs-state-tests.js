@@ -59,7 +59,8 @@ describe('tymly-solr-plugin remove docs resource tests', function () {
         {},
         'tymlyTest_fullReindex_1_0',
         {
-          sendResponse: 'COMPLETE'
+          sendResponse: 'COMPLETE',
+          userId: 'test-user-1'
         },
         (err, executionDescription) => {
           expect(err).to.eql(null)
