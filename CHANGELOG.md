@@ -1,3 +1,20 @@
+# [2.0.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.22.2...v2.0.0) (2019-09-19)
+
+
+### ✨ Features
+
+* **solr:** populate new solr fields ([e73c5a5](https://github.com/wmfs/tymly-solr-plugin/commit/e73c5a5))
+
+
+### 🚨 Tests
+
+* added missing userId to statebox startExecution invocation ([321c399](https://github.com/wmfs/tymly-solr-plugin/commit/321c399))
+
+
+### Breaking changes
+
+* **solr:** New search-doc fields must be configured
+
 ## [1.22.2](https://github.com/wmfs/tymly-solr-plugin/compare/v1.22.1...v1.22.2) (2019-09-17)
 
 
