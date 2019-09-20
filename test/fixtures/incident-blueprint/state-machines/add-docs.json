@@ -38,6 +38,11 @@
           "roles": "$authenticated, role1::text[]",
           "language": "ENG",
           "sortString": "incNo",
+          "classification": "C",
+          "icon": "car-accident.png",
+          "synopsis": "description",
+          "x": "0",
+          "y": "0",
           "created": "$NOW",
           "modified": "$NOW"
         }
