@@ -1,3 +1,15 @@
+## [2.0.1](https://github.com/wmfs/tymly-solr-plugin/compare/v2.0.0...v2.0.1) (2019-11-08)
+
+
+### 🐛 Bug Fixes
+
+* change users plugin to cardscript plugin ([](https://github.com/wmfs/tymly-solr-plugin/commit/d2d1b48))
+
+
+### 🚨 Tests
+
+* **solr:** tests now populate the new solr schema fields ([](https://github.com/wmfs/tymly-solr-plugin/commit/f152399))
+
 # [2.0.0](https://github.com/wmfs/tymly-solr-plugin/compare/v1.22.2...v2.0.0) (2019-09-19)
 
 
