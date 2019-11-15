@@ -1,3 +1,13 @@
+# [2.1.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.0.1...v2.1.0) (2019-11-15)
+
+
+### 🛠 Builds
+
+* **deps:** update async requirement from 2.6.1 to 2.6.3 ([9a67e24](https://github.com/wmfs/tymly-solr-plugin/commit/9a67e24c4b90dc65d7bb833eba4482c5e2c01dd6))
+* **deps:** update lodash requirement from 4.17.14 to 4.17.15 ([621bded](https://github.com/wmfs/tymly-solr-plugin/commit/621bdedd1217eef2f7d94ecca962883ade6ed951))
+* **deps-dev:** bump many dev dependencies ([e1f9ace](https://github.com/wmfs/tymly-solr-plugin/commit/e1f9aceab35717f7c9570f89390a81a1a0373c66))
+* **deps-dev:** drop standard down ([4a3cef4](https://github.com/wmfs/tymly-solr-plugin/commit/4a3cef46de2c956891a23d6d37ede551b52791a8))
+
 ## [2.0.1](https://github.com/wmfs/tymly-solr-plugin/compare/v2.0.0...v2.0.1) (2019-11-08)
 
 
