@@ -1,0 +1,12 @@
+{
+  "name": "solr",
+  "version": "2.1.0",
+  "label": "Solr",
+  "author": "Tim Needham",
+  "organisation": "West Midlands Fire Service",
+  "description": "Tymly plugin to handle interaction with Apache Solr",
+  "categories": [
+    "solr",
+    "search"
+  ]
+}
