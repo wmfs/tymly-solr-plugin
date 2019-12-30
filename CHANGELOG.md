@@ -1,3 +1,15 @@
+## [2.1.1](https://github.com/wmfs/tymly-solr-plugin/compare/v2.1.0...v2.1.1) (2019-12-30)
+
+
+### 🐛 Bug Fixes
+
+* on search query replace spaces for tags ([e3f2e99](https://github.com/wmfs/tymly-solr-plugin/commit/e3f2e994dbdcb863ce02f9e20443c2b47e67b7e9))
+
+
+### ♻️ Chores
+
+* add plugin.json ([da7d116](https://github.com/wmfs/tymly-solr-plugin/commit/da7d1162a2b15e8711abd946ead40b5a0e54bd26))
+
 # [2.1.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.0.1...v2.1.0) (2019-11-15)
 
 
