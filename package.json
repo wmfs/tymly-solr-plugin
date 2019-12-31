@@ -30,19 +30,19 @@
     "solr-client": "0.7.1"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "3.0.5",
+    "@semantic-release/changelog": "3.0.6",
     "@semantic-release/git": "7.0.18",
-    "@wmfs/tymly": "1.101.0",
-    "@wmfs/tymly-pg-plugin": "1.135.1",
-    "@wmfs/tymly-rbac-plugin": "1.12.1",
-    "@wmfs/tymly-cardscript-plugin": "1.8.0",
+    "@wmfs/tymly": "1.103.3",
+    "@wmfs/tymly-pg-plugin": "1.137.0",
+    "@wmfs/tymly-rbac-plugin": "1.16.0",
+    "@wmfs/tymly-cardscript-plugin": "1.9.1",
     "chai": "4.2.0",
     "codecov": "3.6.1",
     "conventional-changelog-metahub": "3.0.0",
     "cz-conventional-changelog": "3.0.2",
     "mocha": "6.2.2",
-    "nyc": "14.1.1",
-    "semantic-release": "15.13.30",
+    "nyc": "15.0.0",
+    "semantic-release": "15.14.0",
     "standard": "12.0.1"
   },
   "scripts": {
