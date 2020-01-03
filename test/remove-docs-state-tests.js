@@ -26,7 +26,8 @@ describe('tymly-solr-plugin remove docs resource tests', function () {
         pluginPaths: [
           path.resolve(__dirname, './../lib'),
           require.resolve('@wmfs/tymly-pg-plugin'),
-          require.resolve('@wmfs/tymly-rbac-plugin')
+          require.resolve('@wmfs/tymly-rbac-plugin'),
+          require.resolve('@wmfs/tymly-cardscript-plugin')
         ],
         blueprintPaths: [
           path.resolve(__dirname, './fixtures/incident-blueprint')
