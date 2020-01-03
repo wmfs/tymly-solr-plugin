@@ -1,3 +1,32 @@
+# [2.2.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.1.1...v2.2.0) (2020-01-03)
+
+
+### ✨ Features
+
+* Refactor solr search tags [ch256] ([cf09a32](https://github.com/wmfs/tymly-solr-plugin/commit/cf09a3201686a93c1bcbab462f1094c2651e4ca2))
+
+
+### 🛠 Builds
+
+* **deps-dev:** add [@semantic-release](https://github.com/semantic-release)/exec ([5852801](https://github.com/wmfs/tymly-solr-plugin/commit/58528012a8d8383bd0a4cf1c051a08aa6cf8f810))
+* **deps-dev:** bump packages ([0c53994](https://github.com/wmfs/tymly-solr-plugin/commit/0c5399484417fa35a26fa32df34e0982a34ca88f))
+
+
+### 🚨 Tests
+
+* add missing plugins ([56c1810](https://github.com/wmfs/tymly-solr-plugin/commit/56c1810c9d23a1914c7b6f0f91c10b56fd3fd5f6))
+
+
+### ⚙️ Continuous Integrations
+
+* **circle:** update config ([b4a72cb](https://github.com/wmfs/tymly-solr-plugin/commit/b4a72cb5048f0fb6723af0654bdc137d0d878990))
+
+
+### ♻️ Chores
+
+* add version_plugin script ([19fb23a](https://github.com/wmfs/tymly-solr-plugin/commit/19fb23a3b8436743a8f66963fe7e3867aac8ad74))
+* update .releaserc.json ([797b26e](https://github.com/wmfs/tymly-solr-plugin/commit/797b26eceb10a2faf26323b20c824d69d2416f3d))
+
 ## [2.1.1](https://github.com/wmfs/tymly-solr-plugin/compare/v2.1.0...v2.1.1) (2019-12-30)
 
 
