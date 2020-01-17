@@ -76,7 +76,7 @@ describe('tymly-solr-plugin tests', function () {
     expect(sqlString).to.eql('CREATE OR REPLACE VIEW tymly.solr_data AS \n' +
       'SELECT \'student#\' || student_no AS id, first_name || \' \' || last_name AS actor_name, ' +
       'character_name AS character_name FROM tymly_test.students\n' +
-      'UNION\n' +
+      'UNION ALL\n' +
       'SELECT \'staff#\' || staff_no AS id, first_name || \' \' || last_name AS actor_name, ' +
       'character_first_name || \' \' || character_last_name AS character_name FROM tymly_test.staff;')
   })
