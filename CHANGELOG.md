@@ -1,3 +1,17 @@
+# [2.3.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.2.1...v2.3.0) (2020-01-23)
+
+
+### ✨ Features
+
+* create state machine to run a full reindex ([599ab7d](https://github.com/wmfs/tymly-solr-plugin/commit/599ab7dfc4ca90b50a2c628625a80a8b3b872524))
+
+
+### 🛠 Builds
+
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.110.0 to 1.112.0 ([16cd97d](https://github.com/wmfs/tymly-solr-plugin/commit/16cd97d756a21c12182acdb8c29b55fb92238b2d))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.112.0 to 1.112.1 ([192ca9c](https://github.com/wmfs/tymly-solr-plugin/commit/192ca9ce236ac22ee3669618a65111d8327cde32))
+* **deps-dev:** bump conventional-changelog-metahub from 3.0.0 to 4.0.0 ([3850d0f](https://github.com/wmfs/tymly-solr-plugin/commit/3850d0f9522857386749cfabda4c50356fa948ba))
+
 ## [2.2.1](https://github.com/wmfs/tymly-solr-plugin/compare/v2.2.0...v2.2.1) (2020-01-17)
 
 
