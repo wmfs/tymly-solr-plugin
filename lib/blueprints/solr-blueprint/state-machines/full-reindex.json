@@ -1,0 +1,23 @@
+{
+  "Comment": "State machine to perform a full reindex.",
+  "version": "1.0",
+  "StartAt": "Reindex",
+  "States": {
+    "Reindex": {
+      "Type": "Task",
+      "Resource": "module:fullReindex",
+      "ResourceConfig": {
+        "core": "tymly"
+      },
+      "End": true
+    }
+  },
+  "restrictions": [
+    {
+      "roleId": "$authenticated",
+      "allows": [
+        "*"
+      ]
+    }
+  ]
+}
