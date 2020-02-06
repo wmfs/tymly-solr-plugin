@@ -5,7 +5,7 @@
   "States": {
     "RemoveDocs": {
       "Type": "Task",
-      "Resource": "module:removeDocs",
+      "Resource": "module:removeDocsByQuery",
       "InputPath": "$",
       "ResourceConfig": {
         "query": {
