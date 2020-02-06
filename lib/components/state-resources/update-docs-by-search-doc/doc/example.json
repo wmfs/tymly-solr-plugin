@@ -1,0 +1,8 @@
+{
+  "UpdateDocs": {
+    "Type": "Task",
+    "Resource": "module:updateDocBySearchDoc",
+    "ResourceConfig": {},
+    "End": true
+  }
+}
