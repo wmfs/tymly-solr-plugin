@@ -1,3 +1,12 @@
+# [2.7.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.6.0...v2.7.0) (2020-02-26)
+
+
+### 🛠 Builds
+
+* **deps:** bump async from 3.1.1 to 3.2.0 ([678f69c](https://github.com/wmfs/tymly-solr-plugin/commit/678f69c1747a9bd5728b6fba1ee10223d9f4a202))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.119.0 to 1.120.0 ([c078eb6](https://github.com/wmfs/tymly-solr-plugin/commit/c078eb64051cb4e3be2e262a5e282b9ca81c809e))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.170.0 to 1.171.0 ([1767e9d](https://github.com/wmfs/tymly-solr-plugin/commit/1767e9d3649534ab9f780c0d8a1c7d0aba3ab6ce))
+
 # [2.6.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.5.0...v2.6.0) (2020-02-12)
 
 
