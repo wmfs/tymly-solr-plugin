@@ -1,3 +1,17 @@
+## [2.7.2](https://github.com/wmfs/tymly-solr-plugin/compare/v2.7.1...v2.7.2) (2020-04-20)
+
+
+### 🐛 Bug Fixes
+
+* **state-resource:** Remove callback from init method ([8ff0bc4](https://github.com/wmfs/tymly-solr-plugin/commit/8ff0bc46a25f90162a886f97629f37069e95ada2))
+
+
+### 🛠 Builds
+
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.195.0 to 1.195.1 ([1702fbb](https://github.com/wmfs/tymly-solr-plugin/commit/1702fbbb63cb82172d46123a8e9bc208c0775fab))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-rbac-plugin from 1.17.0 to 1.17.1 ([df1cb44](https://github.com/wmfs/tymly-solr-plugin/commit/df1cb446fdbdc7d53a12161416f0e3745c8c136b))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-test-helpers from 1.4.0 to 1.4.1 ([33bf9f7](https://github.com/wmfs/tymly-solr-plugin/commit/33bf9f7dfac5419aab5936bc91df4858caba9037))
+
 ## [2.7.1](https://github.com/wmfs/tymly-solr-plugin/compare/v2.7.0...v2.7.1) (2020-04-20)
 
 
