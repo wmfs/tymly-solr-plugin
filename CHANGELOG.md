@@ -1,3 +1,24 @@
+# [2.8.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.7.2...v2.8.0) (2020-04-22)
+
+
+### 🐛 Bug Fixes
+
+* **deps:** Swap out request in favour of axios. ([0761d75](https://github.com/wmfs/tymly-solr-plugin/commit/0761d75bd2f43ca53e3f12cc04dd743267abf55a))
+* Removed boom as a dependency ([42f81d3](https://github.com/wmfs/tymly-solr-plugin/commit/42f81d35d6b6f766c781853ae5ef003d047b2cc5))
+
+
+### 🛠 Builds
+
+* **deps:** Removed unused async dependency ([077c1ed](https://github.com/wmfs/tymly-solr-plugin/commit/077c1edf7631d8fa16df536347c5877096016cff))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.135.1 to 1.135.2 ([53c522b](https://github.com/wmfs/tymly-solr-plugin/commit/53c522b55afda3e16988e7be5257bee61954538b))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.135.2 to 1.136.0 ([5f1e640](https://github.com/wmfs/tymly-solr-plugin/commit/5f1e640fa6728ae8b35977f3511dc994b4232658))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.136.0 to 1.137.0 ([c9b22b4](https://github.com/wmfs/tymly-solr-plugin/commit/c9b22b4bc292d9c4e6b543222e7abed14084ffd9))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-cardscript-plugin ([fc13216](https://github.com/wmfs/tymly-solr-plugin/commit/fc1321605f4c6484553bbd24e9dcfea4888293c6))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-cardscript-plugin ([8adfd0f](https://github.com/wmfs/tymly-solr-plugin/commit/8adfd0fca0befb549d1be3877b7535c8e42a58a5))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.195.1 to 1.195.2 ([ce5ce4b](https://github.com/wmfs/tymly-solr-plugin/commit/ce5ce4bbcd1f6520f8674228eaf529798a9cb686))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-rbac-plugin from 1.17.1 to 1.17.2 ([77576e1](https://github.com/wmfs/tymly-solr-plugin/commit/77576e16f56c052bf669399c741ff37a13444ccf))
+* **deps-dev:** bump semantic-release from 17.0.6 to 17.0.7 ([57ced7a](https://github.com/wmfs/tymly-solr-plugin/commit/57ced7ad4a9ec2bf685577bd8106ce40baf8bb84))
+
 ## [2.7.2](https://github.com/wmfs/tymly-solr-plugin/compare/v2.7.1...v2.7.2) (2020-04-20)
 
 
