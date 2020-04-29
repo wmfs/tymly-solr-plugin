@@ -19,14 +19,14 @@ describe('tymly-solr-plugin search state resource tests', function () {
 
   let tymlyService; let statebox = null; let client; let rbacAdmin
 
-  before((done) => {
+  before(async () => {
     if (process.env.PG_CONNECTION_STRING && !/^postgres:\/\/[^:]+:[^@]+@(?:localhost|127\.0\.0\.1).*$/.test(process.env.PG_CONNECTION_STRING)) {
       console.log(`Skipping tests due to unsafe PG_CONNECTION_STRING value (${process.env.PG_CONNECTION_STRING})`)
       this.skip()
-      done()
+      return
     }
 
-    tymly.boot(
+    const tymlyServices = await tymly.boot(
       {
         pluginPaths: [
           path.resolve(__dirname, './../lib'),
@@ -46,31 +46,20 @@ describe('tymly-solr-plugin search state resource tests', function () {
             'launches'
           ]
         }
-      },
-      function (err, tymlyServices) {
-        expect(err).to.eql(null)
-        tymlyService = tymlyServices.tymly
-        statebox = tymlyServices.statebox
-        rbacAdmin = tymlyServices.rbacAdmin
-        client = tymlyServices.storage.client
-        done()
       }
     )
+
+    tymlyService = tymlyServices.tymly
+    statebox = tymlyServices.statebox
+    rbacAdmin = tymlyServices.rbacAdmin
+    client = tymlyServices.storage.client
   })
 
   describe('setup', () => {
-    it('create test resources', function (done) {
-      sqlScriptRunner(
+    it('create test resources', async () => {
+      await sqlScriptRunner(
         './db-scripts/setup.sql',
-        client,
-        function (err) {
-          expect(err).to.equal(null)
-          if (err) {
-            done(err)
-          } else {
-            done()
-          }
-        }
+        client
       )
     })
 
@@ -186,18 +175,10 @@ describe('tymly-solr-plugin search state resource tests', function () {
   })
 
   describe('teardown', () => {
-    it('cleanup test resources', function (done) {
-      sqlScriptRunner(
+    it('cleanup test resources', async () => {
+      await sqlScriptRunner(
         './db-scripts/cleanup.sql',
-        client,
-        function (err) {
-          expect(err).to.equal(null)
-          if (err) {
-            done(err)
-          } else {
-            done()
-          }
-        }
+        client
       )
     })
   })

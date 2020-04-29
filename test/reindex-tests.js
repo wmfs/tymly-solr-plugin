@@ -1,4 +1,5 @@
 /* eslint-env mocha */
+
 const expect = require('chai').expect
 const tymly = require('@wmfs/tymly')
 const path = require('path')
@@ -33,8 +34,8 @@ for (const test of reindexTests) {
       }
     })
 
-    it('should run the tymly services', function (done) {
-      tymly.boot(
+    it('should run the tymly services', async () => {
+      const tymlyServices = await tymly.boot(
         {
           pluginPaths: [
             path.resolve(__dirname, './../lib'),
@@ -50,51 +51,37 @@ for (const test of reindexTests) {
               'characterName'
             ]
           }
-        },
-        function (err, tymlyServices) {
-          expect(err).to.eql(null)
-          tymlyService = tymlyServices.tymly
-          statebox = tymlyServices.statebox
-          client = tymlyServices.storage.client
-          done()
         }
       )
+
+      tymlyService = tymlyServices.tymly
+      statebox = tymlyServices.statebox
+      client = tymlyServices.storage.client
     })
 
-    it(`should start the ${test.stateMachine} state machine`, function (done) {
-      statebox.startExecution(
+    it(`should start the ${test.stateMachine} state machine`, async () => {
+      const executionDescription = await statebox.startExecution(
         {}, // input
         test.stateMachine, // state machine name
         {
           sendResponse: 'COMPLETE'
-        }, // options
-        function (err, executionDescription) {
-          try {
-            expect(err).to.eql(null)
-            expect(executionDescription.currentStateName).to.eql(test.stateName)
-            expect(executionDescription.currentResource).to.eql(test.resource)
-            expect(executionDescription.stateMachineName).to.eql(test.stateMachine)
-            expect(executionDescription.status).to.eql('SUCCEEDED')
-            done()
-          } catch (e) {
-            done(e)
-          }
-        }
+        } // options
       )
+
+      expect(executionDescription.currentStateName).to.eql(test.stateName)
+      expect(executionDescription.currentResource).to.eql(test.resource)
+      expect(executionDescription.stateMachineName).to.eql(test.stateMachine)
+      expect(executionDescription.status).to.eql('SUCCEEDED')
     })
 
-    it('should cleanup test resources', (done) => {
-      sqlScriptRunner(
+    it('should cleanup test resources', async () => {
+      await sqlScriptRunner(
         './db-scripts/cleanup.sql',
-        client,
-        (err) => {
-          expect(err).to.equal(null)
-          done(err)
-        }
+        client
       )
     })
 
-    it('should shutdown Tymly', async () => {
+    after('shutdown Tymly', async () => {
       await tymlyService.shutdown()
     })
   })
