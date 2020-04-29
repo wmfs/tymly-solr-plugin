@@ -20,8 +20,8 @@ describe('tymly-solr-plugin remove docs resource tests', function () {
     }
   })
 
-  it('should run the tymly services', (done) => {
-    tymly.boot(
+  it('should run the tymly services', async () => {
+    const tymlyServices = await tymly.boot(
       {
         pluginPaths: [
           path.resolve(__dirname, './../lib'),
@@ -32,51 +32,41 @@ describe('tymly-solr-plugin remove docs resource tests', function () {
         blueprintPaths: [
           path.resolve(__dirname, './fixtures/incident-blueprint')
         ]
-      },
-      (err, tymlyServices) => {
-        expect(err).to.eql(null)
-        tymlyService = tymlyServices.tymly
-        statebox = tymlyServices.statebox
-        client = tymlyServices.storage.client
-        done()
       }
     )
+
+    tymlyService = tymlyServices.tymly
+    statebox = tymlyServices.statebox
+    client = tymlyServices.storage.client
   })
 
   if (process.env.SOLR_URL && process.env.SOLR_PATH && process.env.SOLR_PORT && process.env.SOLR_HOST) {
-    it('should create test resources', (done) => {
-      sqlScriptRunner(
+    it('should create test resources', async () => {
+      await sqlScriptRunner(
         './db-scripts/incident-setup.sql',
-        client,
-        (err) => {
-          expect(err).to.equal(null)
-          done(err)
-        }
+        client
       )
     })
 
-    it('perform reindex', (done) => {
-      statebox.startExecution(
+    it('perform reindex', async () => {
+      const executionDescription = await statebox.startExecution(
         {},
         'tymlyTest_fullReindex_1_0',
         {
           sendResponse: 'COMPLETE',
           userId: 'test-user-1'
-        },
-        (err, executionDescription) => {
-          expect(err).to.eql(null)
-          console.log(JSON.stringify(executionDescription, null, 2))
-          done(err)
         }
       )
+
+      console.log(JSON.stringify(executionDescription, null, 2))
     })
 
     it('should wait a while', (done) => {
       setTimeout(done, 5900)
     })
 
-    it('should search to check data is there', (done) => {
-      statebox.startExecution(
+    it('should search to check data is there', async () => {
+      const executionDescription = await statebox.startExecution(
         {
           query: 'bad incident',
           offset: 0,
@@ -86,38 +76,32 @@ describe('tymly-solr-plugin remove docs resource tests', function () {
         {
           sendResponse: 'COMPLETE',
           userId: 'test-user-1'
-        },
-        (err, executionDescription) => {
-          expect(err).to.eql(null)
-          console.log(JSON.stringify(executionDescription, null, 2))
-          expect(executionDescription.ctx.searchResults.results.length).to.eql(3)
-          done(err)
         }
       )
+
+      console.log(JSON.stringify(executionDescription, null, 2))
+      expect(executionDescription.ctx.searchResults.results.length).to.eql(3)
     })
 
-    it('should execution remove docs state machine', (done) => {
-      statebox.startExecution(
+    it('should execution remove docs state machine', async () => {
+      const executionDescription = await statebox.startExecution(
         {},
         'tymlyTest_removeDocs_1_0',
         {
           sendResponse: 'COMPLETE',
           userId: 'test-user-1'
-        },
-        (err, executionDescription) => {
-          expect(err).to.eql(null)
-          console.log(JSON.stringify(executionDescription, null, 2))
-          expect(executionDescription.currentStateName).to.eql('RemoveDocs')
-          expect(executionDescription.currentResource).to.eql('module:removeDocs')
-          expect(executionDescription.stateMachineName).to.eql('tymlyTest_removeDocs_1_0')
-          expect(executionDescription.status).to.eql('SUCCEEDED')
-          done(err)
         }
       )
+
+      console.log(JSON.stringify(executionDescription, null, 2))
+      expect(executionDescription.currentStateName).to.eql('RemoveDocs')
+      expect(executionDescription.currentResource).to.eql('module:removeDocs')
+      expect(executionDescription.stateMachineName).to.eql('tymlyTest_removeDocs_1_0')
+      expect(executionDescription.status).to.eql('SUCCEEDED')
     })
 
-    it('should search to check data is removed', (done) => {
-      statebox.startExecution(
+    it('should search to check data is removed', async () => {
+      const executionDescription = await statebox.startExecution(
         {
           query: 'bad incident',
           offset: 0,
@@ -127,29 +111,22 @@ describe('tymly-solr-plugin remove docs resource tests', function () {
         {
           sendResponse: 'COMPLETE',
           userId: 'test-user-1'
-        },
-        (err, executionDescription) => {
-          expect(err).to.eql(null)
-          console.log(JSON.stringify(executionDescription, null, 2))
-          expect(executionDescription.ctx.searchResults.results.length).to.eql(0)
-          done(err)
         }
       )
+
+      console.log(JSON.stringify(executionDescription, null, 2))
+      expect(executionDescription.ctx.searchResults.results.length).to.eql(0)
     })
   }
 
-  it('should cleanup test resources', (done) => {
-    sqlScriptRunner(
+  it('should cleanup test resources', async () => {
+    await sqlScriptRunner(
       './db-scripts/cleanup.sql',
-      client,
-      (err) => {
-        expect(err).to.equal(null)
-        done(err)
-      }
+      client
     )
   })
 
-  it('should shutdown Tymly', async () => {
+  after('should shutdown Tymly', async () => {
     await tymlyService.shutdown()
   })
 })

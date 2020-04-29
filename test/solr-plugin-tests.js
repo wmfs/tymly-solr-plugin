@@ -31,8 +31,8 @@ describe('tymly-solr-plugin tests', function () {
     }
   })
 
-  it('should create some basic tymly services', function (done) {
-    tymly.boot(
+  it('should create some basic tymly services', async () => {
+    const tymlyServices = await tymly.boot(
       {
         pluginPaths: [
           path.resolve(__dirname, './../lib'),
@@ -49,15 +49,12 @@ describe('tymly-solr-plugin tests', function () {
             'characterName'
           ]
         }
-      },
-      function (err, tymlyServices) {
-        expect(err).to.eql(null)
-        tymlyService = tymlyServices.tymly
-        client = tymlyServices.storage.client
-        solrService = tymlyServices.solr
-        done()
       }
     )
+
+    tymlyService = tymlyServices.tymly
+    client = tymlyServices.storage.client
+    solrService = tymlyServices.solr
   })
 
   it('should generate a SQL SELECT statement', function () {
@@ -85,37 +82,27 @@ describe('tymly-solr-plugin tests', function () {
     expect(solrService.createViewSQL).to.be.a('string')
   })
 
-  it('should create test resources', function (done) {
-    sqlScriptRunner(
+  it('should create test resources', async () => {
+    await sqlScriptRunner(
       './db-scripts/setup.sql',
-      client,
-      err => done(err)
+      client
     )
   })
 
-  it('should create a database view using the test resources', function (done) {
+  it('should create a database view using the test resources', async () => {
     const createViewStatement = solrService.buildCreateViewStatement(
       studentsAndStaffModels, studentsAndStaffSearchDocs)
 
-    client.query(createViewStatement, [], err => done(err))
+    await client.query(createViewStatement, [])
   })
 
-  it('should return 19 rows when selecting from the view', function (done) {
-    client.query(`SELECT * FROM tymly.solr_data ORDER BY character_name ASC;`, [],
-      function (err, result) {
-        if (err) {
-          return done(err)
-        }
-        try {
-          expect(result.rowCount).to.eql(19)
-          expect(result.rows[0].id).to.eql('staff#1')
-          expect(result.rows[18].id).to.eql('staff#3')
-          done()
-        } catch (e) {
-          done(e)
-        }
-      }
+  it('should return 19 rows when selecting from the view', async () => {
+    const result = await client.query(`SELECT * FROM tymly.solr_data ORDER BY character_name ASC;`, []
     )
+
+    expect(result.rowCount).to.eql(19)
+    expect(result.rows[0].id).to.eql('staff#1')
+    expect(result.rows[18].id).to.eql('staff#3')
   })
 
   // it('should instruct apache solr to index data from the view', function (done) {
@@ -130,11 +117,10 @@ describe('tymly-solr-plugin tests', function () {
   //   })
   // })
 
-  it('should cleanup test resources', function (done) {
-    sqlScriptRunner(
+  it('should cleanup test resources', async () => {
+    await sqlScriptRunner(
       './db-scripts/cleanup.sql',
-      client,
-      err => done(err)
+      client
     )
   })
 

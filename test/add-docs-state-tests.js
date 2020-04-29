@@ -20,8 +20,8 @@ describe('tymly-solr-plugin add docs resource tests', function () {
     }
   })
 
-  it('should run the tymly services', function (done) {
-    tymly.boot(
+  it('should run the tymly services', async () => {
+    const tymlyServices = await tymly.boot(
       {
         pluginPaths: [
           path.resolve(__dirname, './../lib'),
@@ -32,26 +32,21 @@ describe('tymly-solr-plugin add docs resource tests', function () {
         blueprintPaths: [
           path.resolve(__dirname, './fixtures/incident-blueprint')
         ]
-      },
-      function (err, tymlyServices) {
-        expect(err).to.eql(null)
-        tymlyService = tymlyServices.tymly
-        statebox = tymlyServices.statebox
-        client = tymlyServices.storage.client
-        done()
       }
     )
+
+    tymlyService = tymlyServices.tymly
+    statebox = tymlyServices.statebox
+    client = tymlyServices.storage.client
   })
 
   if (process.env.SOLR_URL && process.env.SOLR_PATH && process.env.SOLR_PORT && process.env.SOLR_HOST) {
-    it('should create test resources', function (done) {
-      client.query(`INSERT INTO tymly_test.incident (inc_no, description) VALUES (1, 'A bad incident');`, (err) => {
-        done(err)
-      })
+    it('should create test resources', async () => {
+      await client.query(`INSERT INTO tymly_test.incident (inc_no, description) VALUES (1, 'A bad incident');`)
     })
 
-    it('should ensure the record to be inserted isn\'t already there', done => {
-      statebox.startExecution(
+    it('should ensure the record to be inserted isn\'t already there', async () => {
+      const executionDescription = await statebox.startExecution(
         {
           query: 'A bad incident',
           offset: 0,
@@ -61,18 +56,15 @@ describe('tymly-solr-plugin add docs resource tests', function () {
         {
           sendResponse: 'COMPLETE',
           userId: 'test-user-1'
-        },
-        function (err, executionDescription) {
-          expect(err).to.eql(null)
-          console.log(JSON.stringify(executionDescription, null, 2))
-          expect(executionDescription.ctx.searchResults.totalHits).to.eql(0)
-          done(err)
         }
       )
+
+      console.log(JSON.stringify(executionDescription, null, 2))
+      expect(executionDescription.ctx.searchResults.totalHits).to.eql(0)
     })
 
-    it('should get a record and try to add it', function (done) {
-      statebox.startExecution(
+    it('should get a record and try to add it', async () => {
+      const executionDescription = await statebox.startExecution(
         {
           id: 1
         }, // input
@@ -80,19 +72,16 @@ describe('tymly-solr-plugin add docs resource tests', function () {
         {
           sendResponse: 'COMPLETE',
           userId: 'test-user-1'
-        }, // options
-        function (err, executionDescription) {
-          expect(err).to.eql(null)
-          expect(executionDescription.currentStateName).to.eql('AddDocs')
-          expect(executionDescription.currentResource).to.eql('module:addDocs')
-          expect(executionDescription.status).to.eql('SUCCEEDED')
-          done(err)
-        }
+        } // options
       )
+
+      expect(executionDescription.currentStateName).to.eql('AddDocs')
+      expect(executionDescription.currentResource).to.eql('module:addDocs')
+      expect(executionDescription.status).to.eql('SUCCEEDED')
     })
 
-    it('should ensure the record was added', done => {
-      statebox.startExecution(
+    it('should ensure the record was added', async () => {
+      const executionDescription = await statebox.startExecution(
         {
           query: 'A bad incident',
           offset: 0,
@@ -102,33 +91,26 @@ describe('tymly-solr-plugin add docs resource tests', function () {
         {
           sendResponse: 'COMPLETE',
           userId: 'test-user-1'
-        },
-        function (err, executionDescription) {
-          expect(err).to.eql(null)
-          console.log(JSON.stringify(executionDescription, null, 2))
-          expect(executionDescription.ctx.searchResults.totalHits).to.eql(1)
-          done(err)
         }
       )
+
+      console.log(JSON.stringify(executionDescription, null, 2))
+      expect(executionDescription.ctx.searchResults.totalHits).to.eql(1)
     })
 
-    it('should remove the test doc', done => {
-      statebox.startExecution(
+    it('should remove the test doc', async () => {
+      await statebox.startExecution(
         {},
         'tymlyTest_removeDocs_1_0',
         {
           sendResponse: 'COMPLETE',
           userId: 'test-user-1'
-        },
-        function (err, executionDescription) {
-          expect(err).to.eql(null)
-          done(err)
         }
       )
     })
 
-    it('should ensure the record has been removed', done => {
-      statebox.startExecution(
+    it('should ensure the record has been removed', async () => {
+      const executionDescription = await statebox.startExecution(
         {
           offset: 0,
           limit: 10
@@ -137,13 +119,10 @@ describe('tymly-solr-plugin add docs resource tests', function () {
         {
           sendResponse: 'COMPLETE',
           userId: 'test-user-1'
-        },
-        function (err, executionDescription) {
-          expect(err).to.eql(null)
-          expect(executionDescription.ctx.searchResults.totalHits).to.eql(0)
-          done(err)
         }
       )
+
+      expect(executionDescription.ctx.searchResults.totalHits).to.eql(0)
     })
 
     it('should wait a while', (done) => {
@@ -151,18 +130,10 @@ describe('tymly-solr-plugin add docs resource tests', function () {
     })
   }
 
-  it('should cleanup test resources', function (done) {
-    sqlScriptRunner(
+  it('should cleanup test resources', async () => {
+    await sqlScriptRunner(
       './db-scripts/cleanup.sql',
-      client,
-      function (err) {
-        expect(err).to.equal(null)
-        if (err) {
-          done(err)
-        } else {
-          done()
-        }
-      }
+      client
     )
   })
 
