@@ -1,3 +1,27 @@
+## [2.8.1](https://github.com/wmfs/tymly-solr-plugin/compare/v2.8.0...v2.8.1) (2020-05-05)
+
+
+### 🐛 Bug Fixes
+
+* **solr-service:** Remove redundant boot callback parameter ([7b7cb87](https://github.com/wmfs/tymly-solr-plugin/commit/7b7cb873c52e7f96f51e910b7e98df5d8ca4cdab))
+
+
+### 🛠 Builds
+
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.137.0 to 1.137.1 ([ce138db](https://github.com/wmfs/tymly-solr-plugin/commit/ce138dbf92d6335ca78060e82761f5d11824a7f4))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.137.1 to 1.137.2 ([e80a86e](https://github.com/wmfs/tymly-solr-plugin/commit/e80a86ee388a018568110ae4cea5203934583ac5))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-cardscript-plugin ([816a91a](https://github.com/wmfs/tymly-solr-plugin/commit/816a91af1cf7be32b101c7737819c8469cbc3e31))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.195.2 to 1.195.3 ([fa52965](https://github.com/wmfs/tymly-solr-plugin/commit/fa529650bfb4b5664d77f571ce096be437de3723))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-rbac-plugin from 1.17.2 to 1.17.3 ([2fcc6d0](https://github.com/wmfs/tymly-solr-plugin/commit/2fcc6d0771a0e2b50bce6460e924a04c51019cd3))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-test-helpers from 1.4.1 to 1.4.2 ([b88eb1e](https://github.com/wmfs/tymly-solr-plugin/commit/b88eb1e422461c41c285f5071f9f482528e834fd))
+* **deps-dev:** bump cz-conventional-changelog from 3.1.0 to 3.2.0 ([978bb30](https://github.com/wmfs/tymly-solr-plugin/commit/978bb30a76eb35c39841c7a238f3167898bbe83a))
+* **deps-dev:** bump mocha from 7.1.1 to 7.1.2 ([499aa39](https://github.com/wmfs/tymly-solr-plugin/commit/499aa39e94ac4d170c3f0abaeff74be766477ff9))
+
+
+### 📦 Code Refactoring
+
+* **tests:** Flip tymly.boot and statebox.startExecution from callback style ([549a2cf](https://github.com/wmfs/tymly-solr-plugin/commit/549a2cf8bdeb25570b08f8072c2488edd82f5a7e))
+
 # [2.8.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.7.2...v2.8.0) (2020-04-22)
 
 
