@@ -37,7 +37,7 @@
     "@wmfs/tymly-cardscript-plugin": "1.13.5",
     "@wmfs/tymly-test-helpers": "1.4.2",
     "chai": "4.2.0",
-    "codecov": "3.6.5",
+    "codecov": "3.7.0",
     "conventional-changelog-metahub": "4.0.1",
     "cz-conventional-changelog": "3.2.0",
     "mocha": "7.1.2",
