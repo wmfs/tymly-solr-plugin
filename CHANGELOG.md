@@ -1,3 +1,10 @@
+## [2.8.3](https://github.com/wmfs/tymly-solr-plugin/compare/v2.8.2...v2.8.3) (2020-05-20)
+
+
+### 🐛 Bug Fixes
+
+* for import pass form as params rather than body ([531cf95](https://github.com/wmfs/tymly-solr-plugin/commit/531cf95f913fe8453896532d3ee8a59f490ea1a2))
+
 ## [2.8.2](https://github.com/wmfs/tymly-solr-plugin/compare/v2.8.1...v2.8.2) (2020-05-20)
 
 
