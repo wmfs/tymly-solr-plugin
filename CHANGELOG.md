@@ -1,3 +1,22 @@
+## [2.8.2](https://github.com/wmfs/tymly-solr-plugin/compare/v2.8.1...v2.8.2) (2020-05-20)
+
+
+### 🐛 Bug Fixes
+
+* response from data import is already JSON, trying to parse causes error ([77a92ca](https://github.com/wmfs/tymly-solr-plugin/commit/77a92ca34a3aa46bdc4be8eb1abf1d4ca81801be))
+
+
+### 🛠 Builds
+
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.137.2 to 1.137.3 ([75c4903](https://github.com/wmfs/tymly-solr-plugin/commit/75c4903bd80889c2b3cd2988391e2a01438e4000))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.137.3 to 1.138.0 ([6aa1f0a](https://github.com/wmfs/tymly-solr-plugin/commit/6aa1f0a866aef3d7f8c9f6b0bf71abad4c843872))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.138.0 to 1.140.0 ([26232c0](https://github.com/wmfs/tymly-solr-plugin/commit/26232c05e806e7647dadcec780ff71d77a5cd7a2))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-cardscript-plugin ([abcfdde](https://github.com/wmfs/tymly-solr-plugin/commit/abcfdde113aaf6d3de833a8b1e809f36eba6d27d))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.195.3 to 1.195.4 ([5f7341f](https://github.com/wmfs/tymly-solr-plugin/commit/5f7341ff3ead7755f06beb47549304bf3ac300b2))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.195.4 to 1.201.0 ([5d1cc72](https://github.com/wmfs/tymly-solr-plugin/commit/5d1cc7221a4adb2b864e049becd3f62cdaa4c455))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.201.0 to 1.204.0 ([67caa6c](https://github.com/wmfs/tymly-solr-plugin/commit/67caa6c156d23f4622b57365a0239dbe3aa04f62))
+* **deps-dev:** bump codecov from 3.6.5 to 3.7.0 ([b40bb11](https://github.com/wmfs/tymly-solr-plugin/commit/b40bb11a350052fe29e77fa6cd5fb2e3ffcbbfa9))
+
 ## [2.8.1](https://github.com/wmfs/tymly-solr-plugin/compare/v2.8.0...v2.8.1) (2020-05-05)
 
 
