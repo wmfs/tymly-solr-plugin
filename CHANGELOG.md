@@ -1,3 +1,12 @@
+# [2.9.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.8.3...v2.9.0) (2020-05-31)
+
+
+### 🛠 Builds
+
+* **deps:** bump emoji-regex from 8.0.0 to 9.0.0 ([efb3f70](https://github.com/wmfs/tymly-solr-plugin/commit/efb3f70336e0e0f23659e04e644cf0951afbae34))
+* **deps-dev:** bump mocha from 7.1.2 to 7.2.0 ([375384c](https://github.com/wmfs/tymly-solr-plugin/commit/375384ca2daa96abdbc4b2141326504ddd76cd95))
+* **deps-dev:** bump semantic-release from 17.0.7 to 17.0.8 ([c3dfa00](https://github.com/wmfs/tymly-solr-plugin/commit/c3dfa00081c33ea3579c4fc0de66ffdd48fda878))
+
 ## [2.8.3](https://github.com/wmfs/tymly-solr-plugin/compare/v2.8.2...v2.8.3) (2020-05-20)
 
 
