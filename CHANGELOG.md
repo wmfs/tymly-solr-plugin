@@ -1,3 +1,21 @@
+# [2.10.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.9.0...v2.10.0) (2020-06-10)
+
+
+### ✨ Features
+
+* extend search query to allow for location [ch1083] ([7a411b3](https://github.com/wmfs/tymly-solr-plugin/commit/7a411b33bd8226ac2e64760e821fe7001dc0add0))
+
+
+### 🛠 Builds
+
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.140.0 to 1.141.0 ([e9f2e67](https://github.com/wmfs/tymly-solr-plugin/commit/e9f2e674e2edf9e1b7fbae307edc26b2db4e02a9))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.141.0 to 1.142.0 ([d461d0d](https://github.com/wmfs/tymly-solr-plugin/commit/d461d0dd3a29491cbf3e3740b8c6828894b29056))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.142.0 to 1.143.0 ([af04453](https://github.com/wmfs/tymly-solr-plugin/commit/af044536460977b9dd1234edba332e134adb4f6d))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.143.0 to 1.144.0 ([73018c3](https://github.com/wmfs/tymly-solr-plugin/commit/73018c3c5dcf8e91b236e818b240907ade65392b))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.204.0 to 1.206.0 ([596f0cb](https://github.com/wmfs/tymly-solr-plugin/commit/596f0cbf316bc07716a4c4b5111ba827119f8d42))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.206.0 to 1.207.0 ([21fe8a5](https://github.com/wmfs/tymly-solr-plugin/commit/21fe8a55f191175c02c8a0ca7d44f92db29673cf))
+* **deps-dev:** bump nyc from 15.0.1 to 15.1.0 ([208b736](https://github.com/wmfs/tymly-solr-plugin/commit/208b736952a25d071a3223be3ee5e725ced7702e))
+
 # [2.9.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.8.3...v2.9.0) (2020-05-31)
 
 
