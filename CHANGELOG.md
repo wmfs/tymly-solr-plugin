@@ -1,3 +1,22 @@
+# [2.11.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.10.0...v2.11.0) (2020-07-13)
+
+
+### 🛠 Builds
+
+* **deps:** bump lodash from 4.17.15 to 4.17.19 ([bd59419](https://github.com/wmfs/tymly-solr-plugin/commit/bd5941929bb8cc51a61bcdcf920e282fa865ae67))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.144.0 to 1.145.0 ([726ded6](https://github.com/wmfs/tymly-solr-plugin/commit/726ded69836ca171fca2c390936260aa5061cc93))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.145.0 to 1.146.0 ([b2341d6](https://github.com/wmfs/tymly-solr-plugin/commit/b2341d60dffa866c91939d73603afebc95498c8f))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.146.0 to 1.147.0 ([5ad2ed7](https://github.com/wmfs/tymly-solr-plugin/commit/5ad2ed72e1681329e8d496fcb92ba83704f098de))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-cardscript-plugin ([4b5a7bd](https://github.com/wmfs/tymly-solr-plugin/commit/4b5a7bd0a31bff35d7f51a8edb5330333fd69e8d))
+* **deps-dev:** bump mocha from 7.2.0 to 8.0.1 ([22154d6](https://github.com/wmfs/tymly-solr-plugin/commit/22154d653d1659abbc5347e8034a42ebd52c74bc))
+* **deps-dev:** bump semantic-release from 17.0.8 to 17.1.0 ([b8b28ce](https://github.com/wmfs/tymly-solr-plugin/commit/b8b28ce917be9b68e324f2608ce37f975ba3bb72))
+* **deps-dev:** bump semantic-release from 17.1.0 to 17.1.1 ([97852c7](https://github.com/wmfs/tymly-solr-plugin/commit/97852c7d1f4adfd5528a0c900865b53aeac9a25e))
+
+
+### ⚙️ Continuous Integrations
+
+* **circle:** use updated circle node image [skip ci] ([93cfc96](https://github.com/wmfs/tymly-solr-plugin/commit/93cfc960f02cf0f7f24c325846b92025931c9728))
+
 # [2.10.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.9.0...v2.10.0) (2020-06-10)
 
 
