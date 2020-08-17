@@ -1,3 +1,28 @@
+# [2.12.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.11.0...v2.12.0) (2020-08-17)
+
+
+### 🛠 Builds
+
+* **deps:** bump lodash from 4.17.19 to 4.17.20 ([0cd1547](https://github.com/wmfs/tymly-solr-plugin/commit/0cd1547b4c1f39faca492f7bc024c3ed8d5f31f9))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.147.0 to 1.148.0 ([d109aac](https://github.com/wmfs/tymly-solr-plugin/commit/d109aac5866180a91542a9b26f8a57cc26aef393))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.148.0 to 1.149.0 ([94b8f13](https://github.com/wmfs/tymly-solr-plugin/commit/94b8f135f6dd19440e0b7c2198942e633454ad2a))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.149.0 to 1.150.0 ([e113b5a](https://github.com/wmfs/tymly-solr-plugin/commit/e113b5a7516428bf621efa07d7e23c7c5e707af1))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.150.0 to 1.151.0 ([9ac937d](https://github.com/wmfs/tymly-solr-plugin/commit/9ac937d184aa0d9a2f9a69bbd3a80631f4787b51))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.151.0 to 1.153.0 ([9a74a17](https://github.com/wmfs/tymly-solr-plugin/commit/9a74a174059aafbcbccee176464608926243ecc4))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.153.0 to 1.154.0 ([385f646](https://github.com/wmfs/tymly-solr-plugin/commit/385f646bc7045fecabde6d4cbf92fc4a4954d5fc))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-cardscript-plugin ([95ba856](https://github.com/wmfs/tymly-solr-plugin/commit/95ba8568da7ace4eb07f97d0a7c5ee02eadb4bb3))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-cardscript-plugin ([3aae6cf](https://github.com/wmfs/tymly-solr-plugin/commit/3aae6cf0eaa10e27c558919dd4630253189793c6))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-cardscript-plugin ([53802c6](https://github.com/wmfs/tymly-solr-plugin/commit/53802c64bf1b53cbf5d300eded28a5b43b18375a))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.207.0 to 1.208.0 ([48fd8b4](https://github.com/wmfs/tymly-solr-plugin/commit/48fd8b41091ab127f1891252a1fb495c2ac71522))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.208.0 to 1.210.0 ([a36f557](https://github.com/wmfs/tymly-solr-plugin/commit/a36f5571a28d1194530acce6bf661836e6bc46c1))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.210.0 to 1.214.0 ([d6bce82](https://github.com/wmfs/tymly-solr-plugin/commit/d6bce8246623ad940ce943439a29a4bf36c63679))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.214.0 to 1.215.0 ([e04b811](https://github.com/wmfs/tymly-solr-plugin/commit/e04b811ea7889947d0a281ac9de7a6353fcd5d1e))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.215.0 to 1.215.1 ([9e43b0b](https://github.com/wmfs/tymly-solr-plugin/commit/9e43b0bafe400a32979dabb6e28208afa56cd2fa))
+* **deps-dev:** bump codecov from 3.7.0 to 3.7.1 ([1438369](https://github.com/wmfs/tymly-solr-plugin/commit/1438369fd1fcb5e3371b017c8bf8cdc758a36bdf))
+* **deps-dev:** bump codecov from 3.7.1 to 3.7.2 ([8f956e0](https://github.com/wmfs/tymly-solr-plugin/commit/8f956e0d53095a334cd5bcfa7522f0b2e1ed7bd4))
+* **deps-dev:** bump mocha from 8.0.1 to 8.1.0 ([1f828e1](https://github.com/wmfs/tymly-solr-plugin/commit/1f828e1fa0f644cec7799d919a10a5a9d4a569f2))
+* **deps-dev:** bump mocha from 8.1.0 to 8.1.1 ([2d75957](https://github.com/wmfs/tymly-solr-plugin/commit/2d7595770ea517c7b187dfc659f8d93c6eb7e06a))
+
 # [2.11.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.10.0...v2.11.0) (2020-07-13)
 
 
