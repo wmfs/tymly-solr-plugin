@@ -1,3 +1,14 @@
+# [2.13.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.12.0...v2.13.0) (2020-08-24)
+
+
+### 🛠 Builds
+
+* **deps:** bump axios from 0.19.2 to 0.20.0 ([f18977b](https://github.com/wmfs/tymly-solr-plugin/commit/f18977b1860a237f8859b1a6336452913e8ab9f1))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.154.0 to 1.155.0 ([8e1211b](https://github.com/wmfs/tymly-solr-plugin/commit/8e1211b99556d5f34196de4ff9791578e14ce301))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.155.0 to 1.157.0 ([8bb77e7](https://github.com/wmfs/tymly-solr-plugin/commit/8bb77e7f39d84cd75614fa4363202c9e5f0f9c3b))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-cardscript-plugin ([1924390](https://github.com/wmfs/tymly-solr-plugin/commit/1924390f4def2f58c934caff8e2fcfba78a8fd51))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.215.1 to 1.216.0 ([4b546e4](https://github.com/wmfs/tymly-solr-plugin/commit/4b546e4a847ecd13f829095896b3cc7d8b81b1a1))
+
 # [2.12.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.11.0...v2.12.0) (2020-08-17)
 
 
