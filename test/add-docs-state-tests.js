@@ -42,7 +42,7 @@ describe('tymly-solr-plugin add docs resource tests', function () {
 
   if (process.env.SOLR_URL && process.env.SOLR_PATH && process.env.SOLR_PORT && process.env.SOLR_HOST) {
     it('should create test resources', async () => {
-      await client.query(`INSERT INTO tymly_test.incident (inc_no, description) VALUES (1, 'A bad incident');`)
+      await client.query('INSERT INTO tymly_test.incident (inc_no, description) VALUES (1, \'A bad incident\');')
     })
 
     it('should ensure the record to be inserted isn\'t already there', async () => {
