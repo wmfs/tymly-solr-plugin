@@ -97,7 +97,7 @@ describe('tymly-solr-plugin tests', function () {
   })
 
   it('should return 19 rows when selecting from the view', async () => {
-    const result = await client.query(`SELECT * FROM tymly.solr_data ORDER BY character_name ASC;`, []
+    const result = await client.query('SELECT * FROM tymly.solr_data ORDER BY character_name ASC;', []
     )
 
     expect(result.rowCount).to.eql(19)
