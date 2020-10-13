@@ -22,7 +22,7 @@
   "dependencies": {
     "axios": "0.20.0",
     "debug": "4.2.0",
-    "emoji-regex": "9.0.0",
+    "emoji-regex": "9.1.1",
     "lodash": "4.17.20",
     "process": "0.11.10",
     "solr-client": "0.7.1"
