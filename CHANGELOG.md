@@ -1,3 +1,41 @@
+# [2.15.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.14.0...v2.15.0) (2020-10-22)
+
+
+### 🛠 Builds
+
+* **deps:** bump emoji-regex from 9.0.0 to 9.2.0 ([c42e8c8](https://github.com/wmfs/tymly-solr-plugin/commit/c42e8c8623b09a391aa0a423875217c30ddd26f3))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.160.0 to 1.162.0 ([b9af7c8](https://github.com/wmfs/tymly-solr-plugin/commit/b9af7c849d6908ec5d425b74abcd3fe787ab4c56))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.162.0 to 1.164.0 ([17497eb](https://github.com/wmfs/tymly-solr-plugin/commit/17497ebd598e96a3e25e4cc97985c79f465bc30c))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.164.0 to 1.165.0 ([5342ab8](https://github.com/wmfs/tymly-solr-plugin/commit/5342ab86796b6acec71339bd82e44e580e29155c))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.165.0 to 1.166.0 ([68e59dd](https://github.com/wmfs/tymly-solr-plugin/commit/68e59dd160f2d63be55bf385916da6fd31b9d43a))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-cardscript-plugin ([c4b03b1](https://github.com/wmfs/tymly-solr-plugin/commit/c4b03b1cb0e8cbb5e064425f5f02bdd8054b8bfe))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.225.2 to 1.227.0 ([43ed3d8](https://github.com/wmfs/tymly-solr-plugin/commit/43ed3d8b14b7bef69879fe1a98b5d9d31b74f886))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.227.0 to 1.230.0 ([58ee030](https://github.com/wmfs/tymly-solr-plugin/commit/58ee03076794e61168e7acc96a76b63f68e7dd58))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.230.0 to 1.231.0 ([11b72f7](https://github.com/wmfs/tymly-solr-plugin/commit/11b72f7817efe89521447a81b31340dda495bd8e))
+* **deps-dev:** bump codecov from 3.7.2 to 3.8.0 ([6ce0c91](https://github.com/wmfs/tymly-solr-plugin/commit/6ce0c915a9913f7002307f71c12950bed79a00af))
+* **deps-dev:** bump mocha from 8.1.3 to 8.2.0 ([d18bf6c](https://github.com/wmfs/tymly-solr-plugin/commit/d18bf6c3d8cc93b17abb98bac549d10284f525da))
+* **deps-dev:** bump semantic-release from 17.1.2 to 17.2.0 ([9e1dcc6](https://github.com/wmfs/tymly-solr-plugin/commit/9e1dcc64223a69fabee16193ac2e7f4fe4996cba))
+* **deps-dev:** bump semantic-release from 17.2.0 to 17.2.1 ([1d8604b](https://github.com/wmfs/tymly-solr-plugin/commit/1d8604b184bc999c11d8b5ccf62c93783c0d31be))
+* **deps-dev:** bump standard from 14.3.4 to 15.0.0 ([91c55e9](https://github.com/wmfs/tymly-solr-plugin/commit/91c55e9e13b0c91efd74b80441f9981c1da1725e))
+* **dev-deps:** standard  12.0.1  →  14.3.4 ([3287463](https://github.com/wmfs/tymly-solr-plugin/commit/32874636770d85acdfa7ec59894a8f5182959a2f))
+
+
+### 📦 Code Refactoring
+
+* remove standard from npm test script [skip ci] ([0b3ec9c](https://github.com/wmfs/tymly-solr-plugin/commit/0b3ec9c86b51fae56e48fca3af59f2b73b3a380b))
+
+
+### ⚙️ Continuous Integrations
+
+* **circle:** separate lint job [ch1009] ([dd66b13](https://github.com/wmfs/tymly-solr-plugin/commit/dd66b13a3bfd563e1cb09c5df5bebe9bf93dc432))
+
+
+### 💎 Styles
+
+* automatic lint fixes ([2f96b62](https://github.com/wmfs/tymly-solr-plugin/commit/2f96b62cf195ac797412475f35eee2db335425ca))
+* lint fix ([ffe0bbb](https://github.com/wmfs/tymly-solr-plugin/commit/ffe0bbb9d9e90f45f68a7f502029b552620a4018))
+* standard linting ([2ddf502](https://github.com/wmfs/tymly-solr-plugin/commit/2ddf502d79580d72d21e979263d98734d654398e))
+
 # [2.14.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.13.0...v2.14.0) (2020-09-28)
 
 
