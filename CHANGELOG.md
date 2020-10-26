@@ -1,3 +1,19 @@
+# [2.16.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.15.0...v2.16.0) (2020-10-26)
+
+
+### 🛠 Builds
+
+* **deps:** bump axios from 0.20.0 to 0.21.0 ([71862dc](https://github.com/wmfs/tymly-solr-plugin/commit/71862dc4d25fa252b00d8202207890fc6e2dbd9f))
+
+
+### ⚙️ Continuous Integrations
+
+* **circle:** add parallelism for unit tests [ch2766] ([f9ac51e](https://github.com/wmfs/tymly-solr-plugin/commit/f9ac51eb0c681fb63cf10c7fcf943e4afbcc1de4))
+* **circle:** authenticate Docker image pull [ch2767] ([be4cea6](https://github.com/wmfs/tymly-solr-plugin/commit/be4cea60419b8c19283fdf9d09db685f46fd5f06))
+* **circle:** cache dependencies [ch2770] ([b533299](https://github.com/wmfs/tymly-solr-plugin/commit/b533299323db21c44dc2cab000395a6227e7e1ca))
+* **circle:** refactor test script [skip ci] ([d8ba232](https://github.com/wmfs/tymly-solr-plugin/commit/d8ba232eeb4954cb4d95a4b835bdaa4758dc6755))
+* **circle:** use tmpfs postgres image [ch2769] ([f9da380](https://github.com/wmfs/tymly-solr-plugin/commit/f9da380480c28129d505d021f20e3393dc04bab6))
+
 # [2.15.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.14.0...v2.15.0) (2020-10-22)
 
 
