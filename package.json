@@ -42,7 +42,7 @@
     "cz-conventional-changelog": "3.3.0",
     "mocha": "8.2.1",
     "nyc": "15.1.0",
-    "semantic-release": "17.2.4",
+    "semantic-release": "17.3.0",
     "standard": "15.0.1"
   },
   "scripts": {
