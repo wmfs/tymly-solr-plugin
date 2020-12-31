@@ -25,7 +25,7 @@
     "emoji-regex": "9.2.0",
     "lodash": "4.17.20",
     "process": "0.11.10",
-    "solr-client": "0.7.1"
+    "solr-client": "0.8.0"
   },
   "devDependencies": {
     "@semantic-release/changelog": "5.0.1",
