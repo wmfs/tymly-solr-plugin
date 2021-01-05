@@ -1,3 +1,10 @@
+# [2.19.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.18.0...v2.19.0) (2021-01-05)
+
+
+### 🛠 Builds
+
+* **deps:** bump debug from 4.2.0 to 4.3.1 ([a02510f](https://github.com/wmfs/tymly-solr-plugin/commit/a02510f2c12620dc1dab1035e41c2cf1ffd08b2c))
+
 # [2.18.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.17.1...v2.18.0) (2021-01-05)
 
 
