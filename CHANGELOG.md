@@ -1,3 +1,20 @@
+# [2.18.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.17.1...v2.18.0) (2021-01-05)
+
+
+### 🛠 Builds
+
+* **deps:** bump axios from 0.21.0 to 0.21.1 ([c517932](https://github.com/wmfs/tymly-solr-plugin/commit/c517932aa250f805670555dd8bbca020dfecd6d3))
+
+
+### 📦 Code Refactoring
+
+* searching single escaped characters no longer errors ([4c04b6f](https://github.com/wmfs/tymly-solr-plugin/commit/4c04b6fbd5f4506d8f70af8ff542e46c74801b80))
+
+
+### ♻️ Chores
+
+* standard ([ae7d7fd](https://github.com/wmfs/tymly-solr-plugin/commit/ae7d7fd4dc119b9bd4115934baa4fd198b5cf24a))
+
 ## [2.17.1](https://github.com/wmfs/tymly-solr-plugin/compare/v2.17.0...v2.17.1) (2021-01-05)
 
 
