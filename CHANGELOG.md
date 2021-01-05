@@ -1,3 +1,10 @@
+## [2.17.1](https://github.com/wmfs/tymly-solr-plugin/compare/v2.17.0...v2.17.1) (2021-01-05)
+
+
+### 🐛 Bug Fixes
+
+* can now use + in searches ([2d2945f](https://github.com/wmfs/tymly-solr-plugin/commit/2d2945f0328fbbced80b00cea7fddabaec8eece9))
+
 # [2.17.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.16.0...v2.17.0) (2021-01-05)
 
 
