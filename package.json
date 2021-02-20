@@ -23,7 +23,7 @@
     "axios": "0.21.1",
     "debug": "4.3.1",
     "emoji-regex": "9.2.1",
-    "lodash": "4.17.20",
+    "lodash": "4.17.21",
     "process": "0.11.10",
     "solr-client": "0.8.0"
   },
