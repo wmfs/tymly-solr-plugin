@@ -1,3 +1,30 @@
+# [2.23.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.22.0...v2.23.0) (2021-04-28)
+
+
+### ✨ Features
+
+* ability to select which fields are returned in query ([654e6ca](https://github.com/wmfs/tymly-solr-plugin/commit/654e6caf9228942aa8c80fea70b9ce53b71c43cb))
+
+
+### 🛠 Builds
+
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.192.0 to 1.193.0 ([b0be23f](https://github.com/wmfs/tymly-solr-plugin/commit/b0be23fcbccf13f726989bec94783e737bd45142))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.193.0 to 1.194.0 ([ae02ddf](https://github.com/wmfs/tymly-solr-plugin/commit/ae02ddfaee70cbeebf7b8aac41b49a6d655c3e72))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.194.0 to 1.195.0 ([0eec098](https://github.com/wmfs/tymly-solr-plugin/commit/0eec098b0f412957415fe857ea64493bdaa43550))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.195.0 to 1.195.1 ([c22e3f2](https://github.com/wmfs/tymly-solr-plugin/commit/c22e3f24eedd285d4046affa6f2f95a3653c568f))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.195.1 to 1.196.0 ([ed74bd0](https://github.com/wmfs/tymly-solr-plugin/commit/ed74bd04325925f24542115254afae95d9904988))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-cardscript-plugin ([8f016ef](https://github.com/wmfs/tymly-solr-plugin/commit/8f016efb03cca614bec138ce7f7f2aec501b57bf))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.245.0 to 1.246.0 ([0a46c73](https://github.com/wmfs/tymly-solr-plugin/commit/0a46c73073fe45284d7f1c5058f417d74d89d709))
+* **deps-dev:** bump chai from 4.3.3 to 4.3.4 ([6b62bd8](https://github.com/wmfs/tymly-solr-plugin/commit/6b62bd852615f135142bc769178ab82d5b0f82ed))
+* **deps-dev:** bump mocha from 8.3.0 to 8.3.1 ([7b0d970](https://github.com/wmfs/tymly-solr-plugin/commit/7b0d97047130d4f9ea6c7723f9d3d50a75d1d5a2))
+* **deps-dev:** bump mocha from 8.3.1 to 8.3.2 ([1ae6edb](https://github.com/wmfs/tymly-solr-plugin/commit/1ae6edb003210d887f170dd0f39408a28adf8836))
+* **deps-dev:** bump semantic-release from 17.4.1 to 17.4.2 ([4bd8d12](https://github.com/wmfs/tymly-solr-plugin/commit/4bd8d12f4304d431faef47da2171901c742faee0))
+
+
+### ⚙️ Continuous Integrations
+
+* **circle:** update postgres config to 13.2 ([75dbb84](https://github.com/wmfs/tymly-solr-plugin/commit/75dbb844d8d94557c62db228d357ce0bc94f80be))
+
 # [2.22.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.21.0...v2.22.0) (2021-03-05)
 
 
