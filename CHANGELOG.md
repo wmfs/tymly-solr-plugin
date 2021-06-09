@@ -1,3 +1,25 @@
+## [2.24.1](https://github.com/wmfs/tymly-solr-plugin/compare/v2.24.0...v2.24.1) (2021-06-09)
+
+
+### 🐛 Bug Fixes
+
+* add colon to escaped characters list ([dc17ffa](https://github.com/wmfs/tymly-solr-plugin/commit/dc17ffa2422361a532d0708fa23101c556096075))
+
+
+### 🛠 Builds
+
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.205.0 to 1.206.0 ([850bd81](https://github.com/wmfs/tymly-solr-plugin/commit/850bd8116e290746e8270a6488444865844288c0))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.206.0 to 1.207.0 ([67860ae](https://github.com/wmfs/tymly-solr-plugin/commit/67860ae50573590075eb8ab2413b8d24e1a1aed3))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.207.0 to 1.208.0 ([0fae636](https://github.com/wmfs/tymly-solr-plugin/commit/0fae63674b5a6e9bb870d6820199d38b0e63c671))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly from 1.208.0 to 1.209.0 ([eabf0f7](https://github.com/wmfs/tymly-solr-plugin/commit/eabf0f78c706d7eaa0bf44bff4d17a30e39c1527))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.247.0 to 1.248.0 ([da87e3d](https://github.com/wmfs/tymly-solr-plugin/commit/da87e3dc345b9c4dd0a48d2f839cf6fb0701e524))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.248.0 to 1.249.0 ([2db9bfb](https://github.com/wmfs/tymly-solr-plugin/commit/2db9bfb63b5e5ef799b48d285ff34740d7c2a021))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.249.0 to 1.250.0 ([3017f6d](https://github.com/wmfs/tymly-solr-plugin/commit/3017f6dac71831bcb4cc38b5e8d1973006ea4ec6))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.250.0 to 1.251.0 ([cf937e0](https://github.com/wmfs/tymly-solr-plugin/commit/cf937e05f1bddf4acd738df4a3018c2a541ae598))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-pg-plugin from 1.251.0 to 1.252.0 ([50e7d1f](https://github.com/wmfs/tymly-solr-plugin/commit/50e7d1f8240103bcd7222e92aff2991993bf0f09))
+* **deps-dev:** bump [@wmfs](https://github.com/wmfs)/tymly-test-helpers from 1.7.0 to 1.8.0 ([fe9c306](https://github.com/wmfs/tymly-solr-plugin/commit/fe9c306da01cb72a58d406e56b256772feb6e60f))
+* **deps-dev:** bump mocha from 8.4.0 to 9.0.0 ([863510d](https://github.com/wmfs/tymly-solr-plugin/commit/863510df76d9c733333ed0331645cd3c6f2396df))
+
 # [2.24.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.23.0...v2.24.0) (2021-05-20)
 
 
