@@ -1,3 +1,13 @@
+# [2.25.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.24.1...v2.25.0) (2021-07-09)
+
+
+### 🛠 Builds
+
+* **deps:** bump debug from 4.3.1 to 4.3.2 ([5278f31](https://github.com/wmfs/tymly-solr-plugin/commit/5278f316863e4e1f9875d41fa720a7b055a96448))
+* **deps-dev:** bump mocha from 9.0.0 to 9.0.1 ([7e2825a](https://github.com/wmfs/tymly-solr-plugin/commit/7e2825a2e140a2df3b2133ed41101f54b325aeaf))
+* **deps-dev:** bump mocha from 9.0.1 to 9.0.2 ([eedaadd](https://github.com/wmfs/tymly-solr-plugin/commit/eedaadd41a2a920357c6fe8e95b8e75569ff1ed5))
+* **deps-dev:** bump semantic-release from 17.4.3 to 17.4.4 ([574b12f](https://github.com/wmfs/tymly-solr-plugin/commit/574b12fc4cde19dedba8f1145e2478beb15e4dab))
+
 ## [2.24.1](https://github.com/wmfs/tymly-solr-plugin/compare/v2.24.0...v2.24.1) (2021-06-09)
 
 
