@@ -1,3 +1,20 @@
+# [2.27.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.26.0...v2.27.0) (2021-09-22)
+
+
+### ✨ Features
+
+* fix hyphen searches [sc-10431] ([428acff](https://github.com/wmfs/tymly-solr-plugin/commit/428acff2a94dcf9a1b2dde2d847ef4a6179ad111))
+
+
+### 🛠 Builds
+
+* **deps-dev:** update dependency [@semantic-release](https://github.com/semantic-release)/changelog to v6 ([eb61df1](https://github.com/wmfs/tymly-solr-plugin/commit/eb61df1b5cddd0ec6d0464fb2b9bdaf5695dadf2))
+* **deps-dev:** update dependency [@semantic-release](https://github.com/semantic-release)/exec to v6 ([0be696a](https://github.com/wmfs/tymly-solr-plugin/commit/0be696a2a5b011a9515f1bbaeb87d2a1741abe99))
+* **deps-dev:** update dependency [@semantic-release](https://github.com/semantic-release)/git to v10 ([223a51c](https://github.com/wmfs/tymly-solr-plugin/commit/223a51c5108f8549bbadd4e933ce386cf34052d6))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly to v1.216.0 ([50cc2e7](https://github.com/wmfs/tymly-solr-plugin/commit/50cc2e7648e95d9d95255555d78f8ce84a7b7a3d))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly-cardscript-plugin to v1.32.0 ([c09bff2](https://github.com/wmfs/tymly-solr-plugin/commit/c09bff274d698cf4529773f5f23f136fc9a6563d))
+* **deps-dev:** update dependency semantic-release to v18 ([45cc102](https://github.com/wmfs/tymly-solr-plugin/commit/45cc102d320d6bbdf5379a36efb6f255ca14d0e6))
+
 # [2.26.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.25.0...v2.26.0) (2021-09-10)
 
 
