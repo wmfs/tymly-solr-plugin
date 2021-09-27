@@ -1,29 +1,45 @@
 {
+  "FormatDocs": {
+    "Type": "Map",
+    "InputPath": "$",
+    "ItemsPath": "$.incidents",
+    "Iterator": {
+      "StartAt": "Shape",
+      "States": {
+        "Shape": {
+          "Type": "Pass",
+          "Parameters": {
+            "id.$": "States.Format('incident#{}', $.id)",
+            "docId.$": "$.id",
+            "domain": "search",
+            "docType": "incident",
+            "title.$": "States.Format('Incident {}/{}', $.id, $.year)",
+            "description.$": "$.label",
+            "category": "iip",
+            "point.$": "States.Format('{},{}', $.lat, $.lon)",
+            "activeEvent": true,
+            "author": "incident",
+            "roles.$": "States.Array('$authenticated')",
+            "language": "ENG",
+            "sortString.$": "$.id",
+            "launches.$": "States.JsonToString($.launches)",
+            "created": "$NOW",
+            "modified": "$NOW"
+          },
+          "OutputPath": "$.solrDoc",
+          "ResultPath": "$.solrDoc",
+          "End": true
+        }
+      }
+    },
+    "ResultPath": "$.incidentSolrDocs",
+    "Next": "AddDocs"
+  },
   "AddDocs": {
     "Type": "Task",
     "Resource": "module:addDocs",
-    "InputPath": "$.incidents.incidentsInProgress",
-    "ResourceConfig": {
-      "mapping": {
-        "id": "incident#||incidentNumber",
-        "docId": "incidentNumber",
-        "domain": "search",
-        "docType": "incident",
-        "title": "Incident ||incidentNumber||/||callTimeYear",
-        "description": "incidentClassificationLabel",
-        "category": "iip",
-        "point": "locationLatitude||,||locationLongitude",
-        "activeEvent": true,
-        "author": "incident",
-        "roles": "$authenticated::text[]",
-        "language": "ENG",
-        "sortString": "incidentNumber",
-        "launches": "{\"launches\":[{\"input\": {\"boardKeys\":{\"incidentYear\": ||callTimeYear||, \"incidentNumber\": ||incidentNumber||}}, \"stateMachineName\": \"wmfs_getIncidentSummary_1_0\"}]}",
-        "created": "$NOW",
-        "modified": "$NOW"
-      }
-    },
-    "ResultPath": "$.incidents",
-    "Next": "AwaitingHumanInput"
+    "InputPath": "$.incidentSolrDocs",
+    "ResultPath": "$",
+    "End": true
   }
 }

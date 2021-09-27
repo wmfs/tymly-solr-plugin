@@ -1,10 +1,4 @@
 {
   "type": "object",
-  "properties": {
-    "mapping": {
-      "type": "object",
-      "description": "Maps the data to become the format of a search doc"
-    }
-  },
-  "required": ["mapping"]
+  "properties": {}
 }

@@ -18,36 +18,52 @@
         "modelId": "incident"
       },
       "ResultPath": "$.incidents",
+      "Next": "FormatDocs"
+    },
+    "FormatDocs": {
+      "Type": "Map",
+      "InputPath": "$",
+      "ItemsPath": "$.incidents",
+      "Iterator": {
+        "StartAt": "Shape",
+        "States": {
+          "Shape": {
+            "Type": "Pass",
+            "Parameters": {
+              "id.$": "States.Format('inc#{}', $.incNo)",
+              "docId.$": "$.incNo",
+              "domain": "search",
+              "docType": "incident",
+              "title.$": "$.incNo",
+              "description.$": "$.description",
+              "category": "IIP",
+              "activeEvent": true,
+              "author": "incident",
+              "roles.$": "States.Array('$authenticated', 'role1')",
+              "language": "ENG",
+              "sortString.$": "$.incNo",
+              "classification": "C",
+              "icon": "car-accident.png",
+              "synopsis.$": "$.description",
+              "x": "0",
+              "y": "0",
+              "created": "$NOW",
+              "modified": "$NOW"
+            },
+            "OutputPath": "$.solrDoc",
+            "ResultPath": "$.solrDoc",
+            "End": true
+          }
+        }
+      },
+      "ResultPath": "$.incidentSolrDocs",
       "Next": "AddDocs"
     },
     "AddDocs": {
       "Type": "Task",
       "Resource": "module:addDocs",
-      "InputPath": "$.incidents",
-      "ResourceConfig": {
-        "mapping": {
-          "id": "inc#||incNo",
-          "docId": "incNo",
-          "domain": "search",
-          "docType": "incident",
-          "title": "incNo",
-          "description": "description",
-          "category": "IIP",
-          "activeEvent": true,
-          "author": "incident",
-          "roles": "$authenticated, role1::text[]",
-          "language": "ENG",
-          "sortString": "incNo",
-          "classification": "C",
-          "icon": "car-accident.png",
-          "synopsis": "description",
-          "x": "0",
-          "y": "0",
-          "created": "$NOW",
-          "modified": "$NOW"
-        }
-      },
-      "ResultPath": "$.incidents",
+      "InputPath": "$.incidentSolrDocs",
+      "ResultPath": "$.incidentSolrDocs",
       "End": true
     }
   },
