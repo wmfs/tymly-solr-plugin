@@ -1,3 +1,15 @@
+# [2.28.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.27.0...v2.28.0) (2021-09-27)
+
+
+### ✨ Features
+
+* change add docs state resource to use input data rather than mapping, because statebox functions can already handle formatting ([2818150](https://github.com/wmfs/tymly-solr-plugin/commit/281815068d1af53adcb9763cfb2476056827e31e))
+
+
+### 🛠 Builds
+
+* **deps-dev:** update dependency mocha to v9.1.2 ([1f581a6](https://github.com/wmfs/tymly-solr-plugin/commit/1f581a618e63124c759263028ab4758141a40afa))
+
 # [2.27.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.26.0...v2.27.0) (2021-09-22)
 
 
