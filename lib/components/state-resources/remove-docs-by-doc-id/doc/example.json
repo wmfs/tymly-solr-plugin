@@ -1,0 +1,8 @@
+{
+  "RemoveDocs": {
+    "Type": "Task",
+    "Resource": "module:removeDocsByDocId",
+    "InputPath": "$",
+    "End": true
+  }
+}
