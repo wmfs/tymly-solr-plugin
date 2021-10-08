@@ -1,3 +1,18 @@
+# [2.29.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.28.0...v2.29.0) (2021-10-08)
+
+
+### ✨ Features
+
+* state resource to remove by doc id ([f22a6ea](https://github.com/wmfs/tymly-solr-plugin/commit/f22a6ea90ca60c79e00c4b6679b9517978e2181c))
+
+
+### 🛠 Builds
+
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly to v1.217.0 ([2890615](https://github.com/wmfs/tymly-solr-plugin/commit/28906153cd770396c1aae0e43658cad22193d64a))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly-cardscript-plugin to v1.34.0 ([89d0aef](https://github.com/wmfs/tymly-solr-plugin/commit/89d0aef9ce0a8c24e63d959aa7a7ac9e9062d95b))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly-cardscript-plugin to v1.35.0 ([1babc61](https://github.com/wmfs/tymly-solr-plugin/commit/1babc61db2999748e98114006b71d7654deaec47))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly-cardscript-plugin to v1.35.1 ([38b6be2](https://github.com/wmfs/tymly-solr-plugin/commit/38b6be2594685920be3bb513a1bcb90fef1f76eb))
+
 # [2.28.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.27.0...v2.28.0) (2021-09-27)
 
 
