@@ -1,3 +1,10 @@
+## [2.29.1](https://github.com/wmfs/tymly-solr-plugin/compare/v2.29.0...v2.29.1) (2021-10-08)
+
+
+### 🐛 Bug Fixes
+
+* remove docs by id, or rather than and ([c7a35e1](https://github.com/wmfs/tymly-solr-plugin/commit/c7a35e1b0175fa59eb8b9d094b8eb7ad0e102a83))
+
 # [2.29.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.28.0...v2.29.0) (2021-10-08)
 
 
