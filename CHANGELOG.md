@@ -1,3 +1,10 @@
+# [2.32.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.31.0...v2.32.0) (2022-01-25)
+
+
+### 🛠 Builds
+
+* **deps:** update dependency debug to v4.3.3 ([4f80cda](https://github.com/wmfs/tymly-solr-plugin/commit/4f80cda24fc887eff9666a61dee1fe6d1fda1a07))
+
 # [2.31.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.30.0...v2.31.0) (2022-01-25)
 
 
