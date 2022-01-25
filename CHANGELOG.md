@@ -1,3 +1,10 @@
+# [2.31.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.30.0...v2.31.0) (2022-01-25)
+
+
+### 🛠 Builds
+
+* **deps:** update dependency axios to v0.25.0 ([32c77f1](https://github.com/wmfs/tymly-solr-plugin/commit/32c77f1629aabff9c1da74bcf480cba8ce15dcbc))
+
 # [2.30.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.29.1...v2.30.0) (2022-01-25)
 
 
