@@ -1,3 +1,10 @@
+## [2.33.1](https://github.com/wmfs/tymly-solr-plugin/compare/v2.33.0...v2.33.1) (2022-02-22)
+
+
+### 🐛 Bug Fixes
+
+* tidier log messages ([0995bcc](https://github.com/wmfs/tymly-solr-plugin/commit/0995bcc3da89005c82ba267915829fd3aa41cd82))
+
 # [2.33.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.32.0...v2.33.0) (2022-02-22)
 
 
