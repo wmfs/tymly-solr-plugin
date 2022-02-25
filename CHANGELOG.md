@@ -1,3 +1,10 @@
+## [2.33.2](https://github.com/wmfs/tymly-solr-plugin/compare/v2.33.1...v2.33.2) (2022-02-25)
+
+
+### 🐛 Bug Fixes
+
+* handle if no solr connection ([26ba906](https://github.com/wmfs/tymly-solr-plugin/commit/26ba906bddd35a14f04494c6d2bf4de289f63b33))
+
 ## [2.33.1](https://github.com/wmfs/tymly-solr-plugin/compare/v2.33.0...v2.33.1) (2022-02-22)
 
 
