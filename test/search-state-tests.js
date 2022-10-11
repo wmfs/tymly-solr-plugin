@@ -190,13 +190,13 @@ describe('tymly-solr-plugin search state resource tests', function () {
   async function search (query, userId) {
     const executionDescription = await statebox.startExecution(
       {
-        query: query,
+        query,
         limit: 100
       }, // input
       STATE_MACHINE_NAME, // state machine name
       {
         sendResponse: 'COMPLETE',
-        userId: userId
+        userId
       } // options
     )
 
