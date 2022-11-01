@@ -1,3 +1,14 @@
+# [2.35.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.34.0...v2.35.0) (2022-11-01)
+
+
+### 🛠 Builds
+
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly-cardscript-plugin to v1.42.1 ([6aeaf98](https://github.com/wmfs/tymly-solr-plugin/commit/6aeaf98524656c2f710ed4367d886eb0f3d883f6))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly-test-helpers to v1.22.1 ([3b65dd2](https://github.com/wmfs/tymly-solr-plugin/commit/3b65dd22b63d4e4264b16ca01fb64830f479659d))
+* **deps-dev:** update dependency mocha to v10.1.0 ([1fbcae7](https://github.com/wmfs/tymly-solr-plugin/commit/1fbcae7e339a2f419b8149cafc85b4221f860439))
+* **deps-dev:** update dependency semantic-release to v19.0.5 ([8de8143](https://github.com/wmfs/tymly-solr-plugin/commit/8de8143502c792f9c244ffe277610b3b947c3016))
+* **deps:** update dependency axios to v1 ([337b965](https://github.com/wmfs/tymly-solr-plugin/commit/337b9656382cc093a9348f2752a822d090c42da7))
+
 # [2.34.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.33.2...v2.34.0) (2022-10-11)
 
 
