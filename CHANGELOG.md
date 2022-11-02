@@ -1,3 +1,12 @@
+# [2.36.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.35.0...v2.36.0) (2022-11-02)
+
+
+### 🛠 Builds
+
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly-cardscript-plugin to v1.43.0 ([b3f825a](https://github.com/wmfs/tymly-solr-plugin/commit/b3f825ac1939b647996f109e77861d4a6dba849a))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly-pg-plugin to v1.271.0 ([9ccb134](https://github.com/wmfs/tymly-solr-plugin/commit/9ccb134bf0c0d2ac1e546a3aaa02960b66c0af58))
+* **deps:** update dependency emoji-regex to v10.2.1 ([22f8a2f](https://github.com/wmfs/tymly-solr-plugin/commit/22f8a2f3b9a859d96b1319b832983864cc32b963))
+
 # [2.35.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.34.0...v2.35.0) (2022-11-01)
 
 
