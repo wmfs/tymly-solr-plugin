@@ -1,3 +1,35 @@
+# [2.37.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.36.0...v2.37.0) (2023-02-17)
+
+
+### 🛠 Builds
+
+* **deps-dev:** update dependency [@semantic-release](https://github.com/semantic-release)/changelog to v6.0.2 ([adcc526](https://github.com/wmfs/tymly-solr-plugin/commit/adcc526c2a2eccea66d21f6f5b31dff268a4cd3d))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly to v1.246.0 ([57c8448](https://github.com/wmfs/tymly-solr-plugin/commit/57c8448e88691b5776069eac93a736452d111db7))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly to v1.247.0 ([ab2b045](https://github.com/wmfs/tymly-solr-plugin/commit/ab2b045e451a3240877fd89e4cb1565b859bfa53))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly to v1.247.1 ([529d23d](https://github.com/wmfs/tymly-solr-plugin/commit/529d23d425370078aaf197bb35442fbe93d8aeb1))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly to v1.248.0 ([df5de2b](https://github.com/wmfs/tymly-solr-plugin/commit/df5de2bb5243fa6a1e1424cf9ceb8694ba3aca13))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly-cardscript-plugin to v1.43.2 ([c5e0f97](https://github.com/wmfs/tymly-solr-plugin/commit/c5e0f974e8a0e3d6c4133e34d2c664693a6c8d74))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly-pg-plugin to v1.273.0 ([23ce5b1](https://github.com/wmfs/tymly-solr-plugin/commit/23ce5b1f200959b94ff7883da7d7af202e777bc4))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly-pg-plugin to v1.274.0 ([02bc3fd](https://github.com/wmfs/tymly-solr-plugin/commit/02bc3fd4ece38b5806c43080a50d8494b0848b06))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly-pg-plugin to v1.276.0 ([f89891e](https://github.com/wmfs/tymly-solr-plugin/commit/f89891e1eea8f38a6d6d34b1ff5cf4e925cd28e4))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly-rbac-plugin to v1.23.0 ([a8e2b30](https://github.com/wmfs/tymly-solr-plugin/commit/a8e2b30b82d5af215f7631e0c008f7cefe670c17))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly-test-helpers to v1.22.2 ([8a033e6](https://github.com/wmfs/tymly-solr-plugin/commit/8a033e613e2880b5e26fdbe7a37a14e2a4e20c1c))
+* **deps-dev:** update dependency chai to v4.3.7 ([d81ea48](https://github.com/wmfs/tymly-solr-plugin/commit/d81ea48ce8e7f56d628eb80c1ab2e33c4f912f02))
+* **deps-dev:** update dependency mocha to v10.2.0 ([0299290](https://github.com/wmfs/tymly-solr-plugin/commit/02992900321e77505504a5085a1e09101a61b013))
+* **deps-dev:** update dependency semantic-release to v20 ([0475f00](https://github.com/wmfs/tymly-solr-plugin/commit/0475f00e7ef29b23083cb4d1b026899ef2926630))
+* **deps-dev:** update dependency semantic-release to v20.0.1 ([4cbe7b0](https://github.com/wmfs/tymly-solr-plugin/commit/4cbe7b035094d9b2f538884d803e1775fed39b07))
+* **deps-dev:** update dependency semantic-release to v20.0.2 ([aa8c2c2](https://github.com/wmfs/tymly-solr-plugin/commit/aa8c2c25ab5844a916d89c332721e63efef752c4))
+* **deps-dev:** update dependency semantic-release to v20.0.3 ([967f973](https://github.com/wmfs/tymly-solr-plugin/commit/967f9734100847f65a3b1c2ca05126a210f472c1))
+* **deps-dev:** update dependency semantic-release to v20.0.4 ([537e6ed](https://github.com/wmfs/tymly-solr-plugin/commit/537e6edb320c2547d39ec4bcfe6ac4ea95481f5c))
+* **deps-dev:** update dependency semantic-release to v20.1.0 ([ed52d61](https://github.com/wmfs/tymly-solr-plugin/commit/ed52d613361cab65a7a8c6305fd98e044b2afbc0))
+* **deps:** update dependency axios to v1.3.3 ([5e00cd5](https://github.com/wmfs/tymly-solr-plugin/commit/5e00cd5cb1f2a1c77cce8fecd14f52f325b48928))
+
+
+### ⚙️ Continuous Integrations
+
+* **circle:** CircleCI update PostgreSQL image to 15 0 [sc-18659] ([2182268](https://github.com/wmfs/tymly-solr-plugin/commit/21822689f7e3b2d3cc117da9356ef16f62e1df9b))
+* **circle:** update postgres to 15.1-postgis ([a992fa1](https://github.com/wmfs/tymly-solr-plugin/commit/a992fa11b4b5a5e1bc7387ecf9c33393c314ca65))
+
 # [2.36.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.35.0...v2.36.0) (2022-11-02)
 
 
