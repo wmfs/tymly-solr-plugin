@@ -1,3 +1,12 @@
+# [2.38.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.37.0...v2.38.0) (2023-03-13)
+
+
+### 🛠 Builds
+
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly-pg-plugin to v1.277.0 ([579e423](https://github.com/wmfs/tymly-solr-plugin/commit/579e423cafd920098d84bea68f000ddac58a3d0c))
+* **deps-dev:** update dependency semantic-release to v20.1.1 ([01bd718](https://github.com/wmfs/tymly-solr-plugin/commit/01bd71892bd9bae1304062bea3ca7c1b88b631ef))
+* **deps:** update dependency axios to v1.3.4 ([35688c5](https://github.com/wmfs/tymly-solr-plugin/commit/35688c5169e766fc110476e15dc01d4fa1510d82))
+
 # [2.37.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.36.0...v2.37.0) (2023-02-17)
 
 
