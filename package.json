@@ -33,7 +33,7 @@
     "@wmfs/tymly": "1.261.0",
     "@wmfs/tymly-pg-plugin": "1.288.0",
     "@wmfs/tymly-rbac-plugin": "1.29.0",
-    "@wmfs/tymly-cardscript-plugin": "1.44.0",
+    "@wmfs/tymly-cardscript-plugin": "1.45.0",
     "@wmfs/tymly-test-helpers": "1.22.2",
     "chai": "4.3.8",
     "codecov": "3.8.3",
