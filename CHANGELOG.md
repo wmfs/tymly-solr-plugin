@@ -1,3 +1,12 @@
+# [2.42.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.41.0...v2.42.0) (2023-11-16)
+
+
+### ✨ Features
+
+* allow querying by author property ([646717b](https://github.com/wmfs/tymly-solr-plugin/commit/646717b40ff3d3df5c4ffbb6a46604968a95d18a))
+* merge/linting fixes ([94c92e2](https://github.com/wmfs/tymly-solr-plugin/commit/94c92e215918fcda0ebde2000773dd672c10876d))
+* removed unnecessary console.log line ([d44d8ca](https://github.com/wmfs/tymly-solr-plugin/commit/d44d8ca2ea3b8a265b272cbf5f74d5bf7dfa708f))
+
 # [2.41.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.40.0...v2.41.0) (2023-11-16)
 
 
