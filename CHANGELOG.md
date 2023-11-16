@@ -1,3 +1,22 @@
+# [2.41.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.40.0...v2.41.0) (2023-11-16)
+
+
+### ✨ Features
+
+* Extend search state resource to query rating [sc-21708] ([97f8529](https://github.com/wmfs/tymly-solr-plugin/commit/97f8529c5907ccbbab1ea1f09444a51fa384efb8))
+
+
+### 🛠 Builds
+
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly-cardscript-plugin to v1.45.0 ([5984d11](https://github.com/wmfs/tymly-solr-plugin/commit/5984d112bbe9d3a77dcac955fb7fcf520bc4e20d))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly-cardscript-plugin to v1.45.1 ([f0f61cb](https://github.com/wmfs/tymly-solr-plugin/commit/f0f61cb09f625e23c08c5b1109a2cbb2a5ff4356))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly-pg-plugin to v1.289.0 ([da77276](https://github.com/wmfs/tymly-solr-plugin/commit/da7727627eebd5a6947fa493ca3dc18a6643e9d4))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly-pg-plugin to v1.290.0 ([1329837](https://github.com/wmfs/tymly-solr-plugin/commit/13298375f09ecf80010be7c58dbd33dca7ffeea2))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly-rbac-plugin to v1.30.0 ([4415535](https://github.com/wmfs/tymly-solr-plugin/commit/441553565fcbcd55d3483a8dce84c70ef836be0c))
+* **deps-dev:** update dependency [@wmfs](https://github.com/wmfs)/tymly-rbac-plugin to v1.31.0 ([e174b75](https://github.com/wmfs/tymly-solr-plugin/commit/e174b75582df57dffc3a24ef14c5215679357254))
+* **deps-dev:** update dependency chai to v4.3.10 ([330f311](https://github.com/wmfs/tymly-solr-plugin/commit/330f311f6470bbeb410a7d774800331a1ee5b811))
+* **deps-dev:** update dependency chai to v4.3.9 ([23b2805](https://github.com/wmfs/tymly-solr-plugin/commit/23b280509c158026b8d7d930d4c4da3a1c8f49d3))
+
 # [2.40.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.39.0...v2.40.0) (2023-09-19)
 
 
