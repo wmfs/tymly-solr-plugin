@@ -1,3 +1,10 @@
+# [2.43.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.42.0...v2.43.0) (2024-02-12)
+
+
+### Bug Fixes
+
+* update release notes generator preset ([26db3a6](https://github.com/wmfs/tymly-solr-plugin/commit/26db3a6419de476b330d1e80259d52d89c47424a))
+
 # [2.42.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.41.0...v2.42.0) (2023-11-16)
 
 
