@@ -1,3 +1,10 @@
+## [2.51.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.50.0...v2.51.0) (2025-03-12)
+
+### Build system dependencies :hammer:
+
+* **deps-dev:** update dependency @wmfs/tymly to v1.298.0 ([#1036](https://github.com/wmfs/tymly-solr-plugin/issues/1036)) ([44cb3dd](https://github.com/wmfs/tymly-solr-plugin/commit/44cb3dd9c4c49165f651d35fb8bb483dfeca108c))
+* **deps:** update dependency axios to v1.8.3 ([#1037](https://github.com/wmfs/tymly-solr-plugin/issues/1037)) ([9501bdb](https://github.com/wmfs/tymly-solr-plugin/commit/9501bdb901e680d183df9add1393e5f1c721cb0a))
+
 ## [2.50.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.49.0...v2.50.0) (2025-03-10)
 
 ### Build system dependencies :hammer:
