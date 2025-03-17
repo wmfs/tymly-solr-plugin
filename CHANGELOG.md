@@ -1,3 +1,14 @@
+## [2.52.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.51.0...v2.52.0) (2025-03-17)
+
+### New Feature(s) :rocket:
+
+* [sc-29926] PG Script ordering problem ([#1039](https://github.com/wmfs/tymly-solr-plugin/issues/1039)) ([1109027](https://github.com/wmfs/tymly-solr-plugin/commit/1109027a65c37dddbcbfcc3b26d0ef63e02aca06))
+
+### Build system dependencies :hammer:
+
+* **deps-dev:** update dependency @wmfs/tymly to v1.299.0 ([#1038](https://github.com/wmfs/tymly-solr-plugin/issues/1038)) ([8da7a11](https://github.com/wmfs/tymly-solr-plugin/commit/8da7a11e41a64c677f1339819fe38b615e96430d))
+* **deps-dev:** update dependency @wmfs/tymly-pg-plugin to v1.313.0 ([#1040](https://github.com/wmfs/tymly-solr-plugin/issues/1040)) ([86e7709](https://github.com/wmfs/tymly-solr-plugin/commit/86e770905b9f41fa0690ebab7ec655301039c6f8))
+
 ## [2.51.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.50.0...v2.51.0) (2025-03-12)
 
 ### Build system dependencies :hammer:
