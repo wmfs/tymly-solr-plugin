@@ -1,3 +1,16 @@
+## [2.54.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.53.0...v2.54.0) (2025-04-25)
+
+### Build system dependencies :hammer:
+
+* **deps-dev:** update dependency @wmfs/tymly to v1.300.0 ([#1043](https://github.com/wmfs/tymly-solr-plugin/issues/1043)) ([95035fa](https://github.com/wmfs/tymly-solr-plugin/commit/95035fa77998aaa5a16fce9a18fec41a01555358))
+* **deps-dev:** update dependency @wmfs/tymly to v1.303.0 ([#1044](https://github.com/wmfs/tymly-solr-plugin/issues/1044)) ([5b3f2c3](https://github.com/wmfs/tymly-solr-plugin/commit/5b3f2c3f766a46150106f03010850623823b954f))
+* **deps-dev:** update dependency @wmfs/tymly to v1.305.0 ([#1046](https://github.com/wmfs/tymly-solr-plugin/issues/1046)) ([5c25206](https://github.com/wmfs/tymly-solr-plugin/commit/5c2520674d7f2db75881dad31740c61bed9dc3e1))
+* **deps-dev:** update dependency @wmfs/tymly to v1.306.0 ([#1047](https://github.com/wmfs/tymly-solr-plugin/issues/1047)) ([7b439c7](https://github.com/wmfs/tymly-solr-plugin/commit/7b439c71834c1f1f60ac391044c71db1eac9d288))
+* **deps-dev:** update dependency @wmfs/tymly to v1.307.0 ([#1048](https://github.com/wmfs/tymly-solr-plugin/issues/1048)) ([5800550](https://github.com/wmfs/tymly-solr-plugin/commit/5800550161288d26c9b144804cb8f66118ed3128))
+* **deps-dev:** update dependency @wmfs/tymly-pg-plugin to v1.319.0 ([#1045](https://github.com/wmfs/tymly-solr-plugin/issues/1045)) ([1932dfe](https://github.com/wmfs/tymly-solr-plugin/commit/1932dfef79d79cf0d76a863d46b8b43233701e30))
+* **deps-dev:** update dependency @wmfs/tymly-pg-plugin to v1.321.0 ([#1049](https://github.com/wmfs/tymly-solr-plugin/issues/1049)) ([d2ccb78](https://github.com/wmfs/tymly-solr-plugin/commit/d2ccb78fb665c07637567fe8c726e038684241b1))
+* **deps:** update dependency axios to v1.9.0 ([#1050](https://github.com/wmfs/tymly-solr-plugin/issues/1050)) ([628eee9](https://github.com/wmfs/tymly-solr-plugin/commit/628eee9261378898eb276b9d964b04c54bf5ddfb))
+
 ## [2.53.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.52.0...v2.53.0) (2025-03-20)
 
 ### Build system dependencies :hammer:
