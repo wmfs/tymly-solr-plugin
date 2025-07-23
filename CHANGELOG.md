@@ -1,3 +1,23 @@
+## [2.56.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.55.0...v2.56.0) (2025-07-23)
+
+### Build system dependencies :hammer:
+
+* **deps-dev:** update dependency @wmfs/tymly to v1.313.0 ([#1079](https://github.com/wmfs/tymly-solr-plugin/issues/1079)) ([c2273ab](https://github.com/wmfs/tymly-solr-plugin/commit/c2273abf1b5c90693abc0bc28ba99964452188db))
+* **deps-dev:** update dependency @wmfs/tymly to v1.314.0 ([#1081](https://github.com/wmfs/tymly-solr-plugin/issues/1081)) ([bf94abc](https://github.com/wmfs/tymly-solr-plugin/commit/bf94abcad634df1b8fe82567ec4f640b15347589))
+* **deps-dev:** update dependency @wmfs/tymly to v1.315.0 ([#1084](https://github.com/wmfs/tymly-solr-plugin/issues/1084)) ([6953854](https://github.com/wmfs/tymly-solr-plugin/commit/695385476a7f245c1f69b87da2b15c8d96383e59))
+* **deps-dev:** update dependency @wmfs/tymly-pg-plugin to v1.335.0 ([#1071](https://github.com/wmfs/tymly-solr-plugin/issues/1071)) ([9b20e7a](https://github.com/wmfs/tymly-solr-plugin/commit/9b20e7aedfda977006dd1486ceb7638e921ff456))
+* **deps-dev:** update dependency @wmfs/tymly-pg-plugin to v1.337.0 ([#1073](https://github.com/wmfs/tymly-solr-plugin/issues/1073)) ([939892f](https://github.com/wmfs/tymly-solr-plugin/commit/939892fec401cfd30082e3c0c11032126e462aa6))
+* **deps-dev:** update dependency @wmfs/tymly-pg-plugin to v1.338.0 ([#1076](https://github.com/wmfs/tymly-solr-plugin/issues/1076)) ([cc3a65f](https://github.com/wmfs/tymly-solr-plugin/commit/cc3a65fda211c34a90fc5888502df67858ea9f07))
+* **deps-dev:** update dependency @wmfs/tymly-pg-plugin to v1.339.0 ([#1077](https://github.com/wmfs/tymly-solr-plugin/issues/1077)) ([fffda33](https://github.com/wmfs/tymly-solr-plugin/commit/fffda336a7799ab85b118a871eb4f7b91d795ac4))
+* **deps-dev:** update dependency @wmfs/tymly-pg-plugin to v1.340.0 ([#1078](https://github.com/wmfs/tymly-solr-plugin/issues/1078)) ([ffc5f8b](https://github.com/wmfs/tymly-solr-plugin/commit/ffc5f8bed407750840e6801ebc9a94d64e73c75e))
+* **deps-dev:** update dependency @wmfs/tymly-pg-plugin to v1.341.0 ([#1082](https://github.com/wmfs/tymly-solr-plugin/issues/1082)) ([26de0c2](https://github.com/wmfs/tymly-solr-plugin/commit/26de0c279685fffbdc14818efdf797a0f0efaa66))
+* **deps-dev:** update dependency conventional-changelog-conventionalcommits to v9.1.0 ([#1080](https://github.com/wmfs/tymly-solr-plugin/issues/1080)) ([813044f](https://github.com/wmfs/tymly-solr-plugin/commit/813044fbb56e0d46ae2bd8e1930d67e8aff29adf))
+* **deps-dev:** update dependency mocha to v11.7.0 ([#1072](https://github.com/wmfs/tymly-solr-plugin/issues/1072)) ([72babfd](https://github.com/wmfs/tymly-solr-plugin/commit/72babfdb9748e52df5f67a040844700d99383d0a))
+* **deps-dev:** update dependency mocha to v11.7.1 ([#1074](https://github.com/wmfs/tymly-solr-plugin/issues/1074)) ([a630542](https://github.com/wmfs/tymly-solr-plugin/commit/a630542ce82545128557572ad004b05b597ed013))
+* **deps-dev:** update dependency semantic-release to v24.2.6 ([#1075](https://github.com/wmfs/tymly-solr-plugin/issues/1075)) ([d0a6c97](https://github.com/wmfs/tymly-solr-plugin/commit/d0a6c9714b56afad15f7ffde171c6f6590dc3b0c))
+* **deps-dev:** update dependency semantic-release to v24.2.7 ([#1083](https://github.com/wmfs/tymly-solr-plugin/issues/1083)) ([7248c9c](https://github.com/wmfs/tymly-solr-plugin/commit/7248c9c64dfeefa3614592e518c35ad9594c8739))
+* **deps:** update axios from 1.10.0 to 1.11.0 ([ca7f47b](https://github.com/wmfs/tymly-solr-plugin/commit/ca7f47bed7fc329bce11dc07973afb9978ae48a3))
+
 ## [2.55.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.54.0...v2.55.0) (2025-06-16)
 
 ### Build system dependencies :hammer:
