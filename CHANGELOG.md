@@ -1,3 +1,19 @@
+## [2.57.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.56.0...v2.57.0) (2025-10-21)
+
+### Build system dependencies :hammer:
+
+* **deps-dev:** update dependency @semantic-release/release-notes-generator to v14.1.0 ([#1088](https://github.com/wmfs/tymly-solr-plugin/issues/1088)) ([11e69ca](https://github.com/wmfs/tymly-solr-plugin/commit/11e69cae57101638655b80f0e39cc0ea00f00d28))
+* **deps-dev:** update dependency chai to v6 ([#1085](https://github.com/wmfs/tymly-solr-plugin/issues/1085)) ([6f7446d](https://github.com/wmfs/tymly-solr-plugin/commit/6f7446d10b8bd03bbd580d26873b9e610e7fbc67))
+* **deps-dev:** update dependency chai to v6.2.0 ([#1093](https://github.com/wmfs/tymly-solr-plugin/issues/1093)) ([cfe4a3b](https://github.com/wmfs/tymly-solr-plugin/commit/cfe4a3b21a1f0e1b0f51dfe34f132afe20f0ca02))
+* **deps-dev:** update dependency mocha to v11.7.2 ([#1087](https://github.com/wmfs/tymly-solr-plugin/issues/1087)) ([78e8d0d](https://github.com/wmfs/tymly-solr-plugin/commit/78e8d0dc35bd8f0bcad924690dd35ce9feca80eb))
+* **deps-dev:** update dependency mocha to v11.7.3 ([#1095](https://github.com/wmfs/tymly-solr-plugin/issues/1095)) ([d7b264c](https://github.com/wmfs/tymly-solr-plugin/commit/d7b264c264d4595424477c3c82b2996fe538f386))
+* **deps-dev:** update dependency mocha to v11.7.4 ([#1096](https://github.com/wmfs/tymly-solr-plugin/issues/1096)) ([fa3e7ed](https://github.com/wmfs/tymly-solr-plugin/commit/fa3e7ed994bd6313252d0df889e2ba677d085238))
+* **deps-dev:** update dependency semantic-release to v24.2.8 ([#1089](https://github.com/wmfs/tymly-solr-plugin/issues/1089)) ([dab3110](https://github.com/wmfs/tymly-solr-plugin/commit/dab31108800cf245419bc693c630462b6405f31c))
+* **deps-dev:** update dependency semantic-release to v24.2.9 ([#1092](https://github.com/wmfs/tymly-solr-plugin/issues/1092)) ([5494653](https://github.com/wmfs/tymly-solr-plugin/commit/5494653c4bf54e1d26723bad5f6882145845d960))
+* **deps-dev:** update dependency semantic-release to v25 ([#1097](https://github.com/wmfs/tymly-solr-plugin/issues/1097)) ([9d2e1c9](https://github.com/wmfs/tymly-solr-plugin/commit/9d2e1c9a2e8106f64f2a934fd83d38f9ef947eb9))
+* **deps-dev:** update dependency semantic-release to v25.0.1 ([#1098](https://github.com/wmfs/tymly-solr-plugin/issues/1098)) ([04ed25c](https://github.com/wmfs/tymly-solr-plugin/commit/04ed25c9b34d789a79188a90cea0d563a56bf1db))
+* **deps:** revert chai to non-esm ([8f7f43e](https://github.com/wmfs/tymly-solr-plugin/commit/8f7f43e4204811aae25f592bc0507b7695c677b1))
+
 ## [2.56.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.55.0...v2.56.0) (2025-07-23)
 
 ### Build system dependencies :hammer:
