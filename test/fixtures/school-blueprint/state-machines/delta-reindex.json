@@ -7,7 +7,7 @@
       "Type": "Task",
       "Resource": "module:deltaReindex",
       "ResourceConfig": {
-        "core": "tymly"
+        "collection": "tymly"
       },
       "End": true
     }
