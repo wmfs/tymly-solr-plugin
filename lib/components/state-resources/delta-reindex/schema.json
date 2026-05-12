@@ -1,10 +1,10 @@
 {
   "type": "object",
   "properties": {
-    "core": {
+    "collection": {
       "type": "string",
-      "description": "The selected core to perform solr delta reindex on."
+      "description": "The selected collection to perform solr delta reindex on."
     }
   },
-  "required": ["core"]
+  "required": ["collection"]
 }

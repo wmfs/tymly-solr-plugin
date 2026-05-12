@@ -3,7 +3,7 @@
     "Type": "Task",
     "Resource": "module:fullReindex",
     "ResourceConfig": {
-      "core": "tymly"
+      "collection": "tymly"
     },
     "End": true
   }
