@@ -1,3 +1,5 @@
+## [2.58.1](https://github.com/wmfs/tymly-solr-plugin/compare/v2.58.0...v2.58.1) (2026-08-13)
+
 ## [2.58.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.57.0...v2.58.0) (2026-04-10)
 
 ### Build system dependencies :hammer:
