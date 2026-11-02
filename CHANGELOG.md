@@ -1,3 +1,9 @@
+## [2.61.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.60.0...v2.61.0) (2026-11-02)
+
+### Build system dependencies :hammer:
+
+* **deps:** update dependency emoji-regex to v10.6.0 ([#1086](https://github.com/wmfs/tymly-solr-plugin/issues/1086)) ([0ff062f](https://github.com/wmfs/tymly-solr-plugin/commit/0ff062fa787e32c44f55059d35a4976371a8fa6d))
+
 ## [2.60.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.59.0...v2.60.0) (2026-11-02)
 
 ### Build system dependencies :hammer:
