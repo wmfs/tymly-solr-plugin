@@ -1,3 +1,13 @@
+## [2.62.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.61.0...v2.62.0) (2026-11-06)
+
+### Build system dependencies :hammer:
+
+* **deps-dev:** update [@wmfs](https://github.com/wmfs) packages ([#1156](https://github.com/wmfs/tymly-solr-plugin/issues/1156)) ([60dd3c2](https://github.com/wmfs/tymly-solr-plugin/commit/60dd3c22c3126ec6b6baf0ff4d580251faca0750))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs) packages ([#1159](https://github.com/wmfs/tymly-solr-plugin/issues/1159)) ([77ea62f](https://github.com/wmfs/tymly-solr-plugin/commit/77ea62f165f1b5526f7170a73f661c07e056e4be))
+* **deps-dev:** update dependency @wmfs/tymly to v1.326.0 ([#1157](https://github.com/wmfs/tymly-solr-plugin/issues/1157)) ([bf76711](https://github.com/wmfs/tymly-solr-plugin/commit/bf7671156f71a4c8515b79417d24b68944dcec39))
+* **deps-dev:** update dependency @wmfs/tymly to v1.327.0 ([#1158](https://github.com/wmfs/tymly-solr-plugin/issues/1158)) ([5772323](https://github.com/wmfs/tymly-solr-plugin/commit/577232337330c58a773ca04b6c662c6fa8d27106))
+* **deps:** update dependency emoji-regex to v11 ([#1146](https://github.com/wmfs/tymly-solr-plugin/issues/1146)) ([de7644e](https://github.com/wmfs/tymly-solr-plugin/commit/de7644ef07c701a34002e4f5e07209b05d459698))
+
 ## [2.61.0](https://github.com/wmfs/tymly-solr-plugin/compare/v2.60.0...v2.61.0) (2026-11-02)
 
 ### Build system dependencies :hammer:
