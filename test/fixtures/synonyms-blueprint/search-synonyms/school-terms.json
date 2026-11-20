@@ -1,0 +1,6 @@
+{
+  "description": "Test search synonyms",
+  "synonyms": [
+    ["dada", "defence against the dark arts"]
+  ]
+}

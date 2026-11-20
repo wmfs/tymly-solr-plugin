@@ -1,0 +1,257 @@
+{
+  "description": "The fields every Tymly search doc fills (see the search-docs blueprint directory and solrSchemaFields). Their field types are Solr's _default ones. apply-schema adds any that are missing (e.g. on a new local core) but never changes them on an existing core.",
+  "fields": [
+    {
+      "name": "activeEvent",
+      "type": "boolean",
+      "docValues": true,
+      "multiValued": false,
+      "indexed": true,
+      "required": true,
+      "stored": true
+    },
+    {
+      "name": "additionalTerms",
+      "type": "text_general",
+      "docValues": false,
+      "multiValued": true,
+      "indexed": true,
+      "required": false,
+      "stored": true
+    },
+    {
+      "name": "author",
+      "type": "string",
+      "docValues": true,
+      "multiValued": false,
+      "indexed": true,
+      "required": true,
+      "stored": true
+    },
+    {
+      "name": "category",
+      "type": "string",
+      "docValues": true,
+      "multiValued": false,
+      "indexed": true,
+      "required": true,
+      "stored": true
+    },
+    {
+      "name": "classification",
+      "type": "string",
+      "docValues": true,
+      "multiValued": false,
+      "indexed": true,
+      "required": false,
+      "stored": true
+    },
+    {
+      "name": "created",
+      "type": "pdate",
+      "docValues": true,
+      "multiValued": false,
+      "indexed": true,
+      "required": true,
+      "stored": true
+    },
+    {
+      "name": "data",
+      "type": "string",
+      "docValues": false,
+      "multiValued": false,
+      "indexed": false,
+      "required": false,
+      "stored": true
+    },
+    {
+      "name": "description",
+      "type": "text_general",
+      "docValues": false,
+      "multiValued": false,
+      "indexed": true,
+      "required": true,
+      "stored": true
+    },
+    {
+      "name": "docId",
+      "type": "string",
+      "docValues": true,
+      "multiValued": false,
+      "indexed": true,
+      "required": true,
+      "stored": true
+    },
+    {
+      "name": "docType",
+      "type": "string",
+      "docValues": true,
+      "multiValued": false,
+      "indexed": true,
+      "required": true,
+      "stored": true
+    },
+    {
+      "name": "domain",
+      "type": "string",
+      "docValues": true,
+      "multiValued": false,
+      "indexed": true,
+      "required": true,
+      "stored": true
+    },
+    {
+      "name": "eventTimestamp",
+      "type": "pdate",
+      "docValues": true,
+      "multiValued": false,
+      "indexed": true,
+      "required": false,
+      "stored": true
+    },
+    {
+      "name": "icon",
+      "type": "string",
+      "docValues": false,
+      "multiValued": false,
+      "indexed": false,
+      "required": false,
+      "stored": true
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "docValues": true,
+      "multiValued": false,
+      "indexed": true,
+      "required": true,
+      "stored": true
+    },
+    {
+      "name": "language",
+      "type": "string",
+      "docValues": true,
+      "multiValued": false,
+      "indexed": true,
+      "required": true,
+      "stored": true
+    },
+    {
+      "name": "launches",
+      "type": "string",
+      "docValues": false,
+      "multiValued": false,
+      "indexed": false,
+      "required": false,
+      "stored": true
+    },
+    {
+      "name": "modified",
+      "type": "pdate",
+      "docValues": true,
+      "multiValued": false,
+      "indexed": true,
+      "required": true,
+      "stored": true
+    },
+    {
+      "name": "point",
+      "type": "location",
+      "docValues": true,
+      "multiValued": false,
+      "indexed": true,
+      "required": false,
+      "stored": true
+    },
+    {
+      "name": "rating",
+      "type": "pfloat",
+      "docValues": true,
+      "multiValued": false,
+      "indexed": true,
+      "required": false,
+      "stored": true
+    },
+    {
+      "name": "roles",
+      "type": "string",
+      "docValues": true,
+      "multiValued": true,
+      "indexed": true,
+      "required": true,
+      "stored": true
+    },
+    {
+      "name": "rootAncestorId",
+      "type": "string",
+      "docValues": true,
+      "multiValued": false,
+      "indexed": true,
+      "required": false,
+      "stored": true
+    },
+    {
+      "name": "sortString",
+      "type": "string",
+      "docValues": true,
+      "multiValued": false,
+      "indexed": true,
+      "required": true,
+      "stored": false
+    },
+    {
+      "name": "synopsis",
+      "type": "text_general",
+      "docValues": false,
+      "multiValued": false,
+      "indexed": false,
+      "required": false,
+      "stored": true
+    },
+    {
+      "name": "tags",
+      "type": "string",
+      "docValues": true,
+      "multiValued": true,
+      "indexed": true,
+      "required": false,
+      "stored": true
+    },
+    {
+      "name": "teams",
+      "type": "string",
+      "docValues": true,
+      "multiValued": true,
+      "indexed": true,
+      "required": false,
+      "stored": true
+    },
+    {
+      "name": "title",
+      "type": "text_general",
+      "docValues": false,
+      "multiValued": false,
+      "indexed": true,
+      "required": true,
+      "stored": true
+    },
+    {
+      "name": "x",
+      "type": "pint",
+      "docValues": true,
+      "multiValued": false,
+      "indexed": true,
+      "required": false,
+      "stored": true
+    },
+    {
+      "name": "y",
+      "type": "pint",
+      "docValues": true,
+      "multiValued": false,
+      "indexed": true,
+      "required": false,
+      "stored": true
+    }
+  ]
+}
