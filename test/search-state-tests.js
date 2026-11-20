@@ -17,7 +17,7 @@ process.on('unhandledRejection', (reason, p) => {
 describe('tymly-solr-plugin search state resource tests', function () {
   this.timeout(process.env.TIMEOUT || 5000)
 
-  let tymlyService; let statebox = null; let client; let rbacAdmin
+  let tymlyService; let statebox = null; let client; let rbacAdmin; let registry; let searchAnalytics
 
   before(async () => {
     if (process.env.PG_CONNECTION_STRING && !/^postgres:\/\/[^:]+:[^@]+@(?:localhost|127\.0\.0\.1).*$/.test(process.env.PG_CONNECTION_STRING)) {
@@ -55,6 +55,8 @@ describe('tymly-solr-plugin search state resource tests', function () {
     statebox = tymlyServices.statebox
     rbacAdmin = tymlyServices.rbacAdmin
     client = tymlyServices.storage.client
+    registry = tymlyServices.registry
+    searchAnalytics = tymlyServices.searchAnalytics
   })
 
   describe('setup', () => {
@@ -225,7 +227,6 @@ describe('tymly-solr-plugin search state resource tests', function () {
 
   describe('search analytics (sc-34389)', () => {
     const CLICK_STATE_MACHINE = 'tymly_logSearchClick_1_0'
-    const ANALYTICS_SCRIPT = path.resolve(__dirname, '../lib/blueprints/solr-blueprint/pg-scripts/search-analytics.sql')
 
     let hagridLogId
 
@@ -256,8 +257,15 @@ describe('tymly-solr-plugin search state resource tests', function () {
       expect(await countRows('tymly.search_history')).to.equal(historyBefore)
     })
 
-    it('a search with no text is not logged', async () => {
+    it('a search with no text and no categories is not logged', async () => {
       const searchResults = await search(null, 'john.smith')
+      expect(searchResults.searchLogId).to.equal(null)
+      expect(await countRows('tymly.search_log')).to.equal(1)
+    })
+
+    it('skipLog: a search shown again is not logged', async () => {
+      const searchResults = await searchWith({ query: 'Hagrid', skipLog: true }, 'john.smith')
+      expect(searchResults.totalHits).to.eql(1)
       expect(searchResults.searchLogId).to.equal(null)
       expect(await countRows('tymly.search_log')).to.equal(1)
     })
@@ -269,6 +277,20 @@ describe('tymly-solr-plugin search state resource tests', function () {
       const { rows } = await client.query('select * from tymly.search_report_zero_results')
       expect(rows.map(r => r.query)).to.eql(['voldemort'])
       expect(Number(rows[0].searches)).to.equal(1)
+    })
+
+    it('a search with categories but no text is logged, and left out of the text reports', async () => {
+      const searchResults = await searchWith({ categoryRestriction: ['school'] }, 'jane.smith')
+      expect(searchResults.searchLogId).to.be.a('string')
+
+      const { rows } = await client.query('select query, category_restriction from tymly.search_log where id = $1', [searchResults.searchLogId])
+      expect(rows[0].query).to.equal('')
+      expect(rows[0].category_restriction).to.eql(['school'])
+
+      const noClick = await client.query('select query from tymly.search_report_no_click')
+      expect(noClick.rows.map(r => r.query)).to.not.include('')
+
+      await client.query('delete from tymly.search_log where id = $1', [searchResults.searchLogId])
     })
 
     it('an unopened search is in the no click report', async () => {
@@ -316,17 +338,33 @@ describe('tymly-solr-plugin search state resource tests', function () {
       expect(execution.errorCode).to.eql('invalidSearchClick')
     })
 
-    it('retention removes rows older than 12 months', async () => {
+    it('retention: the registry key defaults to 365 days (or SEARCH_LOG_RETENTION_DAYS)', () => {
+      expect(searchAnalytics.retentionDays).to.equal(Number(process.env.SEARCH_LOG_RETENTION_DAYS) || 365)
+    })
+
+    it('retention: deletes rows older than the tymly_searchLogRetentionDays registry key', async () => {
+      await registry.set('tymly_searchLogRetentionDays', 30)
+
       await client.query(
-        "insert into tymly.search_log (user_id, query, hit_count, _created) values ('old.user', 'old', 0, now() - interval '13 months')"
+        "insert into tymly.search_log (user_id, query, hit_count, _created) values ('old.user', 'old', 0, now() - interval '40 days'), ('recent.user', 'recent', 0, now() - interval '20 days')"
       )
+      expect(await countRows('tymly.search_log')).to.equal(4)
+
+      await searchAnalytics.deleteOldRows()
+
+      expect(searchAnalytics.retentionDays).to.equal(30)
+      const { rows } = await client.query('select user_id from tymly.search_log order by user_id')
+      expect(rows.map(r => r.user_id)).to.eql(['jane.smith', 'john.smith', 'recent.user'])
+      expect(await countRows('tymly.search_click')).to.equal(1)
+    })
+
+    it('retention: an invalid registry value keeps the last good one', async () => {
+      await registry.set('tymly_searchLogRetentionDays', 'forever')
+      await searchAnalytics.deleteOldRows()
+      expect(searchAnalytics.retentionDays).to.equal(30)
       expect(await countRows('tymly.search_log')).to.equal(3)
 
-      await client.runFile(ANALYTICS_SCRIPT)
-
-      const { rows } = await client.query('select user_id from tymly.search_log order by user_id')
-      expect(rows.map(r => r.user_id)).to.eql(['jane.smith', 'john.smith'])
-      expect(await countRows('tymly.search_click')).to.equal(1)
+      await registry.set('tymly_searchLogRetentionDays', 365)
     })
 
     async function countRows (table) {
