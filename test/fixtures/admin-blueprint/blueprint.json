@@ -1,0 +1,10 @@
+{
+  "namespace": "tymlyTest",
+  "name": "admin-blueprint",
+  "version": "1.0",
+  "label": "Admin roles",
+  "author": "West Midlands Fire Service",
+  "organisation": "West Midlands Fire Service",
+  "description": "Roles used to test who can run the Solr reindex",
+  "categories": []
+}
