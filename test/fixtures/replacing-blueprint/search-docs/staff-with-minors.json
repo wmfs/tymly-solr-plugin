@@ -1,0 +1,11 @@
+{
+  "replaces": "tymlyTest_staff",
+  "modelId": "tymlyTest_staff",
+  "attributeMapping": {
+    "id": "'staff#' || staff_no",
+    "actorName": "upper(first_name || ' ' || last_name)",
+    "characterName": "upper(character_first_name || ' ' || character_last_name)",
+    "roles": "'{\"tymlyTest_boss\",\"tymlyTest_minor\"}'::text[]",
+    "launches": "'{\"launches\":[{\"input\":{\"id\":\"'||staff_no||'\"},\"stateMachineName\":\"tymlyTest_everybody_1_0\",\"title\":\"View\"}]}'::text"
+  }
+}
