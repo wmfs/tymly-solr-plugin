@@ -275,7 +275,7 @@ describe('tymly-solr-plugin search state resource tests', function () {
       expect(searchResults.totalHits).to.eql(0)
 
       const { rows } = await client.query('select * from tymly.search_report_zero_results')
-      expect(rows.map(r => r.query)).to.eql(['voldemort'])
+      expect(rows.map(r => [r.domain, r.query])).to.eql([[null, 'voldemort']])
       expect(Number(rows[0].searches)).to.equal(1)
     })
 
@@ -293,9 +293,9 @@ describe('tymly-solr-plugin search state resource tests', function () {
       await client.query('delete from tymly.search_log where id = $1', [searchResults.searchLogId])
     })
 
-    it('an unopened search is in the no click report', async () => {
+    it('the no click report is empty until a domain records clicks', async () => {
       const { rows } = await client.query('select query from tymly.search_report_no_click')
-      expect(rows.map(r => r.query)).to.eql(['hagrid'])
+      expect(rows).to.have.length(0)
     })
 
     it('opening a result logs a click', async () => {
@@ -313,14 +313,29 @@ describe('tymly-solr-plugin search state resource tests', function () {
       })
     })
 
-    it('a clicked search leaves the no click report', async () => {
+    it('a clicked search is not in the no click report', async () => {
       const { rows } = await client.query('select * from tymly.search_report_no_click')
       expect(rows).to.have.length(0)
+    })
+
+    it('the no click report only covers domains that record clicks', async () => {
+      const unclicked = await searchWith({ query: 'Hermione', domain: 'search' }, 'john.smith')
+      expect(unclicked.totalHits).to.eql(1)
+      // a search from a card, whose clicks aren't recorded
+      await client.query(
+        "insert into tymly.search_log (user_id, query, domain, hit_count) values ('john.smith', 'afc56', 'fsTaskList', 2)"
+      )
+
+      const { rows } = await client.query('select domain, query from tymly.search_report_no_click')
+      expect(rows).to.eql([{ domain: 'search', query: 'hermione' }])
+
+      await client.query("delete from tymly.search_log where query in ('hermione', 'afc56')")
     })
 
     it('the click position report counts the click', async () => {
       const { rows } = await client.query('select * from tymly.search_report_click_position')
       expect(rows).to.have.length(1)
+      expect(rows[0].domain).to.equal('search')
       expect(Number(rows[0].clicks)).to.equal(1)
       expect(Number(rows[0].avg_position)).to.equal(1)
       expect(Number(rows[0].pct_first_result)).to.equal(100)
