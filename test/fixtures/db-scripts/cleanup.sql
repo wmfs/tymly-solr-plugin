@@ -1,5 +1,10 @@
 DROP VIEW IF EXISTS tymly.solr_data;
+DROP VIEW IF EXISTS tymly.search_report_zero_results;
+DROP VIEW IF EXISTS tymly.search_report_no_click;
+DROP VIEW IF EXISTS tymly.search_report_click_position;
 DROP TABLE IF EXISTS tymly.search_history;
+DROP TABLE IF EXISTS tymly.search_click;
+DROP TABLE IF EXISTS tymly.search_log;
 DROP TABLE IF EXISTS tymly_test.muggles;
 DROP TABLE IF EXISTS tymly_test.students;
 DROP TABLE IF EXISTS tymly_test.staff;

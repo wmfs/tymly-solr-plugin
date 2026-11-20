@@ -223,6 +223,122 @@ describe('tymly-solr-plugin search state resource tests', function () {
     })
   })
 
+  describe('search analytics (sc-34389)', () => {
+    const CLICK_STATE_MACHINE = 'tymly_logSearchClick_1_0'
+    const ANALYTICS_SCRIPT = path.resolve(__dirname, '../lib/blueprints/solr-blueprint/pg-scripts/search-analytics.sql')
+
+    let hagridLogId
+
+    before(async () => {
+      await client.query('delete from tymly.search_click')
+      await client.query('delete from tymly.search_log')
+    })
+
+    it('a search logs one row and returns its searchLogId', async () => {
+      const historyBefore = await countRows('tymly.search_history')
+
+      const searchResults = await searchWith({ query: '  HAGRID  ', domain: 'search' }, 'john.smith')
+      expect(searchResults.totalHits).to.eql(1)
+      expect(searchResults.searchLogId).to.be.a('string')
+      hagridLogId = searchResults.searchLogId
+
+      const { rows } = await client.query('select * from tymly.search_log')
+      expect(rows).to.have.length(1)
+      expect(rows[0].id).to.equal(hagridLogId)
+      expect(rows[0].user_id).to.equal('john.smith')
+      expect(rows[0].query).to.equal('hagrid')
+      expect(rows[0].domain).to.equal('search')
+      expect(rows[0].hit_count).to.equal(1)
+      expect(rows[0].result_offset).to.equal(0)
+      expect(rows[0].duration_ms).to.be.at.least(0)
+
+      // search_history no longer grows on every search
+      expect(await countRows('tymly.search_history')).to.equal(historyBefore)
+    })
+
+    it('a search with no text is not logged', async () => {
+      const searchResults = await search(null, 'john.smith')
+      expect(searchResults.searchLogId).to.equal(null)
+      expect(await countRows('tymly.search_log')).to.equal(1)
+    })
+
+    it('a search that finds nothing is in the zero results report', async () => {
+      const searchResults = await searchWith({ query: 'Voldemort' }, 'jane.smith')
+      expect(searchResults.totalHits).to.eql(0)
+
+      const { rows } = await client.query('select * from tymly.search_report_zero_results')
+      expect(rows.map(r => r.query)).to.eql(['voldemort'])
+      expect(Number(rows[0].searches)).to.equal(1)
+    })
+
+    it('an unopened search is in the no click report', async () => {
+      const { rows } = await client.query('select query from tymly.search_report_no_click')
+      expect(rows.map(r => r.query)).to.eql(['hagrid'])
+    })
+
+    it('opening a result logs a click', async () => {
+      const execution = await logClick({ searchLogId: hagridLogId, docId: 'staff#1', docType: 'staff', position: 1 }, 'john.smith')
+      expect(execution.status).to.eql('SUCCEEDED')
+
+      const { rows } = await client.query('select * from tymly.search_click')
+      expect(rows).to.have.length(1)
+      expect(rows[0]).to.include({
+        search_log_id: hagridLogId,
+        user_id: 'john.smith',
+        doc_id: 'staff#1',
+        doc_type: 'staff',
+        position: 1
+      })
+    })
+
+    it('a clicked search leaves the no click report', async () => {
+      const { rows } = await client.query('select * from tymly.search_report_no_click')
+      expect(rows).to.have.length(0)
+    })
+
+    it('the click position report counts the click', async () => {
+      const { rows } = await client.query('select * from tymly.search_report_click_position')
+      expect(rows).to.have.length(1)
+      expect(Number(rows[0].clicks)).to.equal(1)
+      expect(Number(rows[0].avg_position)).to.equal(1)
+      expect(Number(rows[0].pct_first_result)).to.equal(100)
+    })
+
+    it("cannot log a click against another user's search", async () => {
+      const execution = await logClick({ searchLogId: hagridLogId, docId: 'staff#1', position: 1 }, 'jane.smith')
+      expect(execution.status).to.eql('FAILED')
+      expect(execution.errorCode).to.eql('unknownSearchLog')
+    })
+
+    it('rejects an invalid click', async () => {
+      const execution = await logClick({ searchLogId: "x' or '1'='1", docId: 'staff#1', position: 1 }, 'john.smith')
+      expect(execution.status).to.eql('FAILED')
+      expect(execution.errorCode).to.eql('invalidSearchClick')
+    })
+
+    it('retention removes rows older than 12 months', async () => {
+      await client.query(
+        "insert into tymly.search_log (user_id, query, hit_count, _created) values ('old.user', 'old', 0, now() - interval '13 months')"
+      )
+      expect(await countRows('tymly.search_log')).to.equal(3)
+
+      await client.runFile(ANALYTICS_SCRIPT)
+
+      const { rows } = await client.query('select user_id from tymly.search_log order by user_id')
+      expect(rows.map(r => r.user_id)).to.eql(['jane.smith', 'john.smith'])
+      expect(await countRows('tymly.search_click')).to.equal(1)
+    })
+
+    async function countRows (table) {
+      const { rows } = await client.query(`select count(*)::int as n from ${table}`)
+      return rows[0].n
+    }
+
+    function logClick (input, userId) {
+      return statebox.startExecution(input, CLICK_STATE_MACHINE, { sendResponse: 'COMPLETE', userId })
+    }
+  })
+
   describe('teardown', () => {
     it('cleanup test resources', async () => {
       await sqlScriptRunner(

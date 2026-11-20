@@ -1,0 +1,8 @@
+{
+  "LogSearchClick": {
+    "Type": "Task",
+    "Resource": "module:logSearchClick",
+    "InputPath": "$",
+    "End": true
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "title": "Search Log",
+  "description": "One row per search a user runs, used to find searches that return nothing or that nobody opens a result from. Rows older than 12 months are deleted on boot.",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "The ID of the user who searched"
+    },
+    "query": {
+      "type": "string",
+      "description": "The search text, trimmed, lower-cased and with whitespace collapsed"
+    },
+    "domain": {
+      "type": "string",
+      "description": "The domain searched, if any"
+    },
+    "categoryRestriction": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The categories the search was restricted to"
+    },
+    "resultOffset": {
+      "type": "integer",
+      "description": "The offset of the page of results shown (0 for the first page)"
+    },
+    "hitCount": {
+      "type": "integer",
+      "description": "The total number of results found"
+    },
+    "durationMs": {
+      "type": "integer",
+      "description": "How long the search took, in milliseconds"
+    }
+  },
+  "indexes": [
+    {
+      "columns": ["userId"],
+      "unique": false
+    },
+    {
+      "columns": ["query"],
+      "unique": false
+    }
+  ],
+  "audit": false
+}
