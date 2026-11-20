@@ -7,7 +7,9 @@
       "positionIncrementGap": "100",
       "autoGeneratePhraseQueries": "true",
       "indexAnalyzer": {
-        "tokenizer": { "class": "solr.WhitespaceTokenizerFactory" },
+        "tokenizer": {
+          "class": "solr.WhitespaceTokenizerFactory"
+        },
         "filters": [
           {
             "class": "solr.WordDelimiterGraphFilterFactory",
@@ -19,15 +21,27 @@
             "splitOnCaseChange": "0",
             "preserveOriginal": "1"
           },
-          { "class": "solr.FlattenGraphFilterFactory" },
-          { "class": "solr.LowerCaseFilterFactory" },
-          { "class": "solr.ASCIIFoldingFilterFactory" },
-          { "class": "solr.EnglishMinimalStemFilterFactory" },
-          { "class": "solr.RemoveDuplicatesTokenFilterFactory" }
+          {
+            "class": "solr.FlattenGraphFilterFactory"
+          },
+          {
+            "class": "solr.LowerCaseFilterFactory"
+          },
+          {
+            "class": "solr.ASCIIFoldingFilterFactory"
+          },
+          {
+            "class": "solr.EnglishMinimalStemFilterFactory"
+          },
+          {
+            "class": "solr.RemoveDuplicatesTokenFilterFactory"
+          }
         ]
       },
       "queryAnalyzer": {
-        "tokenizer": { "class": "solr.WhitespaceTokenizerFactory" },
+        "tokenizer": {
+          "class": "solr.WhitespaceTokenizerFactory"
+        },
         "filters": [
           {
             "class": "solr.WordDelimiterGraphFilterFactory",
@@ -36,10 +50,19 @@
             "splitOnCaseChange": "0",
             "preserveOriginal": "0"
           },
-          { "class": "solr.LowerCaseFilterFactory" },
-          { "class": "solr.ASCIIFoldingFilterFactory" },
-          { "class": "solr.ManagedSynonymGraphFilterFactory", "managed": "tymly_search" },
-          { "class": "solr.EnglishMinimalStemFilterFactory" }
+          {
+            "class": "solr.LowerCaseFilterFactory"
+          },
+          {
+            "class": "solr.ASCIIFoldingFilterFactory"
+          },
+          {
+            "class": "solr.ManagedSynonymGraphFilterFactory",
+            "managed": "tymly_search"
+          },
+          {
+            "class": "solr.EnglishMinimalStemFilterFactory"
+          }
         ]
       }
     },
@@ -48,18 +71,34 @@
       "class": "solr.TextField",
       "positionIncrementGap": "100",
       "indexAnalyzer": {
-        "tokenizer": { "class": "solr.StandardTokenizerFactory" },
+        "tokenizer": {
+          "class": "solr.StandardTokenizerFactory"
+        },
         "filters": [
-          { "class": "solr.LowerCaseFilterFactory" },
-          { "class": "solr.ASCIIFoldingFilterFactory" },
-          { "class": "solr.EdgeNGramFilterFactory", "minGramSize": "2", "maxGramSize": "20" }
+          {
+            "class": "solr.LowerCaseFilterFactory"
+          },
+          {
+            "class": "solr.ASCIIFoldingFilterFactory"
+          },
+          {
+            "class": "solr.EdgeNGramFilterFactory",
+            "minGramSize": "3",
+            "maxGramSize": "10"
+          }
         ]
       },
       "queryAnalyzer": {
-        "tokenizer": { "class": "solr.StandardTokenizerFactory" },
+        "tokenizer": {
+          "class": "solr.StandardTokenizerFactory"
+        },
         "filters": [
-          { "class": "solr.LowerCaseFilterFactory" },
-          { "class": "solr.ASCIIFoldingFilterFactory" }
+          {
+            "class": "solr.LowerCaseFilterFactory"
+          },
+          {
+            "class": "solr.ASCIIFoldingFilterFactory"
+          }
         ]
       }
     },
@@ -68,10 +107,16 @@
       "class": "solr.TextField",
       "positionIncrementGap": "100",
       "indexAnalyzer": {
-        "tokenizer": { "class": "solr.StandardTokenizerFactory" },
+        "tokenizer": {
+          "class": "solr.StandardTokenizerFactory"
+        },
         "filters": [
-          { "class": "solr.LowerCaseFilterFactory" },
-          { "class": "solr.ASCIIFoldingFilterFactory" },
+          {
+            "class": "solr.LowerCaseFilterFactory"
+          },
+          {
+            "class": "solr.ASCIIFoldingFilterFactory"
+          },
           {
             "class": "solr.ShingleFilterFactory",
             "minShingleSize": "2",
@@ -82,25 +127,75 @@
         ]
       },
       "queryAnalyzer": {
-        "tokenizer": { "class": "solr.StandardTokenizerFactory" },
+        "tokenizer": {
+          "class": "solr.StandardTokenizerFactory"
+        },
         "filters": [
-          { "class": "solr.LowerCaseFilterFactory" },
-          { "class": "solr.ASCIIFoldingFilterFactory" }
+          {
+            "class": "solr.LowerCaseFilterFactory"
+          },
+          {
+            "class": "solr.ASCIIFoldingFilterFactory"
+          }
         ]
       }
     }
   ],
   "fields": [
-    { "name": "searchText", "type": "text_search", "multiValued": true, "indexed": true, "stored": false },
-    { "name": "searchPrefix", "type": "text_prefix", "multiValued": true, "indexed": true, "stored": false },
-    { "name": "searchShingle", "type": "text_shingle", "multiValued": true, "indexed": true, "stored": false },
-    { "name": "uprns", "type": "string", "multiValued": true, "indexed": true, "stored": true, "docValues": true }
+    {
+      "name": "searchText",
+      "type": "text_search",
+      "multiValued": true,
+      "indexed": true,
+      "stored": false
+    },
+    {
+      "name": "searchPrefix",
+      "type": "text_prefix",
+      "multiValued": true,
+      "indexed": true,
+      "stored": false
+    },
+    {
+      "name": "searchShingle",
+      "type": "text_shingle",
+      "multiValued": true,
+      "indexed": true,
+      "stored": false
+    },
+    {
+      "name": "uprns",
+      "type": "string",
+      "multiValued": true,
+      "indexed": true,
+      "stored": true,
+      "docValues": true
+    }
   ],
   "copyFields": [
-    { "source": "title", "dest": ["searchText", "searchPrefix", "searchShingle"] },
-    { "source": "description", "dest": ["searchText", "searchPrefix", "searchShingle"] },
-    { "source": "additionalTerms", "dest": "searchText" },
-    { "source": "synopsis", "dest": "searchText" },
-    { "source": "docId", "dest": "searchText" }
+    {
+      "source": "title",
+      "dest": [
+        "searchText",
+        "searchPrefix",
+        "searchShingle"
+      ]
+    },
+    {
+      "source": "description",
+      "dest": "searchText"
+    },
+    {
+      "source": "additionalTerms",
+      "dest": "searchText"
+    },
+    {
+      "source": "synopsis",
+      "dest": "searchText"
+    },
+    {
+      "source": "docId",
+      "dest": "searchText"
+    }
   ]
 }

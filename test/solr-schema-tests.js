@@ -135,13 +135,38 @@ describe('Solr schema (solr/)', () => {
 
     it('a changed field type or search field is replaced', () => {
       const types = asSolrReturnsIt(schema.fieldTypes)
-      types[1].indexAnalyzer.filters[2].maxGramSize = '10'
+      types[1].indexAnalyzer.filters[2].maxGramSize = '20'
       const fields = asSolrReturnsIt([...schema.baseFields, ...schema.fields])
       fields.find(f => f.name === 'uprns').stored = false
 
       const plan = planSchemaChanges({ fieldTypes: types, fields, copyFields: copyFieldsAsSolrReturnsThem(schema.copyFields) }, schema)
       expect(plan.summary).to.eql(['replace field type text_prefix', 'replace field uprns'])
       expect(plan.reindexNeeded).to.equal(true)
+    })
+
+    it('removes copy fields into the search fields that are no longer wanted, and leaves others alone', () => {
+      const current = {
+        fieldTypes: asSolrReturnsIt(schema.fieldTypes),
+        fields: asSolrReturnsIt([...schema.baseFields, ...schema.fields]),
+        copyFields: [
+          ...copyFieldsAsSolrReturnsThem(schema.copyFields),
+          { source: 'description', dest: 'searchPrefix' },
+          { source: 'description', dest: 'searchShingle' },
+          { source: 'title', dest: 'someoneElsesField' }
+        ]
+      }
+      const plan = planSchemaChanges(current, schema)
+      expect(plan.commands['delete-copy-field']).to.eql([
+        { source: 'description', dest: 'searchPrefix' },
+        { source: 'description', dest: 'searchShingle' }
+      ])
+      expect(plan.reindexNeeded).to.equal(true)
+    })
+
+    it('partial and joined words come from titles only, to keep the index smaller', () => {
+      const intoField = dest => schema.copyFields.filter(c => [].concat(c.dest).includes(dest)).map(c => c.source)
+      expect(intoField('searchPrefix')).to.eql(['title'])
+      expect(intoField('searchShingle')).to.eql(['title'])
     })
 
     it('never changes an existing base field', () => {

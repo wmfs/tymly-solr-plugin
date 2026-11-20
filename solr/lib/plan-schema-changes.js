@@ -72,9 +72,23 @@ function planSchemaChanges (current, wanted) {
     }
   }
 
-  const currentPairs = new Set(copyFieldPairs(current.copyFields).map(p => `${p.source}>${p.dest}`))
-  for (const pair of copyFieldPairs(wanted.copyFields)) {
-    if (!currentPairs.has(`${pair.source}>${pair.dest}`)) {
+  const key = p => `${p.source}>${p.dest}`
+  const currentPairs = copyFieldPairs(current.copyFields)
+  const wantedPairs = copyFieldPairs(wanted.copyFields)
+  const currentKeys = new Set(currentPairs.map(key))
+  const wantedKeys = new Set(wantedPairs.map(key))
+
+  // Copy fields into our search fields that are no longer wanted (e.g. a source dropped to keep
+  // the index smaller) are removed. Copy fields into any other field are left alone.
+  const searchFieldNames = new Set((wanted.fields || []).map(f => f.name))
+  for (const pair of currentPairs) {
+    if (searchFieldNames.has(pair.dest) && !wantedKeys.has(key(pair))) {
+      push('delete-copy-field', { source: pair.source, dest: pair.dest }, `remove copy field ${pair.source} -> ${pair.dest}`)
+    }
+  }
+
+  for (const pair of wantedPairs) {
+    if (!currentKeys.has(key(pair))) {
       push('add-copy-field', pair, `add copy field ${pair.source} -> ${pair.dest}`)
     }
   }

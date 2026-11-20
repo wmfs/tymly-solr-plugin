@@ -16,8 +16,10 @@ What the search fields do:
   - **Accents:** `cafe` matches `Café`.
   - **Synonyms**, at search time, from blueprints (see below).
   - **Split words as phrases:** a word that gets split up, such as `ABC12/2024` or `Stoke-on-Trent`, is searched as a phrase (`autoGeneratePhraseQueries`), so it matches those words next to each other rather than any of them.
-- **`searchPrefix`** (title, description): partial words. `birm` matches `Birmingham`, and `ABC` matches `ABC12/2024`.
-- **`searchShingle`** (title, description): neighbouring words joined, so `castlewood` matches `Castle Wood`.
+- **`searchPrefix`** (title only): partial words of 3 to 10 letters. `birm` matches `Birmingham`, and `ABC` matches `ABC12/2024`.
+- **`searchShingle`** (title only): neighbouring words joined, so `castlewood` matches `Castle Wood`.
+
+`searchPrefix` and `searchShingle` only use the title because they make the index much bigger: with title and description, 2 to 20 letters, a 6.2 million document index grew from 1.15GB to 3.16GB.
 - **`uprns`**: a record's UPRN plus related UPRNs, for filtering. Filled by search docs, not copy fields.
 
 Searching only uses these fields once the search state resource queries them. Applying the schema on its own changes no search results.
