@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "properties": {
+    "searchLogId": {
+      "type": "string",
+      "description": "The searchLogId returned with the search results"
+    },
+    "docId": {
+      "type": "string",
+      "description": "The docId of the result opened"
+    },
+    "docType": {
+      "type": "string",
+      "description": "The docType of the result opened"
+    },
+    "position": {
+      "type": "integer",
+      "description": "The position of the result across all pages (1 is the first result)"
+    },
+    "stateMachineName": {
+      "type": "string",
+      "description": "The launch the user chose"
+    }
+  },
+  "required": ["searchLogId", "docId", "position"]
+}
