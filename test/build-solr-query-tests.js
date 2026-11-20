@@ -102,19 +102,58 @@ describe('build Solr query', () => {
       expect(params.fq[1]).to.eql('(title:(High AND Street) OR description:(High AND Street) OR docId:(High AND Street))')
     })
 
-    it('keeps the existing cleaning: strips some punctuation and turns hyphens into spaces', () => {
-      const params = build({ filterOverrides: { query: "  Mary's  St. Road-Name  " } })
-      expect(params.fq[1]).to.eql('(title:(Marys AND St AND Road AND Name) OR description:(Marys AND St AND Road AND Name) OR docId:(Marys AND St AND Road AND Name))')
+    it('keeps the existing cleaning: strips some punctuation from ordinary words', () => {
+      const params = build({ filterOverrides: { query: "  Mary's  St.  " } })
+      expect(params.fq[1]).to.eql('(title:(Marys AND St) OR description:(Marys AND St) OR docId:(Marys AND St))')
+    })
+
+    it('still turns a hyphen into a space when the word is not a compound word', () => {
+      const params = build({ filterOverrides: { query: 'Road- -Name' } })
+      expect(params.fq[1]).to.include('title:(Road AND Name)')
     })
 
     it('escapes characters that used to break the query', () => {
-      const params = build({ filterOverrides: { query: 'FSC493/2024' } })
-      expect(params.fq[1]).to.eql('(title:(FSC493\\/2024) OR description:(FSC493\\/2024) OR docId:(FSC493\\/2024))')
+      const params = build({ filterOverrides: { query: 'price^2' } })
+      expect(params.fq[1]).to.eql('(title:(price\\^2) OR description:(price\\^2) OR docId:(price\\^2))')
     })
 
     it('adds no search filter for an empty or emoji-only query', () => {
       expect(build({ filterOverrides: { query: '   ' } }).fq).to.have.length(1)
       expect(build({ filterOverrides: { query: '🔥🚒' } }).fq).to.have.length(1)
+    })
+  })
+
+  describe('compound words such as references (sc-34405)', () => {
+    const searchFor = query => build({ filterOverrides: { query } }).fq[1]
+
+    it('searches a compound word as a phrase, not as separate words', () => {
+      expect(searchFor('FSC493/2024')).to.eql(
+        '(title:("FSC493/2024") OR description:("FSC493/2024") OR docId:("FSC493/2024"))'
+      )
+    })
+
+    it('works for any format, not just Tymly references', () => {
+      expect(searchFor('AUD127/2026')).to.include('title:("AUD127/2026")')
+      expect(searchFor('FSC-00123')).to.include('title:("FSC-00123")')
+      expect(searchFor('2026-AFC-56')).to.include('title:("2026-AFC-56")')
+      expect(searchFor('fsa45/2024')).to.include('title:("fsa45/2024")')
+    })
+
+    it('combines a compound word with other words', () => {
+      expect(searchFor('FSC493/2024 Smith')).to.include('title:("FSC493/2024" AND Smith)')
+    })
+
+    it('ignores punctuation around a compound word', () => {
+      expect(searchFor('(FSC493/2024),')).to.include('title:("FSC493/2024")')
+    })
+
+    it('searches hyphenated place names and number ranges as phrases too', () => {
+      expect(searchFor('Stoke-on-Trent')).to.include('title:("Stoke-on-Trent")')
+      expect(searchFor('14-20 Overfield Road')).to.include('title:("14-20" AND Overfield AND Road)')
+    })
+
+    it('a compound-looking word with quotes is escaped normally, not quoted', () => {
+      expect(searchFor('FSC1/2"x')).to.include('title:(FSC1\\/2\\"x)')
     })
   })
 
