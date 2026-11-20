@@ -5,6 +5,7 @@ DROP VIEW IF EXISTS tymly.search_report_click_position;
 DROP TABLE IF EXISTS tymly.search_history;
 DROP TABLE IF EXISTS tymly.search_click;
 DROP TABLE IF EXISTS tymly.search_log;
+DELETE FROM tymly.registry_key WHERE key = 'tymly_searchLogRetentionDays';
 DROP TABLE IF EXISTS tymly_test.muggles;
 DROP TABLE IF EXISTS tymly_test.students;
 DROP TABLE IF EXISTS tymly_test.staff;

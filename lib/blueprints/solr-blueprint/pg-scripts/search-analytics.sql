@@ -1,8 +1,5 @@
--- Search analytics (sc-34389). Runs on every boot.
-
--- Retention: keep 12 months
-DELETE FROM tymly.search_click WHERE _created < now() - interval '12 months';
-DELETE FROM tymly.search_log WHERE _created < now() - interval '12 months';
+-- Search analytics report views (sc-34389). Runs on every boot.
+-- Old rows are deleted by the searchAnalytics service (tymly_searchLogRetentionDays registry key).
 
 -- Searches that found nothing, per week
 CREATE OR REPLACE VIEW tymly.search_report_zero_results AS

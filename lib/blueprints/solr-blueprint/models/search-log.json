@@ -1,6 +1,6 @@
 {
   "title": "Search Log",
-  "description": "One row per search a user runs, used to find searches that return nothing or that nobody opens a result from. Rows older than 12 months are deleted on boot.",
+  "description": "One row per search a user runs, used to find searches that return nothing or that nobody opens a result from. Rows older than the tymly_searchLogRetentionDays registry key (default 365) are deleted on boot and once a day.",
   "type": "object",
   "properties": {
     "userId": {

@@ -1,6 +1,6 @@
 {
   "title": "Search Click",
-  "description": "One row each time a user opens a search result. Rows older than 12 months are deleted on boot.",
+  "description": "One row each time a user opens a search result. Rows older than the tymly_searchLogRetentionDays registry key (default 365) are deleted on boot and once a day.",
   "type": "object",
   "properties": {
     "searchLogId": {
