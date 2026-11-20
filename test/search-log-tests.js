@@ -30,36 +30,42 @@ describe('search analytics helpers (sc-34389)', () => {
   })
 
   describe('logSearch', () => {
-    function mockClient () {
-      const calls = []
+    function mockModel () {
+      const created = []
       return {
-        calls,
-        query: async (sql, params) => {
-          calls.push({ sql, params })
-          return { rows: [{ id: 'log-1' }] }
+        created,
+        create: async (doc, options) => {
+          created.push(doc)
+          return { idProperties: { id: 'log-1' } }
         }
       }
     }
 
-    it('inserts one parameterised row and returns its id', async () => {
-      const client = mockClient()
-      const id = await logSearch(client, {
+    it('creates one search_log row and returns its id', async () => {
+      const model = mockModel()
+      const id = await logSearch(model, {
         userId: 'jane',
         filters: { query: ' Hagrid ', domain: 'search', categoryRestriction: ['school'], offset: 10 },
         hitCount: '3',
         durationMs: 12.6
       })
       expect(id).to.equal('log-1')
-      expect(client.calls).to.have.length(1)
-      expect(client.calls[0].params).to.eql(['jane', 'hagrid', 'search', ['school'], 10, 3, 13])
-      expect(client.calls[0].sql).to.not.include('Hagrid')
+      expect(model.created).to.eql([{
+        userId: 'jane',
+        query: 'hagrid',
+        domain: 'search',
+        categoryRestriction: ['school'],
+        resultOffset: 10,
+        hitCount: 3,
+        durationMs: 13
+      }])
     })
 
     it('does not log a search with no text', async () => {
-      const client = mockClient()
-      const id = await logSearch(client, { userId: 'jane', filters: {}, hitCount: 24, durationMs: 1 })
+      const model = mockModel()
+      const id = await logSearch(model, { userId: 'jane', filters: {}, hitCount: 24, durationMs: 1 })
       expect(id).to.equal(null)
-      expect(client.calls).to.have.length(0)
+      expect(model.created).to.have.length(0)
     })
   })
 
