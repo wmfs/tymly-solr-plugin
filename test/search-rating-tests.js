@@ -6,7 +6,7 @@ const parseRating = require('../lib/components/state-resources/search/parse-rati
 
 process.on('unhandledRejection', (reason, p) => {
   console.log('Unhandled Rejection at: Promise', p, 'reason:', reason)
-  // application specific logging, throwing an error,%20OR%20other logic here
+  // application specific logging, throwing an error, or other logic here
 })
 
 describe('search rating tests', function () {
@@ -15,12 +15,12 @@ describe('search rating tests', function () {
   const tests = [
     {
       input: 3,
-      expected: '%20AND%20rating:3',
+      expected: 'rating:3',
       desc: 'Rating equals 3 (number)'
     },
     {
       input: '3',
-      expected: '%20AND%20rating:3',
+      expected: 'rating:3',
       desc: 'Rating equals 3 (string)'
     },
     {
@@ -40,12 +40,12 @@ describe('search rating tests', function () {
     },
     {
       input: [0, 2],
-      expected: '%20AND%20rating:[0%20TO%202]',
+      expected: 'rating:[0 TO 2]',
       desc: 'Rating is between 0 and 2 (numbers)'
     },
     {
       input: ['0', '2'],
-      expected: '%20AND%20rating:[0%20TO%202]',
+      expected: 'rating:[0 TO 2]',
       desc: 'Rating is between 0 and 2 (strings)'
     },
     {
@@ -62,6 +62,26 @@ describe('search rating tests', function () {
       input: [],
       expected: '',
       desc: 'Rating is empty array'
+    },
+    {
+      input: '3 OR roles:*',
+      expected: '',
+      desc: 'Text after a number is rejected'
+    },
+    {
+      input: ['0', '2] OR roles:[* TO *'],
+      expected: '',
+      desc: 'Text in a range is rejected'
+    },
+    {
+      input: ' 4 ',
+      expected: 'rating:4',
+      desc: 'Rating string is re-serialised as a number'
+    },
+    {
+      input: NaN,
+      expected: '',
+      desc: 'NaN is rejected'
     }
   ]
 
