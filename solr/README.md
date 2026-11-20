@@ -19,7 +19,7 @@ What the search fields do:
 - **`searchPrefix`** (title, description): partial words of 3 to 10 letters. `birm` matches `Birmingham`, and `ABC` matches `ABC12/2024`.
 - **`searchShingle`** (title, description): neighbouring words joined, so `castlewood` matches `Castle Wood`.
 
-`searchPrefix` and `searchShingle` make the index bigger, so partial words are limited to 3 to 10 letters. Measured on a 3.3 million document index, they took it from 1.15GB to 1.82GB; with 2 to 20 letters it was more than twice that.
+`searchPrefix` and `searchShingle` make the index bigger, so partial words are limited to 3 to 10 letters. In one test with the same 6.2 million documents, partial words of 2 to 20 letters from title and description made the index 2.7 times its size without them, against 1.7 times for 3 to 10 letters from titles only.
 - **`uprns`**: a record's UPRN plus related UPRNs, for filtering. Filled by search docs, not copy fields.
 
 Searching only uses these fields once the search state resource queries them. Applying the schema on its own changes no search results.
