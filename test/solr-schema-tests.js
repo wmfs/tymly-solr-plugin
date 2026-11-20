@@ -150,23 +150,29 @@ describe('Solr schema (solr/)', () => {
         fields: asSolrReturnsIt([...schema.baseFields, ...schema.fields]),
         copyFields: [
           ...copyFieldsAsSolrReturnsThem(schema.copyFields),
-          { source: 'description', dest: 'searchPrefix' },
-          { source: 'description', dest: 'searchShingle' },
+          { source: 'synopsis', dest: 'searchPrefix' },
+          { source: 'additionalTerms', dest: 'searchShingle' },
           { source: 'title', dest: 'someoneElsesField' }
         ]
       }
       const plan = planSchemaChanges(current, schema)
       expect(plan.commands['delete-copy-field']).to.eql([
-        { source: 'description', dest: 'searchPrefix' },
-        { source: 'description', dest: 'searchShingle' }
+        { source: 'synopsis', dest: 'searchPrefix' },
+        { source: 'additionalTerms', dest: 'searchShingle' }
       ])
       expect(plan.reindexNeeded).to.equal(true)
     })
 
-    it('partial and joined words come from titles only, to keep the index smaller', () => {
+    it('partial and joined words come from title and description only', () => {
       const intoField = dest => schema.copyFields.filter(c => [].concat(c.dest).includes(dest)).map(c => c.source)
-      expect(intoField('searchPrefix')).to.eql(['title'])
-      expect(intoField('searchShingle')).to.eql(['title'])
+      expect(intoField('searchPrefix')).to.eql(['title', 'description'])
+      expect(intoField('searchShingle')).to.eql(['title', 'description'])
+    })
+
+    it('partial words are 3 to 10 letters, to keep the index smaller', () => {
+      const prefix = schema.fieldTypes.find(t => t.name === 'text_prefix')
+      const edgeNGram = prefix.indexAnalyzer.filters.find(f => f.class === 'solr.EdgeNGramFilterFactory')
+      expect(edgeNGram).to.include({ minGramSize: '3', maxGramSize: '10' })
     })
 
     it('never changes an existing base field', () => {

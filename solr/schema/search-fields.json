@@ -183,7 +183,11 @@
     },
     {
       "source": "description",
-      "dest": "searchText"
+      "dest": [
+        "searchText",
+        "searchPrefix",
+        "searchShingle"
+      ]
     },
     {
       "source": "additionalTerms",
