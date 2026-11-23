@@ -1,4 +1,4 @@
--- Search analytics report views (sc-34389). Runs on every boot.
+-- Search analytics report views. Runs on every boot.
 -- Old rows are deleted by the searchAnalytics service (tymly_searchLogRetentionDays registry key).
 -- Each report is per week and per domain: 'search' is the global search page, other domains are
 -- searches made from cards (e.g. Action.ApiLookup state machines using module:search).

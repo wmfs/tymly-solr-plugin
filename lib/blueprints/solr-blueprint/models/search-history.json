@@ -1,6 +1,6 @@
 {
   "title": "Search History",
-  "description": "No longer written by search (sc-34389): see search_log and search_click.",
+  "description": "No longer written by search: see search_log and search_click.",
   "type": "object",
   "properties": {
     "userId": {

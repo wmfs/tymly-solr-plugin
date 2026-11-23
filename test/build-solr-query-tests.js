@@ -123,7 +123,7 @@ describe('build Solr query', () => {
     })
   })
 
-  describe('compound words such as references (sc-34405)', () => {
+  describe('compound words such as references', () => {
     const searchFor = query => build({ filterOverrides: { query } }).fq[1]
 
     it('searches a compound word as a phrase, not as separate words', () => {

@@ -7,7 +7,7 @@ const { normaliseQuery, logSearch } = require('../lib/components/state-resources
 const validateClick = require('../lib/components/state-resources/log-search-click/validate-click')
 const { parseRetentionDays } = require('../lib/components/services/search-analytics')
 
-describe('search analytics helpers (sc-34389)', () => {
+describe('search analytics helpers', () => {
   describe('normaliseQuery', () => {
     const cases = [
       ['  Hagrid  ', 'hagrid'],

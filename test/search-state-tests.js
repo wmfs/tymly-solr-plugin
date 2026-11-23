@@ -225,7 +225,7 @@ describe('tymly-solr-plugin search state resource tests', function () {
     })
   })
 
-  describe('search analytics (sc-34389)', () => {
+  describe('search analytics', () => {
     const CLICK_STATE_MACHINE = 'tymly_logSearchClick_1_0'
 
     let hagridLogId
