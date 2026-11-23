@@ -24,7 +24,7 @@ describe('build Postgres (fallback) search query', () => {
   it('filters by role, with paging, all as parameters', () => {
     const { query, queryParams, countQuery, countParams } = build()
 
-    expect(query).to.eql('select * from tymly.solr_data where (roles && $1::text[]) limit $2 offset $3')
+    expect(query).to.eql('select * from tymly.solr_data where (roles && $1::text[]) order by modified desc nulls last, id limit $2 offset $3')
     expect(queryParams).to.eql([ROLES, 10, 0])
     expect(countQuery).to.eql('select count(*) as total from tymly.solr_data where (roles && $1::text[])')
     expect(countParams).to.eql([ROLES])
@@ -49,9 +49,23 @@ describe('build Postgres (fallback) search query', () => {
 
     expect(query).to.eql(
       'select * from tymly.solr_data where (roles && $1::text[]) and (domain = $2) and (active_event = true) ' +
-      'and (category = any($3::text[])) limit $4 offset $5'
+      'and (category = any($3::text[])) order by modified desc nulls last, id limit $4 offset $5'
     )
     expect(queryParams).to.eql([ROLES, 'search', ['prevention', 'protection'], 10, 0])
+  })
+
+  it('puts records with more of the words in their title first, then the newest', () => {
+    const { query } = build({ query: 'High Street' })
+    expect(query).to.include(
+      'order by ((cast(title as text) ilike $1)::int + (cast(title as text) ilike $2)::int) desc, modified desc nulls last, id limit'
+    )
+  })
+
+  it('only orders by columns the solr_data view has', () => {
+    const { query } = buildStorageQuery({ filters: filters({ query: 'x' }), searchFields: SEARCH_FIELDS, userRoles: ROLES, viewColumns: ['id', 'domain'] })
+    expect(query).to.include(' order by id limit ')
+    const none = buildStorageQuery({ filters: filters(), userRoles: ROLES, viewColumns: ['domain'] })
+    expect(none.query).to.eql('select * from tymly.solr_data where (roles && $1::text[]) limit $2 offset $3')
   })
 
   describe('injection attempts never reach the SQL text', () => {

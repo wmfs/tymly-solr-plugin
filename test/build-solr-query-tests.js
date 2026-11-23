@@ -5,9 +5,9 @@ const expect = require('chai').expect
 const querystring = require('querystring')
 const buildSolrQuery = require('../lib/components/state-resources/search/build-solr-query')
 const { escapeTerm, quoteValue } = require('../lib/components/state-resources/search/escape')
+const { loadRelevanceSettings } = require('../lib/components/state-resources/search/relevance')
 
 const ROLES = ['tymlyTest_boss', '$authenticated']
-const SEARCH_FIELDS = ['title', 'description', 'doc_id']
 const ALLOWED_FIELDS = new Set(['id', 'title', 'description', 'modified', 'launches', 'score'])
 
 function filters (overrides = {}) {
@@ -22,15 +22,17 @@ function filters (overrides = {}) {
   }
 }
 
-function build ({ event = {}, filterOverrides = {}, userRoles = ROLES } = {}) {
+function build ({ event = {}, filterOverrides = {}, userRoles = ROLES, relevance } = {}) {
   return buildSolrQuery({
     event,
     filters: filters(filterOverrides),
-    searchFields: SEARCH_FIELDS,
     userRoles,
-    allowedFields: ALLOWED_FIELDS
+    allowedFields: ALLOWED_FIELDS,
+    relevance
   })
 }
+
+const searchFor = (query, options = {}) => build({ filterOverrides: { query }, ...options })
 
 // What solr-client actually sends: the params object URL-encoded with querystring.stringify
 const sentToSolr = params => querystring.parse(querystring.stringify(params))
@@ -88,7 +90,7 @@ describe('build Solr query', () => {
         'domain:"search"',
         'docType:"wmfs_audit"',
         'author:"jim.smith"',
-        'category:("prevention" OR "protection")',
+        '{!tag=category}category:("prevention" OR "protection")',
         'activeEvent:true'
       ])
     })
@@ -97,63 +99,120 @@ describe('build Solr query', () => {
       expect(build({ filterOverrides: { showNonActiveEventsOnly: true } }).fq).to.include('activeEvent:false')
     })
 
-    it('searches every field for all the words', () => {
-      const params = build({ filterOverrides: { query: 'High Street' } })
-      expect(params.fq[1]).to.eql('(title:(High AND Street) OR description:(High AND Street) OR docId:(High AND Street))')
+    it('asks for category and docType counts across all matches', () => {
+      const params = build({ filterOverrides: { categoryRestriction: ['prevention'] } })
+      expect(params.facet).to.eql('true')
+      // the category facet ignores the category filter, so the other categories still have counts
+      expect(params['facet.field']).to.eql(['{!ex=category}category', 'docType'])
     })
 
-    it('keeps the existing cleaning: strips some punctuation from ordinary words', () => {
-      const params = build({ filterOverrides: { query: "  Mary's  St.  " } })
-      expect(params.fq[1]).to.eql('(title:(Marys AND St) OR description:(Marys AND St) OR docId:(Marys AND St))')
+    it('without search text: no eDisMax, no highlighting, the chosen sort', () => {
+      const params = build()
+      expect(params).to.not.have.property('defType')
+      expect(params).to.not.have.property('hl')
+      expect(params.sort).to.eql('created desc')
+    })
+
+    it('adds nothing to search for with an empty or emoji-only query', () => {
+      expect(searchFor('   ').q).to.eql('*:*')
+      expect(searchFor('🔥🚒').q).to.eql('*:*')
+    })
+  })
+
+  describe('search text (eDisMax)', () => {
+    it('ranks matches with eDisMax and the default relevance settings', () => {
+      const params = searchFor('High Street')
+      expect(params.q).to.eql('High Street')
+      expect(params.defType).to.eql('edismax')
+      expect(params.qf).to.eql('title^2 searchText searchPrefix^0.5 searchShingle^0.5')
+      expect(params.pf).to.eql('title^3 description^2')
+      expect(params.mm).to.eql('2<-1 5<75%')
+      expect(params.sow).to.eql('true')
+      expect(params.hl).to.eql('true')
+      expect(params['hl.fl']).to.eql('title,description')
+    })
+
+    it('search text is never a filter, so it cannot change which records a user may see', () => {
+      expect(searchFor('High Street').fq).to.eql(['roles:("tymlyTest_boss" OR "$authenticated")'])
+    })
+
+    it('sorts by best match first, then by the chosen sort', () => {
+      expect(searchFor('High Street').sort).to.eql('score desc, created desc')
+      expect(build({ filterOverrides: { query: 'x', orderBy: 'rating desc' } }).sort).to.eql('score desc, rating desc')
+      expect(build({ filterOverrides: { query: 'x', orderBy: 'score desc' } }).sort).to.eql('score desc')
+    })
+
+    it('keeps apostrophes and ordinary punctuation', () => {
+      expect(searchFor("  Uday's  St.  ").q).to.eql("Uday's St.")
+    })
+
+    it('escapes characters with a meaning in Lucene syntax', () => {
+      expect(searchFor('price^2 kebab] (x) a:b').q).to.eql('price\\^2 kebab\\] \\(x\\) a\\:b')
     })
 
     it('still turns a hyphen into a space when the word is not a compound word', () => {
-      const params = build({ filterOverrides: { query: 'Road- -Name' } })
-      expect(params.fq[1]).to.include('title:(Road AND Name)')
+      expect(searchFor('Road- -Name').q).to.eql('Road Name')
     })
 
-    it('escapes characters that used to break the query', () => {
-      const params = build({ filterOverrides: { query: 'price^2' } })
-      expect(params.fq[1]).to.eql('(title:(price\\^2) OR description:(price\\^2) OR docId:(price\\^2))')
+    it('leaves out stopwords', () => {
+      expect(searchFor('The Bull and Gate').q).to.eql('Bull Gate')
     })
 
-    it('adds no search filter for an empty or emoji-only query', () => {
-      expect(build({ filterOverrides: { query: '   ' } }).fq).to.have.length(1)
-      expect(build({ filterOverrides: { query: '🔥🚒' } }).fq).to.have.length(1)
+    it('keeps stopwords when they are all the user typed', () => {
+      expect(searchFor('the and').q).to.eql('the and')
+    })
+
+    it('boosts a record whose docId is exactly the search text', () => {
+      expect(searchFor(' 100071234567 ').bq).to.eql(['docId:"100071234567"^10'])
+      expect(searchFor('x"y').bq).to.eql(['docId:"x\\"y"^10'])
+    })
+
+    it('boosts values found by a blueprint boost pattern', () => {
+      const relevance = loadRelevanceSettings({
+        postcodes: {
+          boostPatterns: [{ pattern: '\\b[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}\\b', flags: 'i', field: 'additionalTerms', boost: 5, removeSpaces: true }]
+        }
+      })
+      expect(searchFor('ws9 0td', { relevance }).bq).to.eql([
+        'docId:"ws9 0td"^10',
+        'additionalTerms:"ws90td"^5'
+      ])
+      expect(searchFor('Udays Wolverhampton WV23AY', { relevance }).bq).to.include('additionalTerms:"WV23AY"^5')
+      expect(searchFor('High Street', { relevance }).bq).to.have.length(1)
+    })
+
+    it('blueprint stopwords are left out too', () => {
+      const relevance = loadRelevanceSettings({ companies: { stopwords: ['Ltd'] } })
+      expect(searchFor('Acme Ltd', { relevance }).q).to.eql('Acme')
     })
   })
 
   describe('compound words such as references', () => {
-    const searchFor = query => build({ filterOverrides: { query } }).fq[1]
-
     it('searches a compound word as a phrase, not as separate words', () => {
-      expect(searchFor('FSC493/2024')).to.eql(
-        '(title:("FSC493/2024") OR description:("FSC493/2024") OR docId:("FSC493/2024"))'
-      )
+      expect(searchFor('FSC493/2024').q).to.eql('"FSC493/2024"')
     })
 
     it('works for any format, not just Tymly references', () => {
-      expect(searchFor('AUD127/2026')).to.include('title:("AUD127/2026")')
-      expect(searchFor('FSC-00123')).to.include('title:("FSC-00123")')
-      expect(searchFor('2026-AFC-56')).to.include('title:("2026-AFC-56")')
-      expect(searchFor('fsa45/2024')).to.include('title:("fsa45/2024")')
+      for (const ref of ['AUD127/2026', 'FSC-00123', '2026-AFC-56', 'fsa45/2024']) {
+        expect(searchFor(ref).q).to.eql(`"${ref}"`)
+      }
     })
 
     it('combines a compound word with other words', () => {
-      expect(searchFor('FSC493/2024 Smith')).to.include('title:("FSC493/2024" AND Smith)')
+      expect(searchFor('FSC493/2024 Smith').q).to.eql('"FSC493/2024" Smith')
     })
 
     it('ignores punctuation around a compound word', () => {
-      expect(searchFor('(FSC493/2024),')).to.include('title:("FSC493/2024")')
+      expect(searchFor('(FSC493/2024),').q).to.eql('"FSC493/2024"')
     })
 
     it('searches hyphenated place names and number ranges as phrases too', () => {
-      expect(searchFor('Stoke-on-Trent')).to.include('title:("Stoke-on-Trent")')
-      expect(searchFor('14-20 Overfield Road')).to.include('title:("14-20" AND Overfield AND Road)')
+      expect(searchFor('Stoke-on-Trent').q).to.eql('"Stoke-on-Trent"')
+      expect(searchFor('14-20 Overfield Road').q).to.eql('"14-20" Overfield Road')
     })
 
     it('a compound-looking word with quotes is escaped normally, not quoted', () => {
-      expect(searchFor('FSC1/2"x')).to.include('title:(FSC1\\/2\\"x)')
+      expect(searchFor('FSC1/2"x').q).to.eql('FSC1\\/2\\"x')
     })
   })
 
@@ -186,12 +245,11 @@ describe('build Solr query', () => {
     }
 
     it('a search word cannot add a clause or a parameter', () => {
-      // ( ) : * are stripped by the existing cleaning; the rest must be escaped
-      const sent = sentToSolr(build({ filterOverrides: { query: 'a&rows=9999 x"]OR[roles/{}' } }))
+      const sent = sentToSolr(build({ filterOverrides: { query: 'a&rows=9999 x"]OR[roles/{} OR *:* {!lucene}' } }))
       expect(sent.rows).to.eql('10')
-      expect(sent.fq).to.have.length(2)
-      expect(sent.fq[1]).to.include('a\\&rows=9999')
-      expect(sent.fq[1]).to.include('x\\"\\]OR\\[roles\\/\\{\\}')
+      // one fq, so querystring gives a string rather than an array
+      expect(sent.fq).to.eql('roles:("tymlyTest_boss" OR "$authenticated")')
+      expect(sent.q).to.eql('a\\&rows=9999 x\\"\\]OR\\[roles\\/\\{\\} or \\*\\:\\* \\{\\!lucene\\}')
     })
 
     it('a tag cannot close its quotes', () => {
