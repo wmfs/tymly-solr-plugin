@@ -88,6 +88,11 @@ describe('tymly-solr-plugin search state resource tests', function () {
         const searchResults = await search(null, 'john.smith')
         expect(searchResults.totalHits).to.eql(24)
       })
+      it('without Solr, no facets are returned (only this page could be counted)', async () => {
+        const searchResults = await search(null, 'john.smith')
+        expect(searchResults.facets).to.eql(null)
+        expect(searchResults.categoryCounts).to.be.an('object')
+      })
       it('search for staff', async () => {
         const searchResults = await search('Hagrid', 'john.smith')
         expect(searchResults.totalHits).to.eql(1)

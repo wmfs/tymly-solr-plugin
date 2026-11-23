@@ -92,7 +92,7 @@ Search results include:
 - `highlights`: the matching words in `title` and `description`, keyed by Solr document `id`.
 - `categoryCounts`: the same as `facets.category`, kept for existing callers.
 
-Without Solr, results are ordered by how many of the words are in the title, then by most recently modified. Facets are counted from the current page only.
+Without Solr, results are ordered by how many of the words are in the title, then by most recently modified. `facets` is `null`, because only the current page could be counted, and `categoryCounts` counts the current page as before.
 
 ### Tuning
 
