@@ -34,7 +34,7 @@ function build ({ event = {}, filterOverrides = {}, userRoles = ROLES, relevance
 
 const searchFor = (query, options = {}) => build({ filterOverrides: { query }, ...options })
 
-// What solr-client actually sends: the params object URL-encoded with querystring.stringify
+// The params object form-encoded, as the Solr client sends it
 const sentToSolr = params => querystring.parse(querystring.stringify(params))
 
 describe('build Solr query', () => {

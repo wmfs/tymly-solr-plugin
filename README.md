@@ -20,6 +20,17 @@ See the test blueprint in /test/fixtures/school-blueprint for an example of how 
 $ npm install tymly-solr-plugin --save
 ```
 
+## <a name="config"></a>Connecting to Solr
+
+Set `config.solr` (`host`, `port`, `path`) or the environment variables `SOLR_HOST`, `SOLR_PORT` and `SOLR_PATH` (e.g. `localhost`, `8983`, `/solr`). Without them, search uses the Postgres fallback.
+
+| Setting | Environment variable | Default | |
+| --- | --- | --- | --- |
+| `config.solr.core` | `SOLR_CORE` | `tymly` | The Solr core searched and updated |
+| `config.solr.timeoutMs` | `SOLR_TIMEOUT_MS` | `30000` | How long to wait for Solr before the search or task fails |
+
+A Solr error (a bad query, Solr down or restarting, a timeout) fails only that search or task, never the Tymly process. Searches fail with `searchFail`.
+
 ## <a name="test"></a>Testing
 
 Before running the tests, you'll need a test PostgreSQL database available and set a `PG_CONNECTION_STRING` environment variable to point to it, for example:
