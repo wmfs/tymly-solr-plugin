@@ -87,7 +87,7 @@ describe('build Postgres (fallback) search query', () => {
     })
   })
 
-  it('keeps compound words whole so they still match (sc-34405)', () => {
+  it('keeps compound words whole so they still match', () => {
     const { queryParams } = build({ query: 'FSC-00123 FSC493/2024 Stoke-on-Trent' })
     expect(queryParams.slice(0, 3)).to.eql(['%FSC-00123%', '%FSC493/2024%', '%Stoke-on-Trent%'])
   })
