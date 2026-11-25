@@ -198,7 +198,7 @@ describe('tymly_fullReindex_1_0 access restrictions', function () {
       }
 
       // drop everything this test created, permissions included (Tymly never deletes permission rows)
-      if (client) await client.query('DROP SCHEMA IF EXISTS tymly CASCADE; DROP SCHEMA IF EXISTS tymly_test CASCADE')
+      if (client) await client.query('DO $$ BEGIN IF current_database() ~* \'test\' THEN DROP SCHEMA IF EXISTS tymly CASCADE; DROP SCHEMA IF EXISTS tymly_test CASCADE; END IF; END $$') // only in a test database
       if (tymlyService) await tymlyService.shutdown()
 
       for (const key of SOLR_ENV_VARS) {
