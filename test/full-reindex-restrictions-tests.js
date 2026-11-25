@@ -57,7 +57,7 @@ describe('tymly_fullReindex_1_0 access restrictions', function () {
     ]
 
     const savedSolrEnv = {}
-    let tymlyService, statebox, rbac, rbacAdmin
+    let tymlyService, statebox, rbac, rbacAdmin, client
 
     before('check the database is a local one', function () {
       if (process.env.PG_CONNECTION_STRING && !/^postgres:\/\/[^:]+:[^@]+@(?:localhost|127\.0\.0\.1).*$/.test(process.env.PG_CONNECTION_STRING)) {
@@ -91,6 +91,7 @@ describe('tymly_fullReindex_1_0 access restrictions', function () {
       statebox = tymlyServices.statebox
       rbac = tymlyServices.rbac
       rbacAdmin = tymlyServices.rbacAdmin
+      client = tymlyServices.storage.client
 
       // createRole throws if the role is left over from an earlier run against the same database
       const existingRoles = await rbacAdmin.listRoles()
@@ -164,6 +165,8 @@ describe('tymly_fullReindex_1_0 access restrictions', function () {
         }
       }
 
+      // drop everything this test created, permissions included (Tymly never deletes permission rows)
+      if (client) await client.query('DROP SCHEMA IF EXISTS tymly CASCADE; DROP SCHEMA IF EXISTS tymly_test CASCADE')
       if (tymlyService) await tymlyService.shutdown()
 
       for (const key of SOLR_ENV_VARS) {
