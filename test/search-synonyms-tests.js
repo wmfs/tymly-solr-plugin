@@ -50,14 +50,19 @@ describe('search synonyms from blueprints', () => {
   })
 
   describe('synonymMap', () => {
-    it('maps every term to the others in its group, merging groups that share a term', () => {
+    it('maps every term to its whole group, itself included, merging groups that share a term', () => {
       expect(synonymMap([['st', 'street'], ['st', 'saint'], ['tlc', 'tender loving care']])).to.eql({
-        st: ['saint', 'street'],
-        street: ['st'],
-        saint: ['st'],
-        tlc: ['tender loving care'],
-        'tender loving care': ['tlc']
+        st: ['saint', 'st', 'street'],
+        street: ['st', 'street'],
+        saint: ['saint', 'st'],
+        tlc: ['tender loving care', 'tlc'],
+        'tender loving care': ['tender loving care', 'tlc']
       })
+    })
+
+    it('every term still searches for itself, so a synonym only ever adds matches', () => {
+      const map = synonymMap([['st', 'street'], ['rd', 'road']])
+      for (const [term, synonyms] of Object.entries(map)) expect(synonyms).to.include(term)
     })
   })
 
@@ -75,11 +80,33 @@ describe('search synonyms from blueprints', () => {
       expect(planSynonymChanges(synonymMap(groups), groups).changed).to.equal(false)
     })
 
-    it('a changed term is set again, and a term no blueprint has any more is removed', () => {
-      const current = { ...synonymMap(groups), rd: ['rode'], fsc: ['fire safety concern'] }
+    it('a term no blueprint has any more is removed', () => {
+      const current = { ...synonymMap(groups), fsc: ['fire safety concern'] }
       const plan = planSynonymChanges(current, groups)
-      expect(plan.put).to.eql({ rd: ['road'] })
+      expect(plan.put).to.eql({})
       expect(plan.remove).to.eql(['fsc'])
+    })
+
+    it('a term that gained a synonym is set again', () => {
+      const current = { ...synonymMap(groups), rd: ['rd'] }
+      const plan = planSynonymChanges(current, groups)
+      expect(plan.put).to.eql({ rd: ['rd', 'road'] })
+      expect(plan.remove).to.eql([])
+    })
+
+    it('a term that lost a synonym is removed and set again, because Solr only adds to a list', () => {
+      const current = { ...synonymMap(groups), rd: ['rd', 'road', 'rode'] }
+      const plan = planSynonymChanges(current, groups)
+      expect(plan.put).to.eql({ rd: ['rd', 'road'] })
+      expect(plan.remove).to.eql(['rd'])
+    })
+
+    it('replaces the old map that left out the term itself', () => {
+      const old = { rd: ['road'], road: ['rd'] }
+      const plan = planSynonymChanges(old, groups)
+      expect(plan.put).to.have.keys('rd', 'road', 'saw', 'safe and well')
+      expect(plan.put.road).to.eql(['rd', 'road'])
+      expect(plan.remove).to.eql([])
     })
   })
 
@@ -92,8 +119,8 @@ describe('search synonyms from blueprints', () => {
       expect(result).to.eql({ status: 'updated', set: ['rd', 'road'], removed: ['old'] })
       expect(solr.calls).to.eql([
         ['get', MANAGED_RESOURCE],
-        ['put', MANAGED_RESOURCE, { rd: ['road'], road: ['rd'] }],
         ['delete', MANAGED_RESOURCE, 'old'],
+        ['put', MANAGED_RESOURCE, { rd: ['rd', 'road'], road: ['rd', 'road'] }],
         ['reload']
       ])
     })

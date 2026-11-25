@@ -84,6 +84,8 @@ Synonyms come from blueprints, so each one lives with the process it belongs to.
 
 On boot, the `searchSynonyms` service puts the synonyms of every loaded blueprint into Solr's managed synonym list (`tymly_search`), removes any that no loaded blueprint has, and reloads the core if anything changed. No reindex is needed, as synonyms are only used when searching `searchText`. It runs in the background and never stops Tymly booting: if Solr can't be reached, or the schema hasn't been applied yet, it logs a warning. After applying the schema to a new core, restart Tymly to fill the list.
 
+Each term is mapped to its whole group, itself included (`street` -> `[st, street]`). Solr replaces a searched word with what it maps to, so without itself in the list a search for `street` would only look for `st`. A term that loses a synonym is deleted and set again, because setting a term only adds to its list.
+
 The current list is at `<solr url>/tymly/schema/analysis/synonyms/tymly_search`.
 
 ## Local Solr for development
