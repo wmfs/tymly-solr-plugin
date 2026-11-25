@@ -59,6 +59,8 @@ The schema is only ever changed from the files in `solr/schema`, so their git hi
 
 Both scripts print it, and say whether it matches the files you're running them from. To read it without the scripts: `GET <solr>/<core>/config/overlay`, under `userProps`.
 
+**Tymly checks it on boot too.** The `searchSynonyms` service logs a warning if Solr is missing the search fields (the schema was never applied: text searches then only match titles, and UPRN, postcode and masking number searches find nothing), or if Solr's recorded version isn't the one in this plugin. Check the boot log after each release.
+
 **For each release that changes the schema**, save on the release ticket:
 1. the dry run output before applying, which shows what will change and any drift since last time;
 2. the `--apply` output;

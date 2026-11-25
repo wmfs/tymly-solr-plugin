@@ -38,6 +38,7 @@ describe('search synonyms service', function () {
 
   it('sends nothing when there is no Solr URL', async () => {
     expect(await searchSynonyms.synced).to.eql({ status: 'noSolr' })
+    expect(await searchSynonyms.schemaChecked).to.eql({ status: 'noSolr' })
   })
 
   after(async () => {
