@@ -11,11 +11,15 @@
 //
 // After a change to fields, field types or copy fields, run a full reindex (clean=true) so
 // every document is re-added and the new fields are filled.
+//
+// With --apply it also records the schema version in Solr (tymly.schemaHash, tymly.schemaAppliedAt,
+// tymly.schemaSource as config user properties), so anyone can see what an environment is running.
 
 const path = require('path')
 const SolrAdmin = require('../lib/util/solr-admin')
 const parseArgs = require('./lib/args')
 const { planSchemaChanges } = require('./lib/plan-schema-changes')
+const { schemaHash, schemaSource, stampProps, describeStamp } = require('./lib/schema-version')
 
 const SCHEMA_DIR = path.join(__dirname, 'schema')
 
@@ -43,11 +47,21 @@ async function main () {
 
   console.log(`Solr core: ${solr.coreUrl}${apply ? '' : '  (dry run: add --apply to make changes)'}`)
 
+  const hash = schemaHash(schema)
+  const source = schemaSource(__dirname)
+  console.log(`Schema files here: version ${hash} (${source})`)
+  for (const line of describeStamp(await solr.getUserProps(), hash).lines) console.log(line)
+
   const schemaPlan = planSchemaChanges(await solr.getSchema(), schema)
   report('Schema', schemaPlan.summary)
   if (apply && schemaPlan.summary.length) {
     await solr.updateSchema(schemaPlan.commands)
     console.log('  schema updated')
+  }
+
+  if (apply) {
+    await solr.setUserProps(stampProps(hash, source))
+    console.log(`\nRecorded schema version ${hash} in Solr`)
   }
 
   if (schemaPlan.reindexNeeded) {

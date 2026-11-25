@@ -48,6 +48,23 @@ Then:
 
 On a live system, do steps 2 to 4 at a quiet time. Search keeps working throughout, and the new fields are empty until the reindex finishes.
 
+### Keeping a record
+
+The schema is only ever changed from the files in `solr/schema`, so their git history is the record of every change. Don't change fields, field types or copy fields by hand in the Solr admin UI: the next dry run would show the difference and `--apply` would undo it.
+
+**Which version each environment has:** `--apply` saves the version of the schema files in Solr, as config user properties:
+- `tymly.schemaHash`: a short fingerprint of `solr/schema`;
+- `tymly.schemaAppliedAt`: when it was applied;
+- `tymly.schemaSource`: the git commit it came from.
+
+Both scripts print it, and say whether it matches the files you're running them from. To read it without the scripts: `GET <solr>/<core>/config/overlay`, under `userProps`.
+
+**For each release that changes the schema**, save on the release ticket:
+1. the dry run output before applying, which shows what will change and any drift since last time;
+2. the `--apply` output;
+3. the `check-analysis.js` output, which should start with "This matches the schema files here";
+4. the full reindex's document count, index size and time.
+
 
 **Undoing it:** the change only adds things, so it can simply be left in place. To remove it, delete the copy fields, then the fields, then the field types through the Schema API (`delete-copy-field`, `delete-field`, `delete-field-type`).
 

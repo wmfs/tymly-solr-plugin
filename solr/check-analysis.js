@@ -10,6 +10,8 @@ const SolrAdmin = require('../lib/util/solr-admin')
 const parseArgs = require('./lib/args')
 const cases = require('./lib/analysis-cases')
 const { finalTokens } = require('./lib/analysis-tokens')
+const { loadWantedSchema } = require('./apply-schema')
+const { schemaHash, describeStamp } = require('./lib/schema-version')
 
 async function main () {
   const args = parseArgs(process.argv.slice(2), { core: 'tymly' })
@@ -20,6 +22,10 @@ async function main () {
 
   const solr = new SolrAdmin(args.url, args.core)
   let failures = 0
+
+  console.log(`Solr core: ${solr.coreUrl}`)
+  for (const line of describeStamp(await solr.getUserProps(), schemaHash(loadWantedSchema())).lines) console.log(line)
+  console.log('')
 
   for (const c of cases) {
     const response = await solr.analyse(c.fieldType, { [c.side]: c.value })
