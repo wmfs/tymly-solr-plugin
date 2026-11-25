@@ -9,7 +9,7 @@ const path = require('path')
 describe('a blueprint replacing another blueprint\'s search doc', function () {
   this.timeout(process.env.TIMEOUT || 5000)
 
-  let tymlyService, solr
+  let tymlyService, client, solr
 
   before(async function () {
     if (process.env.PG_CONNECTION_STRING && !/^postgres:\/\/[^:]+:[^@]+@(?:localhost|127\.0\.0\.1).*$/.test(process.env.PG_CONNECTION_STRING)) {
@@ -31,6 +31,7 @@ describe('a blueprint replacing another blueprint\'s search doc', function () {
       }
     })
     tymlyService = services.tymly
+    client = services.storage.client
     solr = services.solr
   })
 
@@ -46,6 +47,8 @@ describe('a blueprint replacing another blueprint\'s search doc', function () {
   })
 
   after(async () => {
+    // drop everything this test created
+    if (client) await client.query('DROP SCHEMA IF EXISTS tymly CASCADE; DROP SCHEMA IF EXISTS tymly_test CASCADE; DROP SCHEMA IF EXISTS tymly_test_plus CASCADE')
     if (tymlyService) await tymlyService.shutdown()
   })
 })
