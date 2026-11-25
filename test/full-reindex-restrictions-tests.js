@@ -158,6 +158,38 @@ describe('tymly_fullReindex_1_0 access restrictions', function () {
       })
     })
 
+    describe('upgrading a database that still has the old $authenticated permission', () => {
+      const script = path.join(blueprintDir, 'pg-scripts/remove-everyone-full-reindex-permission.sql')
+
+      it('the boot pg-script removes it, so a logged-in user is refused again', async () => {
+        // put back the row an older version of the plugin created
+        await client.query(
+          `INSERT INTO tymly.permission (state_machine_name, role_id, allows)
+           SELECT state_machine_name, '$authenticated', allows FROM tymly.permission
+           WHERE state_machine_name = $1 AND role_id = $2
+           ON CONFLICT DO NOTHING`,
+          [FULL_REINDEX, SOLR_ADMIN]
+        )
+        await rbacAdmin.refreshRbacIndex()
+        expect(await rbac.checkAuthorization('jim.smith', null, 'stateMachine', FULL_REINDEX, 'create')).to.eql(true)
+
+        await client.runFile(script)
+        await rbacAdmin.refreshRbacIndex()
+
+        const { rows } = await client.query(
+          'SELECT role_id FROM tymly.permission WHERE state_machine_name = $1 ORDER BY role_id', [FULL_REINDEX]
+        )
+        expect(rows.map(r => r.role_id)).to.eql([SOLR_ADMIN])
+        expect(await rbac.checkAuthorization('jim.smith', null, 'stateMachine', FULL_REINDEX, 'create')).to.eql(false)
+      })
+
+      it('running it again does nothing', async () => {
+        await client.runFile(script)
+        const { rows } = await client.query('SELECT count(*)::int AS n FROM tymly.permission WHERE state_machine_name = $1', [FULL_REINDEX])
+        expect(rows[0].n).to.eql(1)
+      })
+    })
+
     after('remove test users, shutdown Tymly and restore Solr env vars', async () => {
       if (rbacAdmin) {
         for (const userId of ['solr-admin', 'ops-lead', 'super-admin', 'reader']) {
