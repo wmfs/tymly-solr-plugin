@@ -48,7 +48,7 @@ describe('a blueprint replacing another blueprint\'s search doc', function () {
 
   after(async () => {
     // drop everything this test created
-    if (client) await client.query('DROP SCHEMA IF EXISTS tymly CASCADE; DROP SCHEMA IF EXISTS tymly_test CASCADE; DROP SCHEMA IF EXISTS tymly_test_plus CASCADE')
+    if (client) await client.query('DO $$ BEGIN IF current_database() ~* \'test\' THEN DROP SCHEMA IF EXISTS tymly CASCADE; DROP SCHEMA IF EXISTS tymly_test CASCADE; DROP SCHEMA IF EXISTS tymly_test_plus CASCADE; END IF; END $$') // only in a test database
     if (tymlyService) await tymlyService.shutdown()
   })
 })
