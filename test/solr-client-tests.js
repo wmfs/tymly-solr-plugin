@@ -3,7 +3,7 @@
 
 const http = require('http')
 const expect = require('chai').expect
-const { SolrClient, SolrError } = require('../lib/util/solr-client')
+const { SolrClient, SolrError, failureCause } = require('../lib/util/solr-client')
 
 // A fake Solr: records each request and replies with whatever the test sets
 function fakeSolr () {
@@ -143,5 +143,14 @@ describe('Solr client', function () {
   it('the error can be logged and sent as a task failure cause', () => {
     const err = new SolrError('Solr 400: bad', { status: 400 })
     expect(JSON.parse(JSON.stringify(err))).to.eql({ name: 'SolrError', message: 'Solr 400: bad', status: 400, code: null })
+  })
+
+  it('a task failure cause never includes the stack, which would show server file paths in the browser', () => {
+    expect(failureCause(new SolrError('Solr not reachable: timed out', { code: 'ECONNABORTED' })))
+      .to.eql({ name: 'SolrError', message: 'Solr not reachable: timed out', status: null, code: 'ECONNABORTED' })
+    const cause = failureCause(new TypeError('x is undefined'))
+    expect(cause).to.eql({ name: 'TypeError', message: 'x is undefined' })
+    expect(JSON.stringify(cause)).to.not.include('stack')
+    expect(failureCause('plain text')).to.eql({ message: 'plain text' })
   })
 })

@@ -65,7 +65,7 @@ describe('build Solr query', () => {
       const params = build()
       expect(params.q).to.eql('*:*')
       expect(params.fq).to.eql(['roles:("tymlyTest_boss" OR "$authenticated")'])
-      expect(params.sort).to.eql('created desc')
+      expect(params.sort).to.eql('created desc, id asc')
       expect(params.start).to.eql(0)
       expect(params.rows).to.eql(10)
       expect(params).to.not.have.property('fl')
@@ -110,7 +110,7 @@ describe('build Solr query', () => {
       const params = build()
       expect(params).to.not.have.property('defType')
       expect(params).to.not.have.property('hl')
-      expect(params.sort).to.eql('created desc')
+      expect(params.sort).to.eql('created desc, id asc')
     })
 
     it('adds nothing to search for with an empty or emoji-only query', () => {
@@ -136,10 +136,16 @@ describe('build Solr query', () => {
       expect(searchFor('High Street').fq).to.eql(['roles:("tymlyTest_boss" OR "$authenticated")'])
     })
 
+    it('allows two other words between phrase words (ps), and HTML-escapes highlights', () => {
+      const params = searchFor('The Bull and Gate')
+      expect(params.ps).to.eql('2')
+      expect(params['hl.encoder']).to.eql('html')
+    })
+
     it('sorts by best match first, then by the chosen sort', () => {
-      expect(searchFor('High Street').sort).to.eql('score desc, created desc')
-      expect(build({ filterOverrides: { query: 'x', orderBy: 'rating desc' } }).sort).to.eql('score desc, rating desc')
-      expect(build({ filterOverrides: { query: 'x', orderBy: 'score desc' } }).sort).to.eql('score desc')
+      expect(searchFor('High Street').sort).to.eql('score desc, created desc, id asc')
+      expect(build({ filterOverrides: { query: 'x', orderBy: 'rating desc' } }).sort).to.eql('score desc, rating desc, id asc')
+      expect(build({ filterOverrides: { query: 'x', orderBy: 'score desc' } }).sort).to.eql('score desc, id asc')
     })
 
     it('keeps apostrophes and ordinary punctuation', () => {
@@ -232,7 +238,7 @@ describe('build Solr query', () => {
         // still exactly one q, one sort, one rows - nothing added by the input
         expect(sent.q).to.eql('*:*')
         expect(sent.rows).to.eql('10')
-        expect(sent.sort).to.eql('created desc')
+        expect(sent.sort).to.eql('created desc, id asc')
 
         // the role filter is still the first fq and identical to a normal search
         expect(sent.fq[0]).to.eql('roles:("tymlyTest_boss" OR "$authenticated")')
@@ -264,14 +270,14 @@ describe('build Solr query', () => {
 
   describe('sort', () => {
     it('allows known fields with asc/desc', () => {
-      expect(build({ filterOverrides: { orderBy: 'rating desc' } }).sort).to.eql('rating desc')
-      expect(build({ filterOverrides: { orderBy: 'modified ASC' } }).sort).to.eql('modified asc')
-      expect(build({ filterOverrides: { orderBy: 'rating desc, created asc' } }).sort).to.eql('rating desc, created asc')
+      expect(build({ filterOverrides: { orderBy: 'rating desc' } }).sort).to.eql('rating desc, id asc')
+      expect(build({ filterOverrides: { orderBy: 'modified ASC' } }).sort).to.eql('modified asc, id asc')
+      expect(build({ filterOverrides: { orderBy: 'rating desc, created asc' } }).sort).to.eql('rating desc, created asc, id asc')
     })
 
     it('falls back to created desc for anything else', () => {
       for (const orderBy of ['title asc', 'created', 'created desc&rows=1000', 'roles desc', 'created sideways', '', undefined]) {
-        expect(build({ filterOverrides: { orderBy } }).sort, String(orderBy)).to.eql('created desc')
+        expect(build({ filterOverrides: { orderBy } }).sort, String(orderBy)).to.eql('created desc, id asc')
       }
     })
   })
@@ -316,7 +322,7 @@ describe('build Solr query', () => {
       expect(params.fq).to.include('{!geofilt d=1}')
       expect(params.sfield).to.eql('point')
       expect(params.pt).to.eql('52.48,-1.89')
-      expect(params.sort).to.eql('geodist() asc')
+      expect(params.sort).to.eql('geodist() asc, id asc')
     })
 
     it('rejects a location that is not two numbers in range', () => {
@@ -331,6 +337,18 @@ describe('build Solr query', () => {
       const params = build({ filterOverrides: { offset: -5, limit: -1 } })
       expect(params.start).to.eql(0)
       expect(params.rows).to.eql(0)
+    })
+
+    it('caps rows and start, so one search can\'t return everything', () => {
+      const params = build({ filterOverrides: { offset: 1e9, limit: 100000 } })
+      expect(params.rows).to.eql(buildSolrQuery.MAX_ROWS)
+      expect(params.start).to.eql(buildSolrQuery.MAX_START)
+      expect(build({ filterOverrides: { limit: 25 } }).rows).to.eql(25)
+    })
+
+    it('ends every sort with id, so tied records keep the same order between pages', () => {
+      expect(build({ filterOverrides: { orderBy: 'id desc' } }).sort).to.eql('id desc')
+      expect(build({ filterOverrides: { orderBy: 'rating desc, id asc' } }).sort).to.eql('rating desc, id asc')
     })
   })
 })
