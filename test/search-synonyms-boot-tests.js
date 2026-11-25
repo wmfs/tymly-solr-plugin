@@ -43,7 +43,7 @@ describe('search synonyms service', function () {
 
   after(async () => {
     // drop everything this test created
-    if (client) await client.query('DO $$ BEGIN IF current_database() ~* \'test\' THEN DROP SCHEMA IF EXISTS tymly CASCADE; DROP SCHEMA IF EXISTS synonyms_test CASCADE; END IF; END $$') // only in a test database
+    if (client) await client.query('DROP SCHEMA IF EXISTS tymly CASCADE; DROP SCHEMA IF EXISTS synonyms_test CASCADE')
     if (tymlyService) await tymlyService.shutdown()
   })
 })
