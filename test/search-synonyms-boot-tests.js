@@ -9,7 +9,7 @@ const path = require('path')
 describe('search synonyms service', function () {
   this.timeout(process.env.TIMEOUT || 5000)
 
-  let tymlyService, searchSynonyms
+  let tymlyService, client, searchSynonyms
 
   before(async function () {
     if (process.env.PG_CONNECTION_STRING && !/^postgres:\/\/[^:]+:[^@]+@(?:localhost|127\.0\.0\.1).*$/.test(process.env.PG_CONNECTION_STRING)) {
@@ -28,6 +28,7 @@ describe('search synonyms service', function () {
       config: {}
     })
     tymlyService = services.tymly
+    client = services.storage.client
     searchSynonyms = services.searchSynonyms
   })
 
@@ -40,6 +41,8 @@ describe('search synonyms service', function () {
   })
 
   after(async () => {
+    // drop everything this test created
+    if (client) await client.query('DROP SCHEMA IF EXISTS tymly CASCADE; DROP SCHEMA IF EXISTS synonyms_test CASCADE')
     if (tymlyService) await tymlyService.shutdown()
   })
 })
