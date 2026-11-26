@@ -3,6 +3,7 @@
 const expect = require('chai').expect
 const process = require('process')
 const parseTags = require('../lib/components/state-resources/search/parse-tags-filter')
+const { parseExcludeTagsFilter } = parseTags
 
 process.on('unhandledRejection', (reason, p) => {
   console.log('Unhandled Rejection at: Promise', p, 'reason:', reason)
@@ -81,4 +82,20 @@ describe('search tags tests', function () {
       expect(tags).to.eql(expected)
     })
   }
+})
+
+describe('excluding tags', () => {
+  it('leaves out records with any of the tags', () => {
+    expect(parseExcludeTagsFilter(['Invalid', 'Merged'])).to.eql('-tags:("Invalid" OR "Merged")')
+  })
+
+  it('quotes and escapes every tag', () => {
+    expect(parseExcludeTagsFilter(['x") OR roles:("$everyone'])).to.eql('-tags:("x\\") OR roles:(\\"$everyone")')
+  })
+
+  it('no usable tags gives no filter', () => {
+    for (const input of [undefined, [], [''], 'Invalid', [null]]) {
+      expect(parseExcludeTagsFilter(input), String(input)).to.eql('')
+    }
+  })
 })

@@ -260,6 +260,7 @@ describe('build Solr query', () => {
 
     it('a tag cannot close its quotes', () => {
       const sent = sentToSolr(build({ event: { tags: ['x") OR roles:("$everyone'] } }))
+      expect(sentToSolr(build({ event: { excludeTags: ['Invalid', 'Merged'] } })).fq).to.include('-tags:("Invalid" OR "Merged")')
       expect(sent.fq).to.include('tags:("x\\") OR roles:(\\"$everyone")')
     })
 
