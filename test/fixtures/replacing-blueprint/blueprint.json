@@ -1,0 +1,10 @@
+{
+  "namespace": "tymlyTestPlus",
+  "name": "replacing-blueprint",
+  "version": "1.0",
+  "label": "Replacing blueprint",
+  "author": "Tymly",
+  "organisation": "Tymly",
+  "description": "Replaces the school blueprint's staff search doc, to test search docs replacing others",
+  "categories": []
+}
