@@ -15,6 +15,9 @@ On tymly startup, this plugin searches the loaded blueprints for models that hav
 
 See the test blueprint in /test/fixtures/school-blueprint for an example of how to do this.
 
+## <a name="schema"></a>Solr schema
+The Solr schema fields and search field types that Tymly relies on are kept in [`solr/`](solr/README.md), with a script to apply them to each environment. Search synonyms come from blueprints' `search-synonyms` directories and are synced to Solr on boot (see [`solr/README.md`](solr/README.md#search-synonyms)).
+
 ## <a name="install"></a>Install
 ```bash
 $ npm install tymly-solr-plugin --save

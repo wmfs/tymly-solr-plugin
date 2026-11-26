@@ -1,0 +1,10 @@
+{
+  "namespace": "synonymsTest",
+  "name": "synonyms-blueprint",
+  "version": "1.0",
+  "label": "Search synonyms test blueprint",
+  "author": "Tymly",
+  "organisation": "Tymly",
+  "description": "Has only search synonyms, to test they're loaded from blueprints",
+  "categories": []
+}

@@ -1,0 +1,245 @@
+{
+  "description": "Search fields. searchText, searchPrefix and searchShingle are filled from title, description etc. by copyField, so they're only filled when documents are re-added: run a full reindex after applying. Field types and fields here are added if missing and replaced if different. docId isn't copied into searchText: it's mostly a prefix and a UUID, whose pieces matched unrelated searches (e.g. \"52\"). A UPRN docId is already searchable through additionalTerms, and an exact docId search is still boosted (bq). additionalTerms (UPRNs, masking numbers, postcodes) goes into searchKeys, which keeps each value whole, so a code only matches when it's typed in full and its pieces never match other searches.",
+  "fieldTypes": [
+    {
+      "name": "text_search",
+      "class": "solr.TextField",
+      "positionIncrementGap": "100",
+      "autoGeneratePhraseQueries": "true",
+      "indexAnalyzer": {
+        "tokenizer": {
+          "class": "solr.WhitespaceTokenizerFactory"
+        },
+        "filters": [
+          {
+            "class": "solr.WordDelimiterGraphFilterFactory",
+            "generateWordParts": "1",
+            "generateNumberParts": "1",
+            "catenateWords": "1",
+            "catenateNumbers": "1",
+            "catenateAll": "1",
+            "splitOnCaseChange": "0",
+            "preserveOriginal": "1"
+          },
+          {
+            "class": "solr.FlattenGraphFilterFactory"
+          },
+          {
+            "class": "solr.LowerCaseFilterFactory"
+          },
+          {
+            "class": "solr.ASCIIFoldingFilterFactory"
+          },
+          {
+            "class": "solr.EnglishMinimalStemFilterFactory"
+          },
+          {
+            "class": "solr.RemoveDuplicatesTokenFilterFactory"
+          }
+        ]
+      },
+      "queryAnalyzer": {
+        "tokenizer": {
+          "class": "solr.WhitespaceTokenizerFactory"
+        },
+        "filters": [
+          {
+            "class": "solr.WordDelimiterGraphFilterFactory",
+            "generateWordParts": "1",
+            "generateNumberParts": "1",
+            "splitOnCaseChange": "0",
+            "preserveOriginal": "0"
+          },
+          {
+            "class": "solr.LowerCaseFilterFactory"
+          },
+          {
+            "class": "solr.ASCIIFoldingFilterFactory"
+          },
+          {
+            "class": "solr.ManagedSynonymGraphFilterFactory",
+            "managed": "tymly_search"
+          },
+          {
+            "class": "solr.EnglishMinimalStemFilterFactory"
+          }
+        ]
+      }
+    },
+    {
+      "name": "text_prefix",
+      "class": "solr.TextField",
+      "positionIncrementGap": "100",
+      "indexAnalyzer": {
+        "tokenizer": {
+          "class": "solr.StandardTokenizerFactory"
+        },
+        "filters": [
+          {
+            "class": "solr.LowerCaseFilterFactory"
+          },
+          {
+            "class": "solr.ASCIIFoldingFilterFactory"
+          },
+          {
+            "class": "solr.EdgeNGramFilterFactory",
+            "minGramSize": "3",
+            "maxGramSize": "10"
+          }
+        ]
+      },
+      "queryAnalyzer": {
+        "tokenizer": {
+          "class": "solr.StandardTokenizerFactory"
+        },
+        "filters": [
+          {
+            "class": "solr.LowerCaseFilterFactory"
+          },
+          {
+            "class": "solr.ASCIIFoldingFilterFactory"
+          }
+        ]
+      }
+    },
+    {
+      "name": "text_shingle",
+      "class": "solr.TextField",
+      "positionIncrementGap": "100",
+      "indexAnalyzer": {
+        "tokenizer": {
+          "class": "solr.StandardTokenizerFactory"
+        },
+        "filters": [
+          {
+            "class": "solr.LowerCaseFilterFactory"
+          },
+          {
+            "class": "solr.ASCIIFoldingFilterFactory"
+          },
+          {
+            "class": "solr.ShingleFilterFactory",
+            "minShingleSize": "2",
+            "maxShingleSize": "3",
+            "outputUnigrams": "true",
+            "tokenSeparator": ""
+          }
+        ]
+      },
+      "queryAnalyzer": {
+        "tokenizer": {
+          "class": "solr.StandardTokenizerFactory"
+        },
+        "filters": [
+          {
+            "class": "solr.LowerCaseFilterFactory"
+          },
+          {
+            "class": "solr.ASCIIFoldingFilterFactory"
+          }
+        ]
+      }
+    },
+    {
+      "name": "text_keys",
+      "class": "solr.TextField",
+      "positionIncrementGap": "100",
+      "indexAnalyzer": {
+        "tokenizer": {
+          "class": "solr.WhitespaceTokenizerFactory"
+        },
+        "filters": [
+          {
+            "class": "solr.LowerCaseFilterFactory"
+          },
+          {
+            "class": "solr.PatternReplaceFilterFactory",
+            "pattern": "^[^\\p{L}\\p{N}]+|[^\\p{L}\\p{N}]+$",
+            "replacement": "",
+            "replace": "all"
+          }
+        ]
+      },
+      "queryAnalyzer": {
+        "tokenizer": {
+          "class": "solr.WhitespaceTokenizerFactory"
+        },
+        "filters": [
+          {
+            "class": "solr.LowerCaseFilterFactory"
+          },
+          {
+            "class": "solr.PatternReplaceFilterFactory",
+            "pattern": "^[^\\p{L}\\p{N}]+|[^\\p{L}\\p{N}]+$",
+            "replacement": "",
+            "replace": "all"
+          }
+        ]
+      }
+    }
+  ],
+  "fields": [
+    {
+      "name": "searchText",
+      "type": "text_search",
+      "multiValued": true,
+      "indexed": true,
+      "stored": false
+    },
+    {
+      "name": "searchPrefix",
+      "type": "text_prefix",
+      "multiValued": true,
+      "indexed": true,
+      "stored": false
+    },
+    {
+      "name": "searchShingle",
+      "type": "text_shingle",
+      "multiValued": true,
+      "indexed": true,
+      "stored": false
+    },
+    {
+      "name": "searchKeys",
+      "type": "text_keys",
+      "multiValued": true,
+      "indexed": true,
+      "stored": false
+    },
+    {
+      "name": "uprns",
+      "type": "string",
+      "multiValued": true,
+      "indexed": true,
+      "stored": true,
+      "docValues": true
+    }
+  ],
+  "copyFields": [
+    {
+      "source": "title",
+      "dest": [
+        "searchText",
+        "searchPrefix",
+        "searchShingle"
+      ]
+    },
+    {
+      "source": "description",
+      "dest": [
+        "searchText",
+        "searchPrefix",
+        "searchShingle"
+      ]
+    },
+    {
+      "source": "additionalTerms",
+      "dest": "searchKeys"
+    },
+    {
+      "source": "synopsis",
+      "dest": "searchText"
+    }
+  ]
+}
