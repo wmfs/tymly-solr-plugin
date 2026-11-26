@@ -63,7 +63,7 @@ These are in `lib/components/state-resources/search/relevance.js`. They need the
 | `qf` | `title^2 searchText searchPrefix^0.5 searchShingle^0.5 searchKeys^3` | Fields searched. A word in the title counts twice. Partial and joined-up words count half. `searchKeys` holds codes kept whole (UPRNs, masking numbers, postcodes from `additionalTerms`): only a code typed in full matches, and then it counts strongly. Pieces of a code never match. |
 | `pf` | `title^3 description^2` | Extra score when the words appear together, in order, in the title or description. |
 | `mm` | `2<-1 5<75%` | How many words must match: 1 or 2 words, all of them; 3 to 5 words, all but one; more than 5, 75%. One wrong or extra word no longer means no results. |
-| `bq` | `docId:"<search text>"^10` | The record whose docId is exactly the search text comes first. |
+| `bq` | `docId:"<search text>"^10` | The record whose docId is exactly the search text comes first. Boost patterns add more (see below). |
 | `sow` | `true` | Each word is matched on its own before `mm` is applied. |
 
 ### Cleaning the search text
@@ -86,14 +86,16 @@ A blueprint can add its own stopwords and boost patterns in a `search-relevance`
       "pattern": "\\b[A-Z]{2}[0-9]{2}\\b",
       "flags": "i",
       "field": "additionalTerms",
-      "boost": 5,
+      "boost": 30,
       "removeSpaces": true
     }
   ]
 }
 ```
 
-A boost pattern is a regular expression run against the search text. Each match is boosted in `field` (with spaces removed when `removeSpaces` is true). Invalid entries are skipped with a warning when Tymly boots.
+A boost pattern is a regular expression run against the search text. Records whose `field` contains a match (with spaces removed when `removeSpaces` is true) get `boost` added to their score. Invalid entries are skipped with a warning when Tymly boots.
+
+`boost` is a fixed score (Solr's `^=`), not a multiplier. Every record with the value gets the same amount, however many other values its `field` holds. Without this, a record with many values (for example a property matched to several others) gets less from the same match and can drop below records that match the search less well. For scale, each matching word usually scores between 5 and 20, so a boost of 30 is worth more than a word or two.
 
 **Prefix patterns** (`prefixPatterns`, same fields as a boost pattern but no `boost`) find part of a code in the search text and search it as "starts with" in `field`, instead of as separate words. For example, a partial postcode `ZZ75 7L` becomes `searchKeys:zz757l*`, so only postcodes starting ZZ75 7L match. It counts as one word, and the value is escaped.
 

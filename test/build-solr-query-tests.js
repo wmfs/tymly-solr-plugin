@@ -173,17 +173,17 @@ describe('build Solr query', () => {
       expect(searchFor('x"y').bq).to.eql(['docId:"x\\"y"^10'])
     })
 
-    it('boosts values found by a blueprint boost pattern', () => {
+    it('boosts values found by a blueprint boost pattern by a fixed score', () => {
       const relevance = loadRelevanceSettings({
         postcodes: {
-          boostPatterns: [{ pattern: '\\b[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}\\b', flags: 'i', field: 'additionalTerms', boost: 5, removeSpaces: true }]
+          boostPatterns: [{ pattern: '\\b[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}\\b', flags: 'i', field: 'additionalTerms', boost: 30, removeSpaces: true }]
         }
       })
       expect(searchFor('zz9 0td', { relevance }).bq).to.eql([
         'docId:"zz9 0td"^10',
-        'additionalTerms:"zz90td"^5'
+        'additionalTerms:"zz90td"^=30'
       ])
-      expect(searchFor('Adas Exampleton ZZ23AY', { relevance }).bq).to.include('additionalTerms:"ZZ23AY"^5')
+      expect(searchFor('Adas Exampleton ZZ23AY', { relevance }).bq).to.include('additionalTerms:"ZZ23AY"^=30')
       expect(searchFor('High Street', { relevance }).bq).to.have.length(1)
     })
 
