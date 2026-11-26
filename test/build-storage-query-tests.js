@@ -88,8 +88,8 @@ describe('build Postgres (fallback) search query', () => {
   })
 
   it('keeps compound words whole so they still match', () => {
-    const { queryParams } = build({ query: 'FSC-00123 FSC493/2024 Stoke-on-Trent' })
-    expect(queryParams.slice(0, 3)).to.eql(['%FSC-00123%', '%FSC493/2024%', '%Stoke-on-Trent%'])
+    const { queryParams } = build({ query: 'XYZ-00123 ABC493/2024 Upton-on-Sea' })
+    expect(queryParams.slice(0, 3)).to.eql(['%XYZ-00123%', '%ABC493/2024%', '%Upton-on-Sea%'])
   })
 
   it('never uses a negative limit or offset', () => {
