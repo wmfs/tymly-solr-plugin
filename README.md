@@ -69,7 +69,7 @@ These are in `lib/components/state-resources/search/relevance.js`. They need the
 ### Cleaning the search text
 
 - Characters with a meaning in Lucene syntax are escaped. Apostrophes are kept.
-- Words made of letters and digits joined by `/` or `-` (e.g. `ABC123/2024`, `Stoke-on-Trent`) are searched as a phrase, so the parts must be together and in order.
+- Words made of letters and digits joined by `/` or `-` (e.g. `ABC123/2024`, `Upton-on-Sea`) are searched as a phrase, so the parts must be together and in order.
 - Stopwords are left out, unless they are all the user typed. The plugin's are `and`, `of` and `the`.
 
 ### Blueprint settings
@@ -95,7 +95,7 @@ A blueprint can add its own stopwords and boost patterns in a `search-relevance`
 
 A boost pattern is a regular expression run against the search text. Each match is boosted in `field` (with spaces removed when `removeSpaces` is true). Invalid entries are skipped with a warning when Tymly boots.
 
-**Prefix patterns** (`prefixPatterns`, same fields as a boost pattern but no `boost`) find part of a code in the search text and search it as "starts with" in `field`, instead of as separate words. For example, a partial postcode `B75 7L` becomes `searchKeys:b757l*`, so only postcodes starting B75 7L match. It counts as one word, and the value is escaped.
+**Prefix patterns** (`prefixPatterns`, same fields as a boost pattern but no `boost`) find part of a code in the search text and search it as "starts with" in `field`, instead of as separate words. For example, a partial postcode `ZZ75 7L` becomes `searchKeys:zz757l*`, so only postcodes starting ZZ75 7L match. It counts as one word, and the value is escaped.
 
 ### Facets and highlights
 
