@@ -117,7 +117,7 @@ describe('Solr schema (solr/)', () => {
       const plan = planSchemaChanges({ fieldTypes: [], fields: [], copyFields: [] }, schema)
 
       expect(Object.keys(plan.commands)).to.eql(['add-field-type', 'add-field', 'add-copy-field'])
-      expect(plan.commands['add-field-type'].map(t => t.name)).to.eql(['text_search', 'text_prefix', 'text_shingle'])
+      expect(plan.commands['add-field-type'].map(t => t.name)).to.eql(['text_search', 'text_prefix', 'text_shingle', 'text_keys'])
       expect(plan.commands['add-field']).to.have.length(schema.baseFields.length + schema.fields.length)
       expect(plan.commands['add-copy-field']).to.deep.include({ source: 'title', dest: 'searchText' })
       expect(plan.commands['add-copy-field']).to.not.deep.include({ source: 'docId', dest: 'searchText' })
@@ -127,7 +127,7 @@ describe('Solr schema (solr/)', () => {
     it('an existing core with only the base fields: adds just the search parts', () => {
       const plan = planSchemaChanges({ fieldTypes: [], fields: asSolrReturnsIt(schema.baseFields), copyFields: [] }, schema)
 
-      expect(plan.commands['add-field'].map(f => f.name)).to.eql(['searchText', 'searchPrefix', 'searchShingle', 'uprns'])
+      expect(plan.commands['add-field'].map(f => f.name)).to.eql(['searchText', 'searchPrefix', 'searchShingle', 'searchKeys', 'uprns'])
       expect(plan.commands['replace-field']).to.equal(undefined)
     })
 
@@ -171,6 +171,33 @@ describe('Solr schema (solr/)', () => {
         { source: 'additionalTerms', dest: 'searchShingle' }
       ])
       expect(plan.reindexNeeded).to.equal(true)
+    })
+
+    it('search keys (additionalTerms) go only into searchKeys, kept whole, not into searchText', () => {
+      const intoField = dest => schema.copyFields.filter(c => [].concat(c.dest).includes(dest)).map(c => c.source)
+      expect(intoField('searchKeys')).to.eql(['additionalTerms'])
+      expect(intoField('searchText')).to.not.include('additionalTerms')
+      const keys = schema.fieldTypes.find(t => t.name === 'text_keys')
+      for (const analyzer of [keys.indexAnalyzer, keys.queryAnalyzer]) {
+        expect(analyzer.tokenizer.class).to.equal('solr.WhitespaceTokenizerFactory')
+        expect(analyzer.filters.map(f => f.class)).to.not.include('solr.WordDelimiterGraphFilterFactory')
+      }
+    })
+
+    it('an existing core moves additionalTerms from searchText to searchKeys', () => {
+      const current = {
+        fieldTypes: asSolrReturnsIt(schema.fieldTypes.filter(t => t.name !== 'text_keys')),
+        fields: asSolrReturnsIt([...schema.baseFields, ...schema.fields.filter(f => f.name !== 'searchKeys')]),
+        copyFields: [
+          ...copyFieldsAsSolrReturnsThem(schema.copyFields.filter(c => c.source !== 'additionalTerms')),
+          { source: 'additionalTerms', dest: 'searchText' }
+        ]
+      }
+      const plan = planSchemaChanges(current, schema)
+      expect(plan.commands['add-field-type'].map(t => t.name)).to.eql(['text_keys'])
+      expect(plan.commands['add-field'].map(f => f.name)).to.eql(['searchKeys'])
+      expect(plan.commands['delete-copy-field']).to.eql([{ source: 'additionalTerms', dest: 'searchText' }])
+      expect(plan.commands['add-copy-field']).to.eql([{ source: 'additionalTerms', dest: 'searchKeys' }])
     })
 
     it('partial and joined words come from title and description only', () => {

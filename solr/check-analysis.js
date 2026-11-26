@@ -31,11 +31,13 @@ async function main () {
     const response = await solr.analyse(c.fieldType, { [c.side]: c.value })
     const tokens = finalTokens(response, c.fieldType, c.side)
     const missing = c.includes.filter(t => !tokens.includes(t))
-    const ok = missing.length === 0
+    const unwanted = (c.excludes || []).filter(t => tokens.includes(t))
+    const ok = missing.length === 0 && unwanted.length === 0
     if (!ok) failures++
 
     console.log(`${ok ? 'PASS' : 'FAIL'}  ${c.fieldType} ${c.side} "${c.value}" (${c.why})`)
-    if (!ok) console.log(`      missing ${missing.join(', ')}; got ${tokens.join(', ')}`)
+    if (missing.length) console.log(`      missing ${missing.join(', ')}; got ${tokens.join(', ')}`)
+    if (unwanted.length) console.log(`      should not have ${unwanted.join(', ')}; got ${tokens.join(', ')}`)
   }
 
   console.log(`\n${cases.length - failures} of ${cases.length} passed`)

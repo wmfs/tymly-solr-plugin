@@ -30,7 +30,7 @@ describe('checking the Solr schema on boot', () => {
   it('warns when the schema has not been applied, naming the missing fields and what to run', async () => {
     const result = await checkSolrSchema(fakeSolr({ fields: ['id', 'title'], userProps: {} }))
     expect(result.status).to.equal('missingFields')
-    expect(result.message).to.include('searchText, searchPrefix, searchShingle')
+    expect(result.message).to.include('searchText, searchPrefix, searchShingle, searchKeys')
     expect(result.message).to.include('apply-schema.js')
   })
 

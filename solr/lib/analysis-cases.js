@@ -4,6 +4,7 @@
 // against a Solr core with the /analysis/field API.
 //   side: 'index' checks the tokens stored for a value, 'query' the tokens searched for
 //   includes: tokens that must be produced
+//   excludes: tokens that must not be produced (optional)
 //   why: what the case shows
 
 module.exports = [
@@ -19,5 +20,8 @@ module.exports = [
   { why: 'accents', fieldType: 'text_search', side: 'index', value: 'Café Rouge', includes: ['cafe'] },
   { why: 'partial words', fieldType: 'text_prefix', side: 'index', value: 'Birmingham', includes: ['bir', 'birm', 'birmingham'] },
   { why: 'partial references', fieldType: 'text_prefix', side: 'index', value: 'ABC12/2024', includes: ['abc', 'abc1'] },
-  { why: 'words written together', fieldType: 'text_shingle', side: 'index', value: 'Castle Wood Care Home', includes: ['castle', 'wood', 'castlewood', 'castlewoodcare'] }
+  { why: 'words written together', fieldType: 'text_shingle', side: 'index', value: 'Castle Wood Care Home', includes: ['castle', 'wood', 'castlewood', 'castlewoodcare'] },
+  { why: 'search keys stay whole (a masking number is never split into pieces)', fieldType: 'text_keys', side: 'index', value: '4DM7L121', includes: ['4dm7l121'], excludes: ['7', 'l'] },
+  { why: 'search keys: a postcode with and without its space', fieldType: 'text_keys', side: 'index', value: 'B75 7LA', includes: ['b75', '7la'] },
+  { why: 'search keys: punctuation round a typed code is ignored', fieldType: 'text_keys', side: 'query', value: '(7M36CJNX),', includes: ['7m36cjnx'] }
 ]

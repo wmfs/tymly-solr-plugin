@@ -1,5 +1,5 @@
 {
-  "description": "Search fields. searchText, searchPrefix and searchShingle are filled from title, description etc. by copyField, so they're only filled when documents are re-added: run a full reindex after applying. Field types and fields here are added if missing and replaced if different. docId isn't copied into searchText: it's mostly a prefix and a UUID, whose pieces matched unrelated searches (e.g. \"52\"). A UPRN docId is already searchable through additionalTerms, and an exact docId search is still boosted (bq).",
+  "description": "Search fields. searchText, searchPrefix and searchShingle are filled from title, description etc. by copyField, so they're only filled when documents are re-added: run a full reindex after applying. Field types and fields here are added if missing and replaced if different. docId isn't copied into searchText: it's mostly a prefix and a UUID, whose pieces matched unrelated searches (e.g. \"52\"). A UPRN docId is already searchable through additionalTerms, and an exact docId search is still boosted (bq). additionalTerms (UPRNs, masking numbers, postcodes) goes into searchKeys, which keeps each value whole, so a code only matches when it's typed in full and its pieces never match other searches.",
   "fieldTypes": [
     {
       "name": "text_search",
@@ -139,6 +139,43 @@
           }
         ]
       }
+    },
+    {
+      "name": "text_keys",
+      "class": "solr.TextField",
+      "positionIncrementGap": "100",
+      "indexAnalyzer": {
+        "tokenizer": {
+          "class": "solr.WhitespaceTokenizerFactory"
+        },
+        "filters": [
+          {
+            "class": "solr.LowerCaseFilterFactory"
+          },
+          {
+            "class": "solr.PatternReplaceFilterFactory",
+            "pattern": "^[^\\p{L}\\p{N}]+|[^\\p{L}\\p{N}]+$",
+            "replacement": "",
+            "replace": "all"
+          }
+        ]
+      },
+      "queryAnalyzer": {
+        "tokenizer": {
+          "class": "solr.WhitespaceTokenizerFactory"
+        },
+        "filters": [
+          {
+            "class": "solr.LowerCaseFilterFactory"
+          },
+          {
+            "class": "solr.PatternReplaceFilterFactory",
+            "pattern": "^[^\\p{L}\\p{N}]+|[^\\p{L}\\p{N}]+$",
+            "replacement": "",
+            "replace": "all"
+          }
+        ]
+      }
     }
   ],
   "fields": [
@@ -159,6 +196,13 @@
     {
       "name": "searchShingle",
       "type": "text_shingle",
+      "multiValued": true,
+      "indexed": true,
+      "stored": false
+    },
+    {
+      "name": "searchKeys",
+      "type": "text_keys",
       "multiValued": true,
       "indexed": true,
       "stored": false
@@ -191,7 +235,7 @@
     },
     {
       "source": "additionalTerms",
-      "dest": "searchText"
+      "dest": "searchKeys"
     },
     {
       "source": "synopsis",
