@@ -38,7 +38,7 @@ const sentToSolr = params => querystring.parse(querystring.stringify(params))
 describe('build Solr query', () => {
   describe('escaping helpers', () => {
     it('escapes Lucene special characters in a search word', () => {
-      expect(escapeTerm('FSC493/2024')).to.eql('FSC493\\/2024')
+      expect(escapeTerm('ABC493/2024')).to.eql('ABC493\\/2024')
       expect(escapeTerm('a+b-c')).to.eql('a\\+b\\-c')
       expect(escapeTerm('x)OR(roles:*')).to.eql('x\\)OR\\(roles\\:\\*')
       expect(escapeTerm('"quoted"')).to.eql('\\"quoted\\"')
@@ -77,7 +77,7 @@ describe('build Solr query', () => {
       const params = build({
         filterOverrides: {
           domain: 'search',
-          docType: 'wmfs_audit',
+          docType: 'test_audit',
           author: 'jim.smith',
           categoryRestriction: ['prevention', 'protection'],
           showActiveEventsOnly: true
@@ -86,7 +86,7 @@ describe('build Solr query', () => {
       expect(params.fq).to.eql([
         'roles:("tymlyTest_boss" OR "$authenticated")',
         'domain:"search"',
-        'docType:"wmfs_audit"',
+        'docType:"test_audit"',
         'author:"jim.smith"',
         'category:("prevention" OR "protection")',
         'activeEvent:true'
@@ -127,33 +127,33 @@ describe('build Solr query', () => {
     const searchFor = query => build({ filterOverrides: { query } }).fq[1]
 
     it('searches a compound word as a phrase, not as separate words', () => {
-      expect(searchFor('FSC493/2024')).to.eql(
-        '(title:("FSC493/2024") OR description:("FSC493/2024") OR docId:("FSC493/2024"))'
+      expect(searchFor('ABC493/2024')).to.eql(
+        '(title:("ABC493/2024") OR description:("ABC493/2024") OR docId:("ABC493/2024"))'
       )
     })
 
     it('works for any format, not just Tymly references', () => {
-      expect(searchFor('AUD127/2026')).to.include('title:("AUD127/2026")')
-      expect(searchFor('FSC-00123')).to.include('title:("FSC-00123")')
-      expect(searchFor('2026-AFC-56')).to.include('title:("2026-AFC-56")')
-      expect(searchFor('fsa45/2024')).to.include('title:("fsa45/2024")')
+      expect(searchFor('XYZ127/2026')).to.include('title:("XYZ127/2026")')
+      expect(searchFor('XYZ-00123')).to.include('title:("XYZ-00123")')
+      expect(searchFor('2026-ABC-56')).to.include('title:("2026-ABC-56")')
+      expect(searchFor('abc45/2024')).to.include('title:("abc45/2024")')
     })
 
     it('combines a compound word with other words', () => {
-      expect(searchFor('FSC493/2024 Smith')).to.include('title:("FSC493/2024" AND Smith)')
+      expect(searchFor('ABC493/2024 Smith')).to.include('title:("ABC493/2024" AND Smith)')
     })
 
     it('ignores punctuation around a compound word', () => {
-      expect(searchFor('(FSC493/2024),')).to.include('title:("FSC493/2024")')
+      expect(searchFor('(ABC493/2024),')).to.include('title:("ABC493/2024")')
     })
 
     it('searches hyphenated place names and number ranges as phrases too', () => {
-      expect(searchFor('Stoke-on-Trent')).to.include('title:("Stoke-on-Trent")')
+      expect(searchFor('Upton-on-Sea')).to.include('title:("Upton-on-Sea")')
       expect(searchFor('14-20 Overfield Road')).to.include('title:("14-20" AND Overfield AND Road)')
     })
 
     it('a compound-looking word with quotes is escaped normally, not quoted', () => {
-      expect(searchFor('FSC1/2"x')).to.include('title:(FSC1\\/2\\"x)')
+      expect(searchFor('ABC1/2"x')).to.include('title:(ABC1\\/2\\"x)')
     })
   })
 

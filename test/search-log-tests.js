@@ -12,7 +12,7 @@ describe('search analytics helpers', () => {
     const cases = [
       ['  Hagrid  ', 'hagrid'],
       ['14   Overfield\tRoad', '14 overfield road'],
-      ['FSC493/2024', 'fsc493/2024'],
+      ['ABC493/2024', 'abc493/2024'],
       ['', ''],
       ['   ', ''],
       [undefined, ''],
