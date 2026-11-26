@@ -56,11 +56,11 @@ The search text is the query, never a filter: roles, domain, category and the ot
 
 ### Starting values
 
-These are in `lib/components/state-resources/search/relevance.js`. They need the search fields from the schema in `solr/schema` (`searchText`, `searchPrefix`, `searchShingle`).
+These are in `lib/components/state-resources/search/relevance.js`. They need the search fields from the schema in `solr/schema` (`searchText`, `searchPrefix`, `searchShingle`, `searchKeys`).
 
 | Parameter | Value | What it does |
 | --- | --- | --- |
-| `qf` | `title^2 searchText searchPrefix^0.5 searchShingle^0.5` | Fields searched. A word in the title counts twice. Partial and joined-up words count half. |
+| `qf` | `title^2 searchText searchPrefix^0.5 searchShingle^0.5 searchKeys^3` | Fields searched. A word in the title counts twice. Partial and joined-up words count half. `searchKeys` holds codes kept whole (UPRNs, masking numbers, postcodes from `additionalTerms`): only a code typed in full matches, and then it counts strongly. Pieces of a code never match. |
 | `pf` | `title^3 description^2` | Extra score when the words appear together, in order, in the title or description. |
 | `mm` | `2<-1 5<75%` | How many words must match: 1 or 2 words, all of them; 3 to 5 words, all but one; more than 5, 75%. One wrong or extra word no longer means no results. |
 | `bq` | `docId:"<search text>"^10` | The record whose docId is exactly the search text comes first. |
@@ -94,6 +94,8 @@ A blueprint can add its own stopwords and boost patterns in a `search-relevance`
 ```
 
 A boost pattern is a regular expression run against the search text. Each match is boosted in `field` (with spaces removed when `removeSpaces` is true). Invalid entries are skipped with a warning when Tymly boots.
+
+**Prefix patterns** (`prefixPatterns`, same fields as a boost pattern but no `boost`) find part of a code in the search text and search it as "starts with" in `field`, instead of as separate words. For example, a partial postcode `B75 7L` becomes `searchKeys:b757l*`, so only postcodes starting B75 7L match. It counts as one word, and the value is escaped.
 
 ### Facets and highlights
 

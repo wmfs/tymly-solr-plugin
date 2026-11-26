@@ -11,6 +11,7 @@ describe('search relevance settings', () => {
     expect(relevance.qf).to.eql(DEFAULT_RELEVANCE.qf)
     expect([...relevance.stopwords]).to.eql(['and', 'of', 'the'])
     expect(relevance.boostPatterns).to.eql([])
+    expect(relevance.prefixPatterns).to.eql([])
   })
 
   it('adds every blueprint\'s stopwords, lower-cased', () => {
@@ -30,6 +31,23 @@ describe('search relevance settings', () => {
     expect(bp.boost).to.eql(5)
     expect(bp.removeSpaces).to.eql(true)
     expect('x ab12 AB34'.match(bp.regex)).to.eql(['ab12', 'AB34'])
+  })
+
+  it('loads prefix patterns', () => {
+    const relevance = loadRelevanceSettings({
+      postcodes: { prefixPatterns: [{ pattern: '\\b[A-Z]{1,2}[0-9] [0-9][A-Z]{0,2}\\b', flags: 'i', field: 'searchKeys', removeSpaces: true }] }
+    })
+    const [pp] = relevance.prefixPatterns
+    expect(pp.field).to.eql('searchKeys')
+    expect(pp.removeSpaces).to.eql(true)
+    expect('x b7 4l'.match(pp.regex)).to.eql(['b7 4l'])
+  })
+
+  it('skips an invalid prefix pattern with a warning', () => {
+    const warnings = []
+    const relevance = loadRelevanceSettings({ bad: { prefixPatterns: [{ pattern: '(', field: 'searchKeys' }, { pattern: 'x', field: 'a:b' }] } }, w => warnings.push(w))
+    expect(relevance.prefixPatterns).to.eql([])
+    expect(warnings).to.have.length(2)
   })
 
   it('skips invalid entries with a warning instead of failing', () => {

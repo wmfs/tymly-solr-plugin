@@ -124,7 +124,7 @@ describe('build Solr query', () => {
       const params = searchFor('High Street')
       expect(params.q).to.eql('High Street')
       expect(params.defType).to.eql('edismax')
-      expect(params.qf).to.eql('title^2 searchText searchPrefix^0.5 searchShingle^0.5')
+      expect(params.qf).to.eql('title^2 searchText searchPrefix^0.5 searchShingle^0.5 searchKeys^3')
       expect(params.pf).to.eql('title^3 description^2')
       expect(params.mm).to.eql('2<-1 5<75%')
       expect(params.sow).to.eql('true')
