@@ -1,0 +1,16 @@
+{
+  "label": "Search Log Retention Days",
+  "description": "How long rows are kept in tymly.search_log and tymly.search_click (search analytics). Old rows are deleted on boot and once a day.",
+  "schema": {
+    "properties": {
+      "environmentVariableName": "SEARCH_LOG_RETENTION_DAYS",
+      "value": {
+        "type": "integer",
+        "default": 365
+      }
+    },
+    "required": [
+      "value"
+    ]
+  }
+}
