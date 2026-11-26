@@ -40,7 +40,7 @@ const sentToSolr = params => querystring.parse(querystring.stringify(params))
 describe('build Solr query', () => {
   describe('escaping helpers', () => {
     it('escapes Lucene special characters in a search word', () => {
-      expect(escapeTerm('FSC493/2024')).to.eql('FSC493\\/2024')
+      expect(escapeTerm('ABC493/2024')).to.eql('ABC493\\/2024')
       expect(escapeTerm('a+b-c')).to.eql('a\\+b\\-c')
       expect(escapeTerm('x)OR(roles:*')).to.eql('x\\)OR\\(roles\\:\\*')
       expect(escapeTerm('"quoted"')).to.eql('\\"quoted\\"')
@@ -79,7 +79,7 @@ describe('build Solr query', () => {
       const params = build({
         filterOverrides: {
           domain: 'search',
-          docType: 'wmfs_audit',
+          docType: 'test_audit',
           author: 'jim.smith',
           categoryRestriction: ['prevention', 'protection'],
           showActiveEventsOnly: true
@@ -88,7 +88,7 @@ describe('build Solr query', () => {
       expect(params.fq).to.eql([
         'roles:("tymlyTest_boss" OR "$authenticated")',
         'domain:"search"',
-        'docType:"wmfs_audit"',
+        'docType:"test_audit"',
         'author:"jim.smith"',
         '{!tag=category}category:("prevention" OR "protection")',
         'activeEvent:true'
@@ -143,7 +143,7 @@ describe('build Solr query', () => {
     })
 
     it('keeps apostrophes and ordinary punctuation', () => {
-      expect(searchFor("  Uday's  St.  ").q).to.eql("Uday's St.")
+      expect(searchFor("  Ada's  St.  ").q).to.eql("Ada's St.")
     })
 
     it('escapes characters with a meaning in Lucene syntax', () => {
@@ -163,7 +163,7 @@ describe('build Solr query', () => {
     })
 
     it('boosts a record whose docId is exactly the search text', () => {
-      expect(searchFor(' 100071234567 ').bq).to.eql(['docId:"100071234567"^10'])
+      expect(searchFor(' 90034567890 ').bq).to.eql(['docId:"90034567890"^10'])
       expect(searchFor('x"y').bq).to.eql(['docId:"x\\"y"^10'])
     })
 
@@ -173,11 +173,11 @@ describe('build Solr query', () => {
           boostPatterns: [{ pattern: '\\b[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}\\b', flags: 'i', field: 'additionalTerms', boost: 30, removeSpaces: true }]
         }
       })
-      expect(searchFor('ws9 0td', { relevance }).bq).to.eql([
-        'docId:"ws9 0td"^10',
-        'additionalTerms:"ws90td"^=30'
+      expect(searchFor('zz9 0td', { relevance }).bq).to.eql([
+        'docId:"zz9 0td"^10',
+        'additionalTerms:"zz90td"^=30'
       ])
-      expect(searchFor('Udays Wolverhampton WV23AY', { relevance }).bq).to.include('additionalTerms:"WV23AY"^=30')
+      expect(searchFor('Adas Exampleton ZZ23AY', { relevance }).bq).to.include('additionalTerms:"ZZ23AY"^=30')
       expect(searchFor('High Street', { relevance }).bq).to.have.length(1)
     })
 
@@ -189,30 +189,30 @@ describe('build Solr query', () => {
 
   describe('compound words such as references', () => {
     it('searches a compound word as a phrase, not as separate words', () => {
-      expect(searchFor('FSC493/2024').q).to.eql('"FSC493/2024"')
+      expect(searchFor('ABC493/2024').q).to.eql('"ABC493/2024"')
     })
 
     it('works for any format, not just Tymly references', () => {
-      for (const ref of ['AUD127/2026', 'FSC-00123', '2026-AFC-56', 'fsa45/2024']) {
+      for (const ref of ['XYZ127/2026', 'XYZ-00123', '2026-ABC-56', 'abc45/2024']) {
         expect(searchFor(ref).q).to.eql(`"${ref}"`)
       }
     })
 
     it('combines a compound word with other words', () => {
-      expect(searchFor('FSC493/2024 Smith').q).to.eql('"FSC493/2024" Smith')
+      expect(searchFor('ABC493/2024 Smith').q).to.eql('"ABC493/2024" Smith')
     })
 
     it('ignores punctuation around a compound word', () => {
-      expect(searchFor('(FSC493/2024),').q).to.eql('"FSC493/2024"')
+      expect(searchFor('(ABC493/2024),').q).to.eql('"ABC493/2024"')
     })
 
     it('searches hyphenated place names and number ranges as phrases too', () => {
-      expect(searchFor('Stoke-on-Trent').q).to.eql('"Stoke-on-Trent"')
+      expect(searchFor('Upton-on-Sea').q).to.eql('"Upton-on-Sea"')
       expect(searchFor('14-20 Overfield Road').q).to.eql('"14-20" Overfield Road')
     })
 
     it('a compound-looking word with quotes is escaped normally, not quoted', () => {
-      expect(searchFor('FSC1/2"x').q).to.eql('FSC1\\/2\\"x')
+      expect(searchFor('ABC1/2"x').q).to.eql('ABC1\\/2\\"x')
     })
   })
 

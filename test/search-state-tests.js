@@ -328,13 +328,13 @@ describe('tymly-solr-plugin search state resource tests', function () {
       expect(unclicked.totalHits).to.eql(1)
       // a search from a card, whose clicks aren't recorded
       await client.query(
-        "insert into tymly.search_log (user_id, query, domain, hit_count) values ('john.smith', 'afc56', 'fsTaskList', 2)"
+        "insert into tymly.search_log (user_id, query, domain, hit_count) values ('john.smith', 'abc56', 'taskList', 2)"
       )
 
       const { rows } = await client.query('select domain, query from tymly.search_report_no_click')
       expect(rows).to.eql([{ domain: 'search', query: 'hermione' }])
 
-      await client.query("delete from tymly.search_log where query in ('hermione', 'afc56')")
+      await client.query("delete from tymly.search_log where query in ('hermione', 'abc56')")
     })
 
     it('the click position report counts the click', async () => {
