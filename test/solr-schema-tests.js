@@ -228,15 +228,15 @@ describe('Solr schema (solr/)', () => {
         field_types: {
           text_search: {
             index: [
-              'org.apache.lucene.analysis.core.WhitespaceTokenizer', [{ text: "Uday's" }],
-              'org.apache.lucene.analysis.core.LowerCaseFilter', [{ text: 'uday' }, { text: 'udays' }]
+              'org.apache.lucene.analysis.core.WhitespaceTokenizer', [{ text: "Ada's" }],
+              'org.apache.lucene.analysis.core.LowerCaseFilter', [{ text: 'ada' }, { text: 'adas' }]
             ]
           }
         }
       }
     }
     it('returns the tokens from the last stage', () => {
-      expect(finalTokens(response, 'text_search', 'index')).to.eql(['uday', 'udays'])
+      expect(finalTokens(response, 'text_search', 'index')).to.eql(['ada', 'adas'])
     })
     it('returns nothing when the field type or side is missing', () => {
       expect(finalTokens(response, 'text_search', 'query')).to.eql([])

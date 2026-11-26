@@ -10,14 +10,14 @@ The parts of the Solr schema that Tymly relies on are kept here, with a script t
 What the search fields do:
 
 - **`searchText`** (title, description, additional terms, synopsis, doc id), using `text_search`:
-  - **Plurals:** `Midlands` matches `Midland` (English minimal stemming only, so names aren't changed).
+  - **Plurals:** `Northlands` matches `Northland` (English minimal stemming only, so names aren't changed).
   - **Joined-up references and words:** `ABC122024` and `REF00123` match `ABC12/2024` and `REF-00123`.
-  - **Apostrophes:** `udays` matches `Uday's`.
+  - **Apostrophes:** `adas` matches `Ada's`.
   - **Accents:** `cafe` matches `Café`.
   - **Synonyms**, at search time, from blueprints (see below).
-  - **Split words as phrases:** a word that gets split up, such as `ABC12/2024` or `Stoke-on-Trent`, is searched as a phrase (`autoGeneratePhraseQueries`), so it matches those words next to each other rather than any of them.
-- **`searchPrefix`** (title, description): partial words of 3 to 10 letters. `birm` matches `Birmingham`, and `ABC` matches `ABC12/2024`.
-- **`searchShingle`** (title, description): neighbouring words joined, so `castlewood` matches `Castle Wood`.
+  - **Split words as phrases:** a word that gets split up, such as `ABC12/2024` or `Upton-on-Sea`, is searched as a phrase (`autoGeneratePhraseQueries`), so it matches those words next to each other rather than any of them.
+- **`searchPrefix`** (title, description): partial words of 3 to 10 letters. `brig` matches `Brightwater`, and `ABC` matches `ABC12/2024`.
+- **`searchShingle`** (title, description): neighbouring words joined, so `oakhollow` matches `Oak Hollow`.
 
 `searchPrefix` and `searchShingle` make the index bigger, so partial words are limited to 3 to 10 letters. In one test with the same 6.2 million documents, partial words of 2 to 20 letters from title and description made the index 2.7 times its size without them, against 1.7 times for 3 to 10 letters from titles only.
 - **`uprns`**: a record's UPRN plus related UPRNs, for filtering. Filled by search docs, not copy fields.
