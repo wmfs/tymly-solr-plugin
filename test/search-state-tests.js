@@ -40,6 +40,8 @@ describe('tymly-solr-plugin search state resource tests', function () {
         config: {
           solrSchemaFields: [
             'id',
+            'domain',
+            'category',
             'actorName',
             'characterName',
             'roles',
@@ -174,6 +176,53 @@ describe('tymly-solr-plugin search state resource tests', function () {
     })
   })
 
+  describe('filters (Postgres search)', () => {
+    it('domain filter still matches', async () => {
+      const searchResults = await searchWith({ domain: 'search' }, 'john.smith')
+      expect(searchResults.totalHits).to.eql(24)
+    })
+
+    it('category filter still matches', async () => {
+      const searchResults = await searchWith({ categoryRestriction: ['school', 'other'] }, 'john.smith')
+      expect(searchResults.totalHits).to.eql(24)
+    })
+
+    it('an unknown domain matches nothing', async () => {
+      const searchResults = await searchWith({ domain: 'nope' }, 'john.smith')
+      expect(searchResults.totalHits).to.eql(0)
+    })
+  })
+
+  describe('injection attempts (Postgres search)', () => {
+    it('SQL in domain matches nothing instead of everything', async () => {
+      const searchResults = await searchWith({ domain: "x' or '1'='1" }, 'john.smith')
+      expect(searchResults.totalHits).to.eql(0)
+    })
+
+    it('a statement in domain is treated as a value', async () => {
+      const searchResults = await searchWith({ domain: "x'; delete from tymly_test.staff; --" }, 'john.smith')
+      expect(searchResults.totalHits).to.eql(0)
+
+      const staff = await client.query('select count(*) as total from tymly_test.staff')
+      expect(Number(staff.rows[0].total)).to.be.greaterThan(0)
+    })
+
+    it('SQL in categoryRestriction matches nothing instead of everything', async () => {
+      const searchResults = await searchWith({ categoryRestriction: ["x' or '1'='1"] }, 'john.smith')
+      expect(searchResults.totalHits).to.eql(0)
+    })
+
+    it('a user with no roles still cannot see staff', async () => {
+      const searchResults = await searchWith({ query: 'Hagrid', domain: "x' or '1'='1" }, 'jim.smith')
+      expect(searchResults.totalHits).to.eql(0)
+    })
+
+    it('% and _ in search text are literal, not wildcards', async () => {
+      const searchResults = await searchWith({ query: '%' }, 'john.smith')
+      expect(searchResults.totalHits).to.eql(0)
+    })
+  })
+
   describe('teardown', () => {
     it('cleanup test resources', async () => {
       await sqlScriptRunner(
@@ -207,4 +256,21 @@ describe('tymly-solr-plugin search state resource tests', function () {
 
     return executionDescription.ctx.searchResults
   } // search
+
+  async function searchWith (input, userId) {
+    const executionDescription = await statebox.startExecution(
+      {
+        limit: 100,
+        ...input
+      },
+      STATE_MACHINE_NAME,
+      {
+        sendResponse: 'COMPLETE',
+        userId
+      }
+    )
+
+    expect(executionDescription.status).to.eql('SUCCEEDED')
+    return executionDescription.ctx.searchResults
+  } // searchWith
 })
