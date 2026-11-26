@@ -38,7 +38,7 @@ const sentToSolr = params => querystring.parse(querystring.stringify(params))
 describe('build Solr query', () => {
   describe('escaping helpers', () => {
     it('escapes Lucene special characters in a search word', () => {
-      expect(escapeTerm('FSC493/2024')).to.eql('FSC493\\/2024')
+      expect(escapeTerm('ABC493/2024')).to.eql('ABC493\\/2024')
       expect(escapeTerm('a+b-c')).to.eql('a\\+b\\-c')
       expect(escapeTerm('x)OR(roles:*')).to.eql('x\\)OR\\(roles\\:\\*')
       expect(escapeTerm('"quoted"')).to.eql('\\"quoted\\"')
@@ -77,7 +77,7 @@ describe('build Solr query', () => {
       const params = build({
         filterOverrides: {
           domain: 'search',
-          docType: 'wmfs_audit',
+          docType: 'test_audit',
           author: 'jim.smith',
           categoryRestriction: ['prevention', 'protection'],
           showActiveEventsOnly: true
@@ -86,7 +86,7 @@ describe('build Solr query', () => {
       expect(params.fq).to.eql([
         'roles:("tymlyTest_boss" OR "$authenticated")',
         'domain:"search"',
-        'docType:"wmfs_audit"',
+        'docType:"test_audit"',
         'author:"jim.smith"',
         'category:("prevention" OR "protection")',
         'activeEvent:true'
@@ -108,8 +108,8 @@ describe('build Solr query', () => {
     })
 
     it('escapes characters that used to break the query', () => {
-      const params = build({ filterOverrides: { query: 'FSC493/2024' } })
-      expect(params.fq[1]).to.eql('(title:(FSC493\\/2024) OR description:(FSC493\\/2024) OR docId:(FSC493\\/2024))')
+      const params = build({ filterOverrides: { query: 'ABC493/2024' } })
+      expect(params.fq[1]).to.eql('(title:(ABC493\\/2024) OR description:(ABC493\\/2024) OR docId:(ABC493\\/2024))')
     })
 
     it('adds no search filter for an empty or emoji-only query', () => {
