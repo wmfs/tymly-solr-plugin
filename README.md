@@ -69,7 +69,7 @@ These are in `lib/components/state-resources/search/relevance.js`. They need the
 ### Cleaning the search text
 
 - Characters with a meaning in Lucene syntax are escaped. Apostrophes are kept.
-- Words made of letters and digits joined by `/` or `-` (e.g. `ABC123/2024`, `Stoke-on-Trent`) are searched as a phrase, so the parts must be together and in order.
+- Words made of letters and digits joined by `/` or `-` (e.g. `ABC123/2024`, `Upton-on-Sea`) are searched as a phrase, so the parts must be together and in order.
 - Stopwords are left out, unless they are all the user typed. The plugin's are `and`, `of` and `the`.
 
 ### Blueprint settings

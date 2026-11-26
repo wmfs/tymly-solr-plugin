@@ -46,7 +46,7 @@ describe('Solr client', function () {
     it('search: POSTs a form to /select, repeating array values, and returns the response', async () => {
       fake.reply.body = { response: { numFound: 1, docs: [{ id: 'a' }] } }
 
-      const result = await client.search({ q: 'Uday\'s & co', fq: ['roles:("a")', 'domain:"search"'], rows: 10, start: 0, sort: undefined })
+      const result = await client.search({ q: 'Ada\'s & co', fq: ['roles:("a")', 'domain:"search"'], rows: 10, start: 0, sort: undefined })
 
       expect(result.response.numFound).to.eql(1)
       const [req] = fake.requests
@@ -54,7 +54,7 @@ describe('Solr client', function () {
       expect(req.url).to.eql('/solr/tymly/select')
       expect(req.headers['content-type']).to.include('application/x-www-form-urlencoded')
       const form = new URLSearchParams(req.body)
-      expect(form.get('q')).to.eql('Uday\'s & co')
+      expect(form.get('q')).to.eql('Ada\'s & co')
       expect(form.getAll('fq')).to.eql(['roles:("a")', 'domain:"search"'])
       expect(form.get('wt')).to.eql('json')
       expect(form.has('sort')).to.eql(false)
