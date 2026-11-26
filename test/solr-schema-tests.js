@@ -103,6 +103,16 @@ describe('Solr schema (solr/)', () => {
   })
 
   describe('planSchemaChanges', () => {
+    it('removes the old docId -> searchText copy field from a core that has it', () => {
+      const plan = planSchemaChanges({
+        fieldTypes: [],
+        fields: [],
+        copyFields: [{ source: 'docId', dest: 'searchText' }]
+      }, schema)
+      expect(plan.commands['delete-copy-field']).to.eql([{ source: 'docId', dest: 'searchText' }])
+      expect(plan.reindexNeeded).to.equal(true)
+    })
+
     it('a new core: adds the field types, base fields, search fields and copy fields', () => {
       const plan = planSchemaChanges({ fieldTypes: [], fields: [], copyFields: [] }, schema)
 
@@ -110,7 +120,7 @@ describe('Solr schema (solr/)', () => {
       expect(plan.commands['add-field-type'].map(t => t.name)).to.eql(['text_search', 'text_prefix', 'text_shingle'])
       expect(plan.commands['add-field']).to.have.length(schema.baseFields.length + schema.fields.length)
       expect(plan.commands['add-copy-field']).to.deep.include({ source: 'title', dest: 'searchText' })
-      expect(plan.commands['add-copy-field']).to.deep.include({ source: 'docId', dest: 'searchText' })
+      expect(plan.commands['add-copy-field']).to.not.deep.include({ source: 'docId', dest: 'searchText' })
       expect(plan.reindexNeeded).to.equal(true)
     })
 

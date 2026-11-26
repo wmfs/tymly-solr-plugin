@@ -1,5 +1,5 @@
 {
-  "description": "Search fields. searchText, searchPrefix and searchShingle are filled from title, description etc. by copyField, so they're only filled when documents are re-added: run a full reindex after applying. Field types and fields here are added if missing and replaced if different.",
+  "description": "Search fields. searchText, searchPrefix and searchShingle are filled from title, description etc. by copyField, so they're only filled when documents are re-added: run a full reindex after applying. Field types and fields here are added if missing and replaced if different. docId isn't copied into searchText: it's mostly a prefix and a UUID, whose pieces matched unrelated searches (e.g. \"52\"). A UPRN docId is already searchable through additionalTerms, and an exact docId search is still boosted (bq).",
   "fieldTypes": [
     {
       "name": "text_search",
@@ -195,10 +195,6 @@
     },
     {
       "source": "synopsis",
-      "dest": "searchText"
-    },
-    {
-      "source": "docId",
       "dest": "searchText"
     }
   ]
