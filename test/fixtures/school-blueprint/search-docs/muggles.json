@@ -2,6 +2,8 @@
   "modelId": "muggles",
   "attributeMapping": {
     "id": "'muggle#' || muggle_no",
+    "domain": "'search'::text",
+    "category": "'school'::text",
     "actorName": "upper(first_name || ' ' || last_name)",
     "characterName": "'Themself'",
     "roles": "'{\"$everyone\"}'::text[]",

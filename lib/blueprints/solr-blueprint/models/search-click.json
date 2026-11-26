@@ -1,0 +1,38 @@
+{
+  "title": "Search Click",
+  "description": "One row each time a user opens a search result. Rows older than the tymly_searchLogRetentionDays registry key (default 365) are deleted on boot and once a day.",
+  "type": "object",
+  "properties": {
+    "searchLogId": {
+      "type": "string",
+      "description": "The id of the tymly.search_log row for the search the result came from"
+    },
+    "userId": {
+      "type": "string",
+      "description": "The ID of the user who opened the result"
+    },
+    "docId": {
+      "type": "string",
+      "description": "The docId of the result opened"
+    },
+    "docType": {
+      "type": "string",
+      "description": "The docType of the result opened"
+    },
+    "position": {
+      "type": "integer",
+      "description": "The position of the result across all pages (1 is the first result)"
+    },
+    "stateMachineName": {
+      "type": "string",
+      "description": "The launch the user chose"
+    }
+  },
+  "indexes": [
+    {
+      "columns": ["searchLogId"],
+      "unique": false
+    }
+  ],
+  "audit": false
+}

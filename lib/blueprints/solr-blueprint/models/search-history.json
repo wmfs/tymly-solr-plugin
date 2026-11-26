@@ -1,6 +1,6 @@
 {
   "title": "Search History",
-  "description": "The history of searches by users",
+  "description": "No longer written by search: see search_log and search_click.",
   "type": "object",
   "properties": {
     "userId": {

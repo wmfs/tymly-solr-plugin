@@ -20,6 +20,17 @@ See the test blueprint in /test/fixtures/school-blueprint for an example of how 
 $ npm install tymly-solr-plugin --save
 ```
 
+## <a name="config"></a>Connecting to Solr
+
+Set `config.solr` (`host`, `port`, `path`) or the environment variables `SOLR_HOST`, `SOLR_PORT` and `SOLR_PATH` (e.g. `localhost`, `8983`, `/solr`). Without them, search uses the Postgres fallback.
+
+| Setting | Environment variable | Default | |
+| --- | --- | --- | --- |
+| `config.solr.core` | `SOLR_CORE` | `tymly` | The Solr core searched and updated |
+| `config.solr.timeoutMs` | `SOLR_TIMEOUT_MS` | `30000` | How long to wait for Solr before the search or task fails |
+
+A Solr error (a bad query, Solr down or restarting, a timeout) fails only that search or task, never the Tymly process. Searches fail with `searchFail`.
+
 ## <a name="test"></a>Testing
 
 Before running the tests, you'll need a test PostgreSQL database available and set a `PG_CONNECTION_STRING` environment variable to point to it, for example:
@@ -36,6 +47,72 @@ Once the environment variables have been set, you can run the tests like this:
 $ npm test
 ```
 
+
+## <a name="relevance"></a>Search relevance
+
+When the user types search text, results are ranked with Solr's eDisMax query parser, best match first. The chosen sort (e.g. date created) only breaks ties. With no search text, results use the chosen sort.
+
+The search text is the query, never a filter: roles, domain, category and the other filters are separate `fq` parameters and don't change the score.
+
+### Starting values
+
+These are in `lib/components/state-resources/search/relevance.js`. They need the search fields from the schema in `solr/schema` (`searchText`, `searchPrefix`, `searchShingle`, `searchKeys`).
+
+| Parameter | Value | What it does |
+| --- | --- | --- |
+| `qf` | `title^2 searchText searchPrefix^0.5 searchShingle^0.5 searchKeys^3` | Fields searched. A word in the title counts twice. Partial and joined-up words count half. `searchKeys` holds codes kept whole (UPRNs, masking numbers, postcodes from `additionalTerms`): only a code typed in full matches, and then it counts strongly. Pieces of a code never match. |
+| `pf` | `title^3 description^2` | Extra score when the words appear together, in order, in the title or description. |
+| `mm` | `2<-1 5<75%` | How many words must match: 1 or 2 words, all of them; 3 to 5 words, all but one; more than 5, 75%. One wrong or extra word no longer means no results. |
+| `bq` | `docId:"<search text>"^10` | The record whose docId is exactly the search text comes first. |
+| `sow` | `true` | Each word is matched on its own before `mm` is applied. |
+
+### Cleaning the search text
+
+- Characters with a meaning in Lucene syntax are escaped. Apostrophes are kept.
+- Words made of letters and digits joined by `/` or `-` (e.g. `ABC123/2024`, `Upton-on-Sea`) are searched as a phrase, so the parts must be together and in order.
+- Stopwords are left out, unless they are all the user typed. The plugin's are `and`, `of` and `the`.
+
+### Blueprint settings
+
+A blueprint can add its own stopwords and boost patterns in a `search-relevance` folder. Each JSON file looks like this:
+
+```json
+{
+  "description": "Company name endings that shouldn't affect matching",
+  "stopwords": ["ltd", "limited"],
+  "boostPatterns": [
+    {
+      "description": "A code like AB12, matched against additionalTerms",
+      "pattern": "\\b[A-Z]{2}[0-9]{2}\\b",
+      "flags": "i",
+      "field": "additionalTerms",
+      "boost": 5,
+      "removeSpaces": true
+    }
+  ]
+}
+```
+
+A boost pattern is a regular expression run against the search text. Each match is boosted in `field` (with spaces removed when `removeSpaces` is true). Invalid entries are skipped with a warning when Tymly boots.
+
+**Prefix patterns** (`prefixPatterns`, same fields as a boost pattern but no `boost`) find part of a code in the search text and search it as "starts with" in `field`, instead of as separate words. For example, a partial postcode `ZZ75 7L` becomes `searchKeys:zz757l*`, so only postcodes starting ZZ75 7L match. It counts as one word, and the value is escaped.
+
+### Facets and highlights
+
+Search results include:
+
+- `facets`: the number of matches in each `category` and `docType`, across all results, not just the current page. The category counts ignore the category filter, so a user can see how many matches the other categories have.
+- `highlights`: the matching words in `title` and `description`, keyed by Solr document `id`.
+- `categoryCounts`: the same as `facets.category`, kept for existing callers.
+
+Without Solr, results are ordered by how many of the words are in the title, then by most recently modified. `facets` is `null`, because only the current page could be counted, and `categoryCounts` counts the current page as before.
+
+### Tuning
+
+- Start from the values above. Only raise a boost when a real search shows it's needed: heavy boosting makes it hard to tell why one result outranks another.
+- To see why a result scored as it did, run the same query in the Solr admin UI with `debugQuery=true`. The explanation shows which field and boost contributed what.
+- Change one parameter at a time, then re-run the whole set of test searches to check nothing else got worse.
+- Record any change here, with the searches that justified it.
 
 ## <a name="license"></a>License
 
