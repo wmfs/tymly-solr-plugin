@@ -2,6 +2,8 @@
   "modelId": "students",
   "attributeMapping": {
     "id": "'student#' || student_no",
+    "domain": "'search'::text",
+    "category": "'school'::text",
     "actorName": "upper(first_name || ' ' || last_name)",
     "characterName": "upper(character_name)",
     "roles": "'{\"tymlyTest_minor\"}'::text[]",

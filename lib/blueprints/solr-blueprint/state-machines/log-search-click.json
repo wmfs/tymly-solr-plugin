@@ -1,0 +1,21 @@
+{
+  "Comment": "Record that a user opened a search result.",
+  "version": "1.0",
+  "StartAt": "LogSearchClick",
+  "States": {
+    "LogSearchClick": {
+      "Type": "Task",
+      "Resource": "module:logSearchClick",
+      "InputPath": "$",
+      "End": true
+    }
+  },
+  "restrictions": [
+    {
+      "roleId": "$authenticated",
+      "allows": [
+        "*"
+      ]
+    }
+  ]
+}

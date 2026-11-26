@@ -36,6 +36,10 @@
     "categoryRestriction": {
       "type": "array",
       "description": "Categories to restrict the search to"
+    },
+    "skipLog": {
+      "type": "boolean",
+      "description": "Don't log this search for search analytics (e.g. the same search shown again after browser back)"
     }
   }
 }
