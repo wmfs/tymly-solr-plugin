@@ -1,0 +1,10 @@
+{
+  "label": "Super Admin",
+  "description": "Can run any state machine (like wmfs_wmfsAdmin)",
+  "grants": [
+    {
+      "stateMachineName": "*",
+      "allows": ["*"]
+    }
+  ]
+}
